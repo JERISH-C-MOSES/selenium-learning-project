@@ -1612,6 +1612,8 @@ thead th {
   .js-search-row,
   .subnav-pager {
     flex-direction: column;
+    align-items: stretch;
+    width: 100%;
   }
 
   .checkbox-grid {
@@ -1652,6 +1654,17 @@ thead th {
 
   .subnav-toolbar {
     padding: 1rem;
+    overflow: hidden;
+  }
+
+  .subnav-pager,
+  .search-form {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .search-form input {
+    min-width: 0;
   }
 
   .page-header {
@@ -1669,20 +1682,43 @@ thead th {
 
   .table-card,
   .scroll-data-card {
-    overflow-x: auto;
+    overflow-x: visible;
   }
 
   .data-table {
-    min-width: 720px;
+    min-width: 0;
+    table-layout: fixed;
+    font-size: 0.82rem;
+  }
+
+  .data-table th,
+  .data-table td {
+    overflow-wrap: anywhere;
+    word-break: normal;
   }
 
   .js-search-row input {
     flex-basis: auto;
+    width: 100%;
+  }
+
+  .js-search-row .button {
+    width: 100%;
   }
 
   .code-block {
     padding: 0.85rem;
     font-size: 0.88rem;
+  }
+
+  .js-hierarchy-diagram {
+    padding: 0.5rem;
+    overflow-x: hidden;
+  }
+
+  .js-hierarchy-diagram svg {
+    min-width: 0;
+    width: 100%;
   }
 
   .modal-backdrop {
@@ -1774,11 +1810,28 @@ thead th {
 
   .js-search-status {
     width: 100%;
+    max-width: 100%;
+    overflow-wrap: anywhere;
   }
 
   .upload-inline input[type="file"] {
     font-size: 0.95rem;
     padding: 0.75rem;
+  }
+
+  .js-hierarchy-diagram svg {
+    font-size: 20px;
+  }
+
+  .diagram-interface,
+  .diagram-class,
+  .diagram-legend-box {
+    stroke-width: 3;
+  }
+
+  .diagram-implements,
+  .diagram-extends {
+    stroke-width: 3.2;
   }
 
   th,
