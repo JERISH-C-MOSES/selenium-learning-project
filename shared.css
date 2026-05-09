@@ -1715,13 +1715,43 @@ thead th {
 }
 
 @media (max-width: 420px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .container {
+    width: min(100% - 0.75rem, 1200px);
+  }
+
   .brand {
     text-align: center;
+  }
+
+  .nav-shell {
+    gap: 0.75rem;
+    padding: 0.75rem;
   }
 
   .nav-links {
     gap: 0.55rem 0.85rem;
     font-size: 0.95rem;
+    justify-content: center;
+  }
+
+  .page-header h1 {
+    font-size: clamp(1.85rem, 8.5vw, 2.35rem);
+    line-height: 1.06;
+    letter-spacing: 0;
+  }
+
+  .page-header .lead {
+    line-height: 1.55;
+  }
+
+  .subnav-pager .button,
+  .search-form .button {
+    min-height: 46px;
   }
 
   .dashboard-hero-copy h1 {
@@ -1735,5 +1765,24 @@ thead th {
 
   .topic-thumb {
     height: 104px;
+  }
+
+  .js-executor-title-row,
+  .section-title-row {
+    gap: 0.65rem;
+  }
+
+  .js-search-status {
+    width: 100%;
+  }
+
+  .upload-inline input[type="file"] {
+    font-size: 0.95rem;
+    padding: 0.75rem;
+  }
+
+  th,
+  td {
+    padding: 0.7rem 0.8rem;
   }
 }
