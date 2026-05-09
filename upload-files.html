@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload Files Practice</title>
+    <link rel="stylesheet" href="shared.css" />
+  </head>
+  <body class="theme-js-upload">
+    <div class="container">
+      <header class="nav-shell">
+        <div class="brand">Selenium Sprint Lab</div>
+        <nav class="nav-links">
+          <a href="dashboard.html">Dashboard</a>
+          <a href="checkbox-alerts.html">Next: Check Boxes and Alerts</a>
+        </nav>
+        <button class="button ghost" type="button" data-logout>Logout</button>
+      </header>
+
+      <section class="page-header">
+        <div>
+          <p class="eyebrow">Lab 02</p>
+          <h1>Upload files with a real file input.</h1>
+          <p class="lead">Practice Selenium file upload using a normal <code>input[type="file"]</code> field and verify the selected file names on screen.</p>
+        </div>
+      </section>
+
+      <section class="panel upload-panel">
+        <h3>Upload Files</h3>
+        <div class="upload-demo">
+          <label class="upload-inline" for="file-upload">
+            <input id="file-upload" type="file" multiple onchange="window.renderUploadList && window.renderUploadList(this)" />
+          </label>
+          <div class="upload-results">
+            <h4>Files You Selected:</h4>
+            <div class="upload-list" id="upload-list" aria-live="polite">
+              <p class="upload-empty">No files selected yet.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

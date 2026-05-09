@@ -1,0 +1,8 @@
+{
+  "name": "selenium-practice-portal",
+  "version": "1.0.0",
+  "description": "Static Selenium practice portal for GitHub Pages",
+  "scripts": {
+    "check": "node --check main.js"
+  }
+}
