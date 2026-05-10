@@ -400,7 +400,7 @@ js.executeScript("arguments[0].click();", webelement);</code></pre>
                 <h4>SendKeys Using JavaScript</h4>
               <pre class="code-block"><code>JavascriptExecutor js = (JavascriptExecutor) driver;
 
-js.executeScript("arguments[0].value='Jerish';", webelement);</code></pre>
+js.executeScript("arguments[0].setAttribute('value','Jerish')", webelement);</code></pre>
               </article>
             </div>
           </section>
@@ -457,8 +457,11 @@ js.executeScript("arguments[0].value='Jerish';", webelement);</code></pre>
                     <p>Represents the web element passed after the comma.</p>
                   </li>
                   <li>
-                    <p><code>arguments[0].value='Jerish';</code></p>
-                    <p>Directly sets the textbox value using JavaScript.</p>
+                    <p><code>arguments[0].setAttribute('value','Jerish')</code></p>
+                    <p>Sets the <code>value</code> attribute of the textbox to <code>Jerish</code>.</p>
+                  </li>
+                  <li>
+                    <p><code>setAttribute()</code> is a JavaScript method used to change an attribute value of an element.</p>
                   </li>
                   <li>
                     <p>
