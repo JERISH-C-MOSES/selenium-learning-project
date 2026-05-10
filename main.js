@@ -4,6 +4,7 @@ const DEMO_PASSWORD = "Jerish@123";
 const protectedPages = [
   "dashboard.html",
   "checkbox-alerts.html",
+  "alerts.html",
   "frames-iframes.html",
   "dropdowns-tables.html",
   "autosuggest-static-table.html",
@@ -22,7 +23,8 @@ const pageRegistry = [
   { file: "dashboard.html", label: "Dashboard" },
   { file: "js-scroll-upload.html", label: "JavascriptExecutor and Scrolling" },
   { file: "upload-files.html", label: "Upload Files" },
-  { file: "checkbox-alerts.html", label: "Check Boxes and Alerts" },
+  { file: "checkbox-alerts.html", label: "Check Boxes and Radio Buttons" },
+  { file: "alerts.html", label: "Alerts" },
   { file: "frames-iframes.html", label: "Frames and Nested iFrames" },
   { file: "dropdowns-tables.html", label: "Different Types of Drop-downs" },
   { file: "autosuggest-static-table.html", label: "Auto-suggest and Static Table" },
@@ -37,117 +39,364 @@ const pageRegistry = [
 
 const helpContent = {
   "checkbox-states": {
-    title: "Check Box States",
-    syntax: `// Radio button
-driver.findElement(By.id("gender-male")).click();
+    title: "Checkbox and Radio Button",
+    infoHtml: `<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Checkbox</h4>
+    <p>A checkbox allows the user to select <strong>multiple options</strong>.</p>
 
-// Checkbox
-driver.findElement(By.id("day-monday")).click();
+    <h5>Example</h5>
+    <p>Choose your hobbies:</p>
+    <div class="basic-help-options" aria-label="Checkbox example">
+      <label><input type="checkbox" checked disabled /> Cricket</label>
+      <label><input type="checkbox" checked disabled /> Music</label>
+      <label><input type="checkbox" disabled /> Reading</label>
+    </div>
+  </div>
+</section>
 
-// Verify state
-boolean selected = driver.findElement(By.id("day-monday")).isSelected();`,
-    locator: {
-      xpath: `//input[@id='gender-male']
-//input[@id='day-monday']
-//input[starts-with(@id,'day-')]`,
-      css: `#gender-male
-#day-monday
-input[id^='day-']`
-    },
-    fullCode: `import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import java.time.Duration;
-import java.util.List;
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Radio Button</h4>
+    <p>A radio button allows the user to select <strong>only one option</strong> from a group.</p>
 
-public class CheckboxStatesExample {
-    public static void main(String[] args) {
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    <h5>Example</h5>
+    <p>Select gender:</p>
+    <div class="basic-help-options" aria-label="Radio button example">
+      <label><input type="radio" name="help-gender" checked disabled /> Male</label>
+      <label><input type="radio" name="help-gender" disabled /> Female</label>
+      <label><input type="radio" name="help-gender" disabled /> Other</label>
+    </div>
+    <p>Only one option can be selected at a time.</p>
+  </div>
+</section>
 
-        try {
-            driver.get("file:///C:/Users/hello/OneDrive/Documents/New%20project/index.html");
-            driver.findElement(By.id("username")).sendKeys("JERISH");
-            driver.findElement(By.id("password")).sendKeys("Jerish@123");
-            driver.findElement(By.id("login-button")).click();
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Syntax for Checkbox</h4>
+    <h5>Using Normal For Loop</h5>
+    <pre class="code-block"><code>List&lt;WebElement&gt; checkboxes = driver.findElements(
+    By.xpath("//input[@class='form-check-input']")
+);
 
-            driver.get("file:///C:/Users/hello/OneDrive/Documents/New%20project/checkbox-alerts.html");
+for(int i = 0; i &lt; checkboxes.size(); i++)
+{
+    checkboxes.get(i).click();
+}</code></pre>
+  </div>
+</section>
 
-            driver.findElement(By.id("gender-male")).click();
-            driver.findElement(By.id("day-monday")).click();
-            driver.findElement(By.id("day-wednesday")).click();
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Formula for Selecting First 3 Checkboxes</h4>
+    <p>No special formula is needed. Start from index <code>0</code> and go till <code>&lt; 3</code>.</p>
+    <pre class="code-block"><code>for(int i = 0; i &lt; 3; i++)
+{
+    checkboxes.get(i).click();
+}</code></pre>
+  </div>
+</section>
 
-            List<WebElement> allDays = driver.findElements(By.cssSelector("input[id^='day-']"));
-            for (WebElement day : allDays) {
-                System.out.println(day.getAttribute("id") + " -> " + day.isSelected());
-            }
-        } finally {
-            driver.quit();
-        }
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Formula for Selecting Checkboxes From Last</h4>
+    <pre class="code-block"><code>startingIndex = totalCheckboxes - numberOfCheckboxesToSelect</code></pre>
+    <p>Then loop from <code>startingIndex</code> to <code>totalCheckboxes - 1</code>.</p>
+
+    <h5>Example</h5>
+    <p>Suppose total checkboxes = <code>7</code>.</p>
+    <p>You want to select last <code>3</code> checkboxes.</p>
+
+    <h5>Step 1</h5>
+    <pre class="code-block"><code>7 - 3 = 4</code></pre>
+    <p>So starting index = <code>4</code>.</p>
+
+    <h5>Loop</h5>
+    <pre class="code-block"><code>for(int i = 4; i &lt; 7; i++)
+{
+    checkboxes.get(i).click();
+}</code></pre>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Unselect Already Selected Checkboxes</h4>
+    <p>First check whether the checkbox is already selected. If it is selected, click it once to unselect it.</p>
+    <pre class="code-block"><code>for(int i = 0; i &lt; checkboxes.size(); i++)
+{
+    if(checkboxes.get(i).isSelected())
+    {
+        checkboxes.get(i).click();    // Unselect checkbox
     }
-}`
+}</code></pre>
+  </div>
+</section>`,
+    syntax: "",
+    locator: { xpath: "", css: "" },
+    fullCode: ""
   },
   "alert-variants": {
     title: "Alert Variants",
-    syntax: `driver.findElement(By.id("simple-alert-button")).click();
-Alert alert = driver.switchTo().alert();
-alert.accept();
+    infoHtml: `<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Alert Note</h4>
+    <p><strong>Alert is not a webelement.</strong></p>
+    <p>Selenium cannot handle an alert using normal element locators like XPath or CSS. First, we must switch Selenium control to the alert popup.</p>
+  </div>
+</section>
 
-driver.findElement(By.id("confirm-alert-button")).click();
-driver.switchTo().alert().dismiss();
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>1. Simple Alert</h4>
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>Alert alert = driver.switchTo().alert();
 
-driver.findElement(By.id("prompt-alert-button")).click();
-driver.switchTo().alert().sendKeys("Jerish input");`,
-    locator: {
-      xpath: `//button[@id='simple-alert-button']
-//button[@id='confirm-alert-button']
-//button[@id='prompt-alert-button']
-//button[@id='timed-alert-button']`,
-      css: `#simple-alert-button
-#confirm-alert-button
-#prompt-alert-button
-#timed-alert-button`
-    },
-    fullCode: `import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
+alert.accept();</code></pre>
 
-public class AlertVariantsExample {
-    public static void main(String[] args) {
-        WebDriver driver = new ChromeDriver();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>Alert</code> - Selenium interface used to handle popup alerts.</li>
+      <li><code>alert</code> - Reference variable storing the alert popup.</li>
+      <li><code>driver.switchTo()</code> - Changes Selenium control from webpage.</li>
+      <li><code>alert()</code> - Switches control specifically to alert popup.</li>
+      <li><code>accept()</code> - Clicks the OK button.</li>
+    </ul>
+  </div>
+</section>
 
-        try {
-            driver.get("file:///C:/Users/hello/OneDrive/Documents/New%20project/index.html");
-            driver.findElement(By.id("username")).sendKeys("JERISH");
-            driver.findElement(By.id("password")).sendKeys("Jerish@123");
-            driver.findElement(By.id("login-button")).click();
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>2. Confirm Alert - OK</h4>
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>Alert alert = driver.switchTo().alert();
 
-            driver.get("file:///C:/Users/hello/OneDrive/Documents/New%20project/checkbox-alerts.html");
+alert.accept();</code></pre>
 
-            driver.findElement(By.id("simple-alert-button")).click();
-            wait.until(ExpectedConditions.alertIsPresent()).accept();
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>Alert</code> stores the confirm popup.</li>
+      <li><code>switchTo().alert()</code> moves control to popup window.</li>
+      <li><code>accept()</code> presses OK button.</li>
+      <li>Used when user wants to continue the action.</li>
+      <li>Example: "Do you want to delete file?"</li>
+    </ul>
+  </div>
+</section>
 
-            driver.findElement(By.id("confirm-alert-button")).click();
-            wait.until(ExpectedConditions.alertIsPresent()).dismiss();
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>3. Confirm Alert - Cancel</h4>
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>Alert alert = driver.switchTo().alert();
 
-            driver.findElement(By.id("prompt-alert-button")).click();
-            Alert prompt = wait.until(ExpectedConditions.alertIsPresent());
-            prompt.sendKeys("Selenium user");
-            prompt.accept();
+alert.dismiss();</code></pre>
 
-            driver.findElement(By.id("timed-alert-button")).click();
-            wait.until(ExpectedConditions.alertIsPresent()).accept();
-        } finally {
-            driver.quit();
-        }
-    }
-}`
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>Alert</code> handles the confirm popup.</li>
+      <li><code>switchTo().alert()</code> transfers control to alert.</li>
+      <li><code>dismiss()</code> presses Cancel button.</li>
+      <li>Used when user wants to cancel the action.</li>
+      <li>Example: "Do you want to logout?"</li>
+    </ul>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>4. Prompt Alert</h4>
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>Alert alert = driver.switchTo().alert();
+
+alert.sendKeys("Jerish");
+
+alert.accept();</code></pre>
+
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>sendKeys()</code> enters text into alert textbox.</li>
+      <li><code>"Jerish"</code> is the input value.</li>
+      <li><code>accept()</code> clicks OK after entering text.</li>
+      <li>Prompt alert contains textbox + buttons.</li>
+      <li>Example: "Enter your username".</li>
+    </ul>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>5. Timed Alert</h4>
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+
+alert.accept();</code></pre>
+
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>WebDriverWait</code> creates explicit wait object.</li>
+      <li><code>Duration.ofSeconds(10)</code> sets maximum wait time.</li>
+      <li><code>alertIsPresent()</code> checks whether alert appeared.</li>
+      <li>Returned alert is stored in <code>alert</code>.</li>
+      <li><code>accept()</code> clicks OK after alert appears.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Important Interview Question</h4>
+    <p>We can handle all types of alerts using explicit wait. In this approach, we do not need to write <code>driver.switchTo().alert()</code> separately.</p>
+
+    <h5>Handle Alert Using Explicit Wait</h5>
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+
+alert.accept();</code></pre>
+
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>WebDriverWait</code> - Creates explicit wait object.</li>
+      <li><code>Duration.ofSeconds(10)</code> - Maximum waiting time for alert.</li>
+      <li><code>wait.until()</code> - Waits until condition becomes true.</li>
+      <li><code>alertIsPresent()</code> - Checks whether alert popup appeared.</li>
+      <li>Returned alert is stored inside <code>alert</code> variable.</li>
+      <li><code>accept()</code> clicks OK button after alert appears.</li>
+    </ul>
+  </div>
+</section>`,
+    syntax: "",
+    locator: { xpath: "", css: "" },
+    fullCode: ""
+  },
+  "auth-popup": {
+    title: "Authentication Popup",
+    infoHtml: `<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Authentication Popup</h4>
+    <p>An authentication popup is a browser popup asking for:</p>
+    <ul class="basic-help-list">
+      <li>Username</li>
+      <li>Password</li>
+    </ul>
+    <p>It appears before accessing a webpage.</p>
+    <p>It is mainly used for security verification.</p>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Example</h4>
+    <p>When opening a protected website, the browser shows a username and password popup.</p>
+    <div class="auth-popup-demo" aria-label="Browser authentication popup example">
+      <h5>Sign in</h5>
+      <p>http://the-internet.herokuapp.com</p>
+      <p>Your connection to this site is not private</p>
+      <label>
+        Username
+        <input type="text" value="" aria-label="Authentication username example" />
+      </label>
+      <label>
+        Password
+        <input type="password" value="" aria-label="Authentication password example" />
+      </label>
+      <div class="auth-popup-actions">
+        <button type="button">Sign in</button>
+        <button type="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Important Point</h4>
+    <p>This popup is:</p>
+    <ul class="basic-help-list">
+      <li>Browser level popup</li>
+      <li>Not a JavaScript alert</li>
+    </ul>
+    <p>So normal alert handling methods like this will not work:</p>
+    <pre class="code-block"><code>driver.switchTo().alert();</code></pre>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>How to Handle Authentication Popup</h4>
+    <p>We handle it by passing username and password directly inside the URL.</p>
+    <p>This is called <strong>injection</strong>.</p>
+
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>driver.get("https://username:password@websiteURL");</code></pre>
+
+    <h5>Example</h5>
+    <pre class="code-block"><code>driver.get("https://admin:admin@the-internet.herokuapp.com/basic_auth");</code></pre>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Explanation</h4>
+    <ul class="basic-help-list">
+      <li><code>https://</code> - Website protocol.</li>
+      <li><code>admin</code> - Username.</li>
+      <li><code>:</code> - Separates username and password.</li>
+      <li>Second <code>admin</code> - Password.</li>
+      <li><code>@</code> - Separates credentials and website URL.</li>
+      <li>Selenium automatically logs into popup.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Difference Between Alert & Authentication Popup</h4>
+    <div class="comparison-table-wrap">
+      <table class="data-table comparison-table">
+        <thead>
+          <tr>
+            <th>Alert</th>
+            <th>Authentication Popup</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>JavaScript popup</td>
+            <td>Browser popup</td>
+          </tr>
+          <tr>
+            <td>Handled using <code>alert()</code></td>
+            <td>Handled using URL</td>
+          </tr>
+          <tr>
+            <td>Has OK/Cancel</td>
+            <td>Has username/password</td>
+          </tr>
+          <tr>
+            <td>Selenium switch required</td>
+            <td>URL credentials used</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Interview Point</h4>
+    <p><strong>Why does <code>switchTo().alert()</code> not work?</strong></p>
+    <p>Because authentication popup is generated by browser, not by JavaScript.</p>
+  </div>
+</section>`,
+    syntax: "",
+    locator: { xpath: "", css: "" },
+    fullCode: ""
   },
   "modal-dialog": {
     title: "Modal Dialog",
@@ -545,6 +794,10 @@ const initCheckboxAlertsPage = () => {
     }, 2000);
   });
 
+  document.getElementById("auth-popup-link")?.addEventListener("click", () => {
+    setStatus("auth-popup-status", "Browser authentication popup opened. Use username demo and password demo.", "warning");
+  });
+
   const modal = document.getElementById("modal-backdrop");
   document.getElementById("open-modal")?.addEventListener("click", () => {
     openModal(modal);
@@ -562,10 +815,12 @@ const initHelpCenter = () => {
   const helpSyntax = document.getElementById("help-syntax");
   const helpLocator = document.getElementById("help-locator");
   const helpFullCode = document.getElementById("help-full-code");
+  const helpInfo = document.getElementById("help-info-content");
   const helpButtons = document.querySelectorAll(".help-button");
   const helpTabButtons = document.querySelectorAll(".help-tab-button");
   const locatorTabButtons = document.querySelectorAll(".locator-tab-button");
   const helpPanels = document.querySelectorAll(".help-panel");
+  const helpMainTabRow = helpBackdrop?.querySelector(".modal-card > .help-tab-row");
   let currentTopic = null;
   let currentLocatorMode = "xpath";
 
@@ -581,6 +836,25 @@ const initHelpCenter = () => {
     }
 
     helpTitle.textContent = content.title;
+    if (content.infoHtml) {
+      helpMainTabRow?.classList.add("hidden");
+      helpInfo?.classList.remove("hidden");
+      if (helpInfo) {
+        helpInfo.innerHTML = content.infoHtml;
+        highlightCodeBlocks(helpInfo);
+      }
+      helpSyntax?.closest("pre")?.classList.add("hidden");
+      helpLocator.textContent = "";
+      helpFullCode.textContent = "";
+      return;
+    }
+
+    helpMainTabRow?.classList.remove("hidden");
+    helpInfo?.classList.add("hidden");
+    if (helpInfo) {
+      helpInfo.innerHTML = "";
+    }
+    helpSyntax?.closest("pre")?.classList.remove("hidden");
     helpSyntax.textContent = content.syntax;
     helpLocator.textContent = content.locator[currentLocatorMode];
     helpFullCode.textContent = content.fullCode;

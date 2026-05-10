@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Check Boxes and Radio Buttons</title>
+    <title>Alerts Practice</title>
     <link rel="stylesheet" href="shared.css?v=19" />
   </head>
   <body class="theme-alerts">
@@ -12,54 +12,58 @@
         <div class="brand">Selenium Sprint Lab</div>
         <nav class="nav-links">
           <a href="dashboard.html">Dashboard</a>
-          <a href="alerts.html">Next: Alerts</a>
+          <a href="frames-iframes.html">Next: Frames</a>
         </nav>
         <button class="button ghost" type="button" data-logout>Logout</button>
       </header>
 
       <section class="page-header">
         <div>
-          <p class="eyebrow">Lab 03</p>
-          <h1>Practice checkboxes and radio buttons.</h1>
-          <p class="lead">This page focuses on radio-button selection, checkbox state checks, bulk selection, and clearing selected options.</p>
+          <p class="eyebrow">Lab 04</p>
+          <h1>Handle simple, confirm, prompt, and timed alerts.</h1>
+          <p class="lead">Practice alert accept, dismiss, prompt entry, and explicit waits for alerts that appear after a delay.</p>
         </div>
       </section>
 
       <section class="panel">
         <div class="section-title">
           <div class="section-title-row">
-            <h2>Check Box States</h2>
-            <button class="button secondary help-button" type="button" data-help-topic="checkbox-states">Help</button>
+            <h2>Alert Variants</h2>
+            <button class="button secondary help-button" type="button" data-help-topic="alert-variants">Help</button>
           </div>
-          <p>Practice radio-button selection for gender and checkbox selection for days of the week.</p>
+          <p>Use these buttons to create browser alerts and practice switching or waiting before handling them.</p>
         </div>
         <div class="stack">
-          <fieldset>
-            <legend>Gender:</legend>
-            <div class="inline-row">
-              <label class="choice"><input id="gender-male" name="gender" type="radio" value="male" /> Male</label>
-              <label class="choice"><input id="gender-female" name="gender" type="radio" value="female" /> Female</label>
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <legend>Days:</legend>
-            <div class="checkbox-grid">
-              <label class="choice"><input class="feature-checkbox" id="day-sunday" type="checkbox" value="Sunday" /> Sunday</label>
-              <label class="choice"><input class="feature-checkbox" id="day-monday" type="checkbox" value="Monday" /> Monday</label>
-              <label class="choice"><input class="feature-checkbox" id="day-tuesday" type="checkbox" value="Tuesday" /> Tuesday</label>
-              <label class="choice"><input class="feature-checkbox" id="day-wednesday" type="checkbox" value="Wednesday" /> Wednesday</label>
-              <label class="choice"><input class="feature-checkbox" id="day-thursday" type="checkbox" value="Thursday" /> Thursday</label>
-              <label class="choice"><input class="feature-checkbox" id="day-friday" type="checkbox" value="Friday" /> Friday</label>
-              <label class="choice"><input class="feature-checkbox" id="day-saturday" type="checkbox" value="Saturday" /> Saturday</label>
-            </div>
-          </fieldset>
-          <div class="button-row">
-            <button class="button primary" id="select-all-checkboxes" type="button">Select All</button>
-            <button class="button secondary" id="clear-all-checkboxes" type="button">Clear All</button>
-          </div>
-          <p class="status-message" id="checkbox-status" aria-live="polite"></p>
+          <button class="button secondary" id="simple-alert-button" type="button">Simple Alert</button>
+          <button class="button secondary" id="confirm-alert-button" type="button">Confirm Alert</button>
+          <button class="button secondary" id="prompt-alert-button" type="button">Prompt Alert</button>
+          <button class="button secondary" id="timed-alert-button" type="button">Timed Alert</button>
+          <p class="status-message" id="alert-status" aria-live="polite"></p>
         </div>
+      </section>
+
+      <section class="panel" style="margin-top: 1rem;">
+        <div class="section-title">
+          <div class="section-title-row">
+            <h2>Authentication Popup</h2>
+            <button class="button secondary help-button" type="button" data-help-topic="auth-popup">Help</button>
+          </div>
+          <p>Click the protected URL. The browser will show an authentication popup.</p>
+        </div>
+        <div class="auth-practice-box">
+          <p><strong>Username:</strong> demo</p>
+          <p><strong>Password:</strong> demo</p>
+          <a
+            class="button primary"
+            id="auth-popup-link"
+            href="https://httpbin.org/basic-auth/demo/demo"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open Protected URL
+          </a>
+        </div>
+        <p class="status-message" id="auth-popup-status" aria-live="polite"></p>
       </section>
     </div>
 

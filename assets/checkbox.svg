@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 240" role="img" aria-labelledby="title desc">
+  <title id="title">Checkbox and radio practice preview</title>
+  <desc id="desc">Simple checklist and radio button controls.</desc>
+  <rect width="420" height="240" rx="28" fill="#fff8f2"/>
+  <rect x="58" y="48" width="304" height="144" rx="20" fill="#fbfdfb" stroke="#e2d4c6" stroke-width="2"/>
+  <rect x="92" y="76" width="28" height="28" rx="6" fill="#2f9c8f"/>
+  <path d="M99 90l6 7 13-16" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="138" y="81" width="150" height="12" rx="6" fill="#213437"/>
+  <rect x="92" y="118" width="28" height="28" rx="6" fill="#2f9c8f"/>
+  <path d="M99 132l6 7 13-16" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="138" y="123" width="122" height="12" rx="6" fill="#cfd3cf"/>
+  <circle cx="106" cy="166" r="14" fill="#fff" stroke="#213437" stroke-width="4"/>
+  <circle cx="106" cy="166" r="7" fill="#c9623f"/>
+  <rect x="138" y="160" width="98" height="12" rx="6" fill="#213437"/>
+</svg>
