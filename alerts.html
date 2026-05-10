@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alerts Practice</title>
-    <link rel="stylesheet" href="shared.css?v=19" />
+    <link rel="stylesheet" href="shared.css?v=26" />
   </head>
   <body class="theme-alerts">
     <div class="container">
@@ -38,32 +38,9 @@
           <button class="button secondary" id="confirm-alert-button" type="button">Confirm Alert</button>
           <button class="button secondary" id="prompt-alert-button" type="button">Prompt Alert</button>
           <button class="button secondary" id="timed-alert-button" type="button">Timed Alert</button>
+          <p class="result-label">Result:</p>
           <p class="status-message" id="alert-status" aria-live="polite"></p>
         </div>
-      </section>
-
-      <section class="panel" style="margin-top: 1rem;">
-        <div class="section-title">
-          <div class="section-title-row">
-            <h2>Authentication Popup</h2>
-            <button class="button secondary help-button" type="button" data-help-topic="auth-popup">Help</button>
-          </div>
-          <p>Click the protected URL. The browser will show an authentication popup.</p>
-        </div>
-        <div class="auth-practice-box">
-          <p><strong>Username:</strong> demo</p>
-          <p><strong>Password:</strong> demo</p>
-          <a
-            class="button primary"
-            id="auth-popup-link"
-            href="https://httpbin.org/basic-auth/demo/demo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open Protected URL
-          </a>
-        </div>
-        <p class="status-message" id="auth-popup-status" aria-live="polite"></p>
       </section>
     </div>
 
@@ -97,6 +74,6 @@
         </div>
       </div>
     </div>
-    <script src="main.js?v=19"></script>
+    <script src="main.js?v=26"></script>
   </body>
 </html>
