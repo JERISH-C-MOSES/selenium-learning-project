@@ -27,7 +27,7 @@ const pageRegistry = [
   { file: "alerts.html", label: "Alerts" },
   { file: "frames-iframes.html", label: "Frames and Nested iFrames" },
   { file: "dropdowns-tables.html", label: "Different Types of Drop-downs" },
-  { file: "autosuggest-static-table.html", label: "Auto-suggest and Static Table" },
+  { file: "autosuggest-static-table.html", label: "Static Table" },
   { file: "pagination-table.html", label: "Dynamic Pagination Table" },
   { file: "date-pickers.html", label: "Date Pickers" },
   { file: "mouse-actions.html", label: "Mouse Actions" },
@@ -267,6 +267,710 @@ alert.accept();</code></pre>
       <li>Returned alert is stored inside <code>alert</code> variable.</li>
       <li><code>accept()</code> clicks OK button after alert appears.</li>
     </ul>
+  </div>
+</section>`,
+    syntax: "",
+    locator: { xpath: "", css: "" },
+    fullCode: ""
+  },
+  "select-dropdown-help": {
+    title: "Select Dropdown",
+    infoHtml: `<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Select Dropdown</h4>
+    <p>This is the normal HTML dropdown using the <code>&lt;select&gt;</code> tag.</p>
+    <p>Every option inside a dropdown is a <strong>web element</strong>.</p>
+
+    <h5>HTML</h5>
+    <pre class="code-block"><code>&lt;select id="country"&gt;
+    &lt;option&gt;Chennai&lt;/option&gt;
+    &lt;option&gt;Delhi&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+
+    <h5>How to Identify?</h5>
+    <p>You will see <code>&lt;select&gt;</code> in HTML.</p>
+
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>import org.openqa.selenium.support.ui.Select;
+
+WebElement dropdown = driver.findElement(By.id("country"));
+
+Select select = new Select(dropdown);</code></pre>
+
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>import org.openqa.selenium.support.ui.Select</code> - Imports Select class package.</li>
+      <li><code>WebElement dropdown</code> - Stores dropdown element into a variable.</li>
+      <li><code>driver.findElement()</code> - Finds dropdown from webpage.</li>
+      <li><code>By.id("country")</code> - Locates dropdown using id attribute.</li>
+      <li><code>new Select(dropdown)</code> - Creates Select class object for dropdown handling.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Types of Select Methods</h4>
+
+    <h5>1. selectByVisibleText()</h5>
+    <pre class="code-block"><code>select.selectByVisibleText("India");</code></pre>
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>selectByVisibleText()</code> - Selects option using visible text.</li>
+      <li><code>"India"</code> - Text displayed inside dropdown.</li>
+      <li>Selenium checks the visible text and selects the matching option.</li>
+      <li>Most commonly used dropdown method.</li>
+      <li>Text must exactly match with dropdown option.</li>
+    </ul>
+
+    <h5>2. selectByValue()</h5>
+    <pre class="code-block"><code>select.selectByValue("IN");</code></pre>
+    <h5>HTML Example</h5>
+    <pre class="code-block"><code>&lt;option value="IN"&gt;India&lt;/option&gt;</code></pre>
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>selectByValue()</code> - Selects option using value attribute.</li>
+      <li><code>"IN"</code> - Value present inside HTML code.</li>
+      <li>Selenium checks value attribute internally.</li>
+      <li>Useful when visible text is dynamic.</li>
+      <li>Value must exactly match with HTML attribute.</li>
+    </ul>
+
+    <h5>Select by Value and Select by Visible Text Difference</h5>
+    <pre class="code-block"><code>&lt;option value="1"&gt;Male&lt;/option&gt;
+&lt;option value="2"&gt;Female&lt;/option&gt;</code></pre>
+    <h5>Using Value</h5>
+    <pre class="code-block"><code>select.selectByValue("1");</code></pre>
+    <p>Selects Male using hidden value.</p>
+    <h5>Using Visible Text</h5>
+    <pre class="code-block"><code>select.selectByVisibleText("Male");</code></pre>
+    <p>Selects Male using displayed text.</p>
+
+    <h5>3. selectByIndex()</h5>
+    <pre class="code-block"><code>select.selectByIndex(1);</code></pre>
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>selectByIndex()</code> - Selects option using position number.</li>
+      <li>Index starts from <code>0</code>.</li>
+      <li>Selenium selects option based on dropdown order.</li>
+    </ul>
+    <pre class="code-block"><code>0 -> Select Country
+1 -> India
+2 -> USA</code></pre>
+    <p><code>selectByIndex(1)</code> selects India.</p>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Get All Options from Dropdown</h4>
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>WebElement dropdown = driver.findElement(By.id("country"));
+
+Select select = new Select(dropdown);
+
+List&lt;WebElement&gt; options = select.getOptions();</code></pre>
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>findElement()</code> - Finds dropdown element from webpage.</li>
+      <li><code>new Select(dropdown)</code> - Creates Select class object.</li>
+      <li><code>getOptions()</code> - Gets all dropdown options.</li>
+      <li><code>List&lt;WebElement&gt;</code> - Stores all options inside list.</li>
+      <li>Each option is stored as WebElement.</li>
+    </ul>
+
+    <h4>Print All Dropdown Options</h4>
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>for(WebElement op : options)
+{
+    System.out.println(op.getText());
+}</code></pre>
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>for</code> loop - Used to read all dropdown options one by one.</li>
+      <li><code>op</code> - Represents each dropdown option.</li>
+      <li><code>getText()</code> - Gets visible text from option.</li>
+      <li><code>System.out.println()</code> - Prints all dropdown values in console.</li>
+    </ul>
+
+    <h4>Get All Dropdown Options Using for Loop</h4>
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>WebElement dropdown = driver.findElement(By.id("country"));
+
+Select select = new Select(dropdown);
+
+List&lt;WebElement&gt; options = select.getOptions();
+
+for(int i=0; i&lt;options.size(); i++)
+{
+    System.out.println(options.get(i).getText());
+}</code></pre>
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>findElement()</code> - Finds dropdown element from webpage.</li>
+      <li><code>new Select(dropdown)</code> - Creates Select class object.</li>
+      <li><code>getOptions()</code> - Gets all dropdown options.</li>
+      <li><code>options.size()</code> - Returns total number of options.</li>
+      <li><code>for(int i=0; i&lt;options.size(); i++)</code> - Loops through all dropdown options.</li>
+      <li><code>options.get(i)</code> - Gets option using index.</li>
+      <li><code>getText()</code> - Gets visible text of option.</li>
+      <li><code>System.out.println()</code> - Prints dropdown values in console.</li>
+    </ul>
+  </div>
+</section>`,
+    syntax: "",
+    locator: { xpath: "", css: "" },
+    fullCode: ""
+  },
+  "bootstrap-dropdown-help": {
+    title: "Bootstrap Dropdown",
+    infoHtml: `<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Bootstrap Dropdown</h4>
+    <p>This is <strong>not</strong> a real <code>&lt;select&gt;</code> dropdown.</p>
+    <p>It is created using:</p>
+    <ul class="basic-help-list">
+      <li><code>&lt;div&gt;</code></li>
+      <li><code>&lt;ul&gt;</code></li>
+      <li><code>&lt;li&gt;</code></li>
+      <li>buttons</li>
+      <li>CSS + JavaScript</li>
+    </ul>
+
+    <h5>HTML Example</h5>
+    <pre class="code-block"><code>&lt;div class="dropdown"&gt;
+    &lt;button&gt;Country&lt;/button&gt;
+    &lt;ul&gt;
+        &lt;li&gt;India&lt;/li&gt;
+        &lt;li&gt;USA&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+    <h5>Important</h5>
+    <p><code>Select</code> class will <strong>not</strong> work because there is no <code>&lt;select&gt;</code> tag.</p>
+    <p>Bootstrap and hidden dropdowns use XPath.</p>
+
+    <h5>Select Single Option</h5>
+    <pre class="code-block"><code>driver.findElement(By.id("bootstrap-dropdown-trigger")).click();
+
+driver.findElement(By.xpath("//label[normalize-space()='London']")).click();</code></pre>
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>findElement()</code> - Finds dropdown option.</li>
+      <li><code>By.xpath()</code> - Locates option using XPath.</li>
+      <li><code>//label[normalize-space()='London']</code> - Finds option whose visible text is London.</li>
+      <li><code>click()</code> - Selects the dropdown option.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Select Multiple Options in Bootstrap Dropdown</h4>
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>List&lt;WebElement&gt; options = driver.findElements(
+    By.xpath("//div[@id='bootstrap-dropdown-menu']//label")
+);
+
+for(WebElement op : options)
+{
+    String option = op.getText();
+
+    if(option.equals("Chennai") ||
+       option.equals("London") ||
+       option.equals("Tokyo"))
+    {
+        op.click();
+    }
+}</code></pre>
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>for(WebElement op : options)</code> - Reads all dropdown options one by one.</li>
+      <li><code>op</code> - Represents each dropdown option.</li>
+      <li><code>op.getText()</code> - Gets visible text from dropdown option.</li>
+      <li><code>String option</code> - Stores option text into variable.</li>
+      <li><code>option.equals("Chennai")</code> - Checks whether option text is Chennai.</li>
+      <li><code>||</code> - OR operator used to check multiple conditions.</li>
+      <li><code>op.click()</code> - Selects matching dropdown option.</li>
+      <li>Loop continues until all matching options are selected.</li>
+    </ul>
+  </div>
+</section>`,
+    syntax: "",
+    locator: { xpath: "", css: "" },
+    fullCode: ""
+  },
+  "hidden-dropdown-help": {
+    title: "Hidden Dropdown",
+    infoHtml: `<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Hidden Dropdown</h4>
+    <p>Dropdown options are hidden initially.</p>
+    <p>They appear only after mouse hover, typing, or clicking.</p>
+    <p>Examples include auto-suggestion search, dynamic dropdown, and React dropdown.</p>
+
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>driver.findElement(By.id("hidden-dropdown-control")).click();
+
+driver.findElement(By.xpath("//div[@id='hidden-dropdown-options']//button[text()='Finance']")).click();</code></pre>
+
+    <p>Hidden dropdowns use XPath because options are created or displayed only after an action.</p>
+    <p>The other process follows the Bootstrap dropdown process.</p>
+
+    <h5>Select Single Option</h5>
+    <pre class="code-block"><code>driver.findElement(By.id("hidden-dropdown-control")).click();
+
+driver.findElement(
+    By.xpath("//div[@id='hidden-dropdown-options']//button[normalize-space()='Finance']")
+).click();</code></pre>
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>findElement()</code> - Finds dropdown option.</li>
+      <li><code>By.xpath()</code> - Locates option using XPath.</li>
+      <li><code>//button[normalize-space()='Finance']</code> - Finds option whose visible text is Finance.</li>
+      <li><code>click()</code> - Selects the dropdown option.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Select Multiple Options in Hidden Dropdown</h4>
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>driver.findElement(By.id("hidden-dropdown-control")).click();
+
+List&lt;WebElement&gt; options = driver.findElements(
+    By.xpath("//div[@id='hidden-dropdown-options']//button")
+);
+
+for(WebElement op : options)
+{
+    String option = op.getText();
+
+    if(option.equals("Finance") ||
+       option.equals("HR") ||
+       option.equals("Support"))
+    {
+        op.click();
+    }
+}</code></pre>
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>for(WebElement op : options)</code> - Reads all dropdown options one by one.</li>
+      <li><code>op</code> - Represents each dropdown option.</li>
+      <li><code>op.getText()</code> - Gets visible text from dropdown option.</li>
+      <li><code>String option</code> - Stores option text into variable.</li>
+      <li><code>option.equals("Finance")</code> - Checks whether option text is Finance.</li>
+      <li><code>||</code> - OR operator used to check multiple conditions.</li>
+      <li><code>op.click()</code> - Selects matching dropdown option.</li>
+      <li>Loop continues until all matching options are selected.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Developer Tool Trick</h4>
+    <p>If dropdown options disappear while inspecting:</p>
+    <ol class="basic-help-list">
+      <li>Open Developer Tools <code>F12</code>.</li>
+      <li>Go to <strong>Event Listeners</strong>.</li>
+      <li>Find <code>blur</code> or <code>focusout</code>.</li>
+      <li>Remove/disable the blur event.</li>
+      <li>Now dropdown stays visible.</li>
+      <li>Then inspect element and get XPath easily.</li>
+    </ol>
+  </div>
+</section>`,
+    syntax: "",
+    locator: { xpath: "", css: "" },
+    fullCode: ""
+  },
+  "autosuggest-dropdown-help": {
+    title: "Auto-suggest Dropdown",
+    infoHtml: `<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Auto-suggest Dropdown</h4>
+    <p>An <strong>Auto Suggest Dropdown</strong> is a dropdown that shows suggestions automatically while typing in a textbox.</p>
+    <p>Suggestions appear dynamically based on entered text.</p>
+    <p>These dropdowns are commonly used in:</p>
+    <ul class="basic-help-list">
+      <li>Google Search</li>
+      <li>Amazon Search</li>
+      <li>Flight booking websites</li>
+      <li>Location search</li>
+    </ul>
+
+    <h5>Example</h5>
+    <p>When typing:</p>
+    <pre class="code-block"><code>Ind</code></pre>
+
+    <p>Suggestions appear automatically:</p>
+    <pre class="code-block"><code>India
+Indonesia
+Indian food</code></pre>
+
+    <p>This is called an <strong>Auto Suggest Dropdown</strong>.</p>
+
+    <h5>Note</h5>
+    <p>Taking XPath plays an important role here.</p>
+    <p>Since when we click the dropdown, the option will disappear, it will be hard to take XPath.</p>
+    <ol class="basic-help-list">
+      <li>For those who cannot find the <code>blur</code> event, alternatively you can remove the one in <code>focusout</code>.</li>
+      <li>Remove the <code>blur</code> property.</li>
+    </ol>
+
+    <h5>Select Single Option</h5>
+    <pre class="code-block"><code>driver.findElement(By.id("autosuggest-input")).sendKeys("ind");
+
+driver.findElement(
+    By.xpath("//div[@id='autosuggest-list']//button[normalize-space()='India']")
+).click();</code></pre>
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>sendKeys("ind")</code> - Types partial text in the textbox.</li>
+      <li><code>findElement()</code> - Finds dropdown option.</li>
+      <li><code>By.xpath()</code> - Locates option using XPath.</li>
+      <li><code>//button[normalize-space()='India']</code> - Finds option whose visible text is India.</li>
+      <li><code>click()</code> - Selects the dropdown option.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Select Multiple Options in Auto Suggest Dropdown</h4>
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>driver.findElement(By.id("autosuggest-input")).sendKeys("ind");
+
+List&lt;WebElement&gt; options = driver.findElements(
+    By.xpath("//div[@id='autosuggest-list']//button")
+);
+
+for(WebElement op : options)
+{
+    String option = op.getText();
+
+    if(option.equals("India") ||
+       option.equals("Indonesia") ||
+       option.equals("Indore"))
+    {
+        op.click();
+        break;
+    }
+}</code></pre>
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>for(WebElement op : options)</code> - Reads all dropdown options one by one.</li>
+      <li><code>op</code> - Represents each dropdown option.</li>
+      <li><code>op.getText()</code> - Gets visible text from dropdown option.</li>
+      <li><code>String option</code> - Stores option text into variable.</li>
+      <li><code>option.equals("India")</code> - Checks whether option text is India.</li>
+      <li><code>||</code> - OR operator used to check multiple conditions.</li>
+      <li><code>op.click()</code> - Selects matching dropdown option.</li>
+      <li><code>break</code> - Stops after selecting the first matching suggestion.</li>
+    </ul>
+  </div>
+</section>`,
+    syntax: "",
+    locator: { xpath: "", css: "" },
+    fullCode: ""
+  },
+  "dropdown-box": {
+    title: "Dropdown Box",
+    infoHtml: `<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Dropdown Box</h4>
+    <pre class="code-block"><code>Dropdown box
+------------
+1) Select dropdown
+2) Bootstrap dropdown
+3) Hidden dropdown
+4) Auto-suggest dropdown</code></pre>
+    <p>Every option inside a dropdown is a <strong>web element</strong>.</p>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>1. Select Dropdown</h4>
+    <p>This is the normal HTML dropdown using the <code>&lt;select&gt;</code> tag.</p>
+
+    <h5>HTML</h5>
+    <pre class="code-block"><code>&lt;select id="country"&gt;
+    &lt;option&gt;Chennai&lt;/option&gt;
+    &lt;option&gt;Delhi&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+
+    <h5>How to Identify?</h5>
+    <p>You will see <code>&lt;select&gt;</code> in HTML.</p>
+
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>import org.openqa.selenium.support.ui.Select;
+
+WebElement dropdown = driver.findElement(By.id("country"));
+
+Select select = new Select(dropdown);</code></pre>
+
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>import org.openqa.selenium.support.ui.Select</code> - Imports Select class package.</li>
+      <li><code>WebElement dropdown</code> - Stores dropdown element into a variable.</li>
+      <li><code>driver.findElement()</code> - Finds dropdown from webpage.</li>
+      <li><code>By.id("country")</code> - Locates dropdown using id attribute.</li>
+      <li><code>new Select(dropdown)</code> - Creates Select class object for dropdown handling.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Types of Select Methods</h4>
+
+    <h5>1. selectByVisibleText()</h5>
+    <pre class="code-block"><code>select.selectByVisibleText("India");</code></pre>
+    <ul class="basic-help-list">
+      <li><code>selectByVisibleText()</code> - Selects option using visible text.</li>
+      <li><code>"India"</code> - Text displayed inside dropdown.</li>
+      <li>Selenium checks the visible text and selects the matching option.</li>
+      <li>Most commonly used dropdown method.</li>
+      <li>Text must exactly match with dropdown option.</li>
+    </ul>
+
+    <h5>2. selectByValue()</h5>
+    <pre class="code-block"><code>select.selectByValue("IN");</code></pre>
+    <h5>HTML Example</h5>
+    <pre class="code-block"><code>&lt;option value="IN"&gt;India&lt;/option&gt;</code></pre>
+    <ul class="basic-help-list">
+      <li><code>selectByValue()</code> - Selects option using value attribute.</li>
+      <li><code>"IN"</code> - Value present inside HTML code.</li>
+      <li>Selenium checks value attribute internally.</li>
+      <li>Useful when visible text is dynamic.</li>
+      <li>Value must exactly match with HTML attribute.</li>
+    </ul>
+
+    <h5>3. selectByIndex()</h5>
+    <pre class="code-block"><code>select.selectByIndex(1);</code></pre>
+    <ul class="basic-help-list">
+      <li><code>selectByIndex()</code> - Selects option using position number.</li>
+      <li>Index starts from <code>0</code>.</li>
+      <li>Selenium selects option based on dropdown order.</li>
+    </ul>
+    <pre class="code-block"><code>0 -> Select Country
+1 -> India
+2 -> USA</code></pre>
+    <p><code>selectByIndex(1)</code> selects India.</p>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Select By Value vs Select By Visible Text</h4>
+    <pre class="code-block"><code>&lt;option value="1"&gt;Male&lt;/option&gt;
+&lt;option value="2"&gt;Female&lt;/option&gt;</code></pre>
+
+    <h5>Using Value</h5>
+    <pre class="code-block"><code>select.selectByValue("1");</code></pre>
+    <p>Selects Male using hidden value.</p>
+
+    <h5>Using Visible Text</h5>
+    <pre class="code-block"><code>select.selectByVisibleText("Male");</code></pre>
+    <p>Selects Male using displayed text.</p>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Get All Options From Dropdown</h4>
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>WebElement dropdown = driver.findElement(By.id("country"));
+
+Select select = new Select(dropdown);
+
+List&lt;WebElement&gt; options = select.getOptions();</code></pre>
+
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>findElement()</code> - Finds dropdown element from webpage.</li>
+      <li><code>new Select(dropdown)</code> - Creates Select class object.</li>
+      <li><code>getOptions()</code> - Gets all dropdown options.</li>
+      <li><code>List&lt;WebElement&gt;</code> - Stores all options inside list.</li>
+      <li>Each option is stored as WebElement.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Print All Dropdown Options</h4>
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>for(WebElement op : options)
+{
+    System.out.println(op.getText());
+}</code></pre>
+
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>for</code> loop - Used to read all dropdown options one by one.</li>
+      <li><code>op</code> - Represents each dropdown option.</li>
+      <li><code>getText()</code> - Gets visible text from option.</li>
+      <li><code>System.out.println()</code> - Prints all dropdown values in console.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Get All Dropdown Options Using For Loop</h4>
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>WebElement dropdown = driver.findElement(By.id("country"));
+
+Select select = new Select(dropdown);
+
+List&lt;WebElement&gt; options = select.getOptions();
+
+for(int i = 0; i &lt; options.size(); i++)
+{
+    System.out.println(options.get(i).getText());
+}</code></pre>
+
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>findElement()</code> - Finds dropdown element from webpage.</li>
+      <li><code>new Select(dropdown)</code> - Creates Select class object.</li>
+      <li><code>getOptions()</code> - Gets all dropdown options.</li>
+      <li><code>options.size()</code> - Returns total number of options.</li>
+      <li><code>for(int i=0; i&lt;options.size(); i++)</code> - Loops through all dropdown options.</li>
+      <li><code>options.get(i)</code> - Gets option using index.</li>
+      <li><code>getText()</code> - Gets visible text of option.</li>
+      <li><code>System.out.println()</code> - Prints dropdown values in console.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>2. Bootstrap Dropdown</h4>
+    <p>This is <strong>not</strong> a real <code>&lt;select&gt;</code> dropdown.</p>
+    <p>It is created using:</p>
+    <ul class="basic-help-list">
+      <li><code>&lt;div&gt;</code></li>
+      <li><code>&lt;ul&gt;</code></li>
+      <li><code>&lt;li&gt;</code></li>
+      <li>buttons</li>
+      <li>CSS + JavaScript</li>
+    </ul>
+
+    <h5>HTML Example</h5>
+    <pre class="code-block"><code>&lt;div class="dropdown"&gt;
+    &lt;button&gt;Country&lt;/button&gt;
+    &lt;ul&gt;
+        &lt;li&gt;India&lt;/li&gt;
+        &lt;li&gt;USA&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+    <h5>Important</h5>
+    <p><code>Select</code> class will <strong>not</strong> work because there is no <code>&lt;select&gt;</code> tag.</p>
+    <p>Bootstrap and hidden dropdowns use XPath.</p>
+
+    <h5>Select Single Option</h5>
+    <pre class="code-block"><code>driver.findElement(By.xpath("//input[@value='Java']")).click();</code></pre>
+    <ul class="basic-help-list">
+      <li><code>findElement()</code> - Finds dropdown option.</li>
+      <li><code>By.xpath()</code> - Locates option using XPath.</li>
+      <li><code>//input[@value='Java']</code> - Finds option whose value is Java.</li>
+      <li><code>click()</code> - Selects the dropdown option.</li>
+    </ul>
+
+    <h5>Select Multiple Options in Bootstrap Dropdown</h5>
+    <pre class="code-block"><code>for(WebElement op : options)
+{
+    String option = op.getText();
+
+    if(option.equals("Java") ||
+       option.equals("Python") ||
+       option.equals("MySQL"))
+    {
+        op.click();
+    }
+}</code></pre>
+    <ul class="basic-help-list">
+      <li><code>for(WebElement op : options)</code> - Reads all dropdown options one by one.</li>
+      <li><code>op</code> - Represents each dropdown option.</li>
+      <li><code>op.getText()</code> - Gets visible text from dropdown option.</li>
+      <li><code>String option</code> - Stores option text into variable.</li>
+      <li><code>option.equals("Java")</code> - Checks whether option text is Java.</li>
+      <li><code>||</code> - OR operator used to check multiple conditions.</li>
+      <li><code>op.click()</code> - Selects matching dropdown option.</li>
+      <li>Loop continues until all matching options are selected.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>3. Hidden Dropdown</h4>
+    <p>Dropdown options are hidden initially.</p>
+    <p>They appear only after:</p>
+    <ul class="basic-help-list">
+      <li>mouse hover</li>
+      <li>typing</li>
+      <li>clicking</li>
+    </ul>
+    <p>Examples:</p>
+    <ul class="basic-help-list">
+      <li>Auto-suggestion search</li>
+      <li>Dynamic dropdown</li>
+      <li>React dropdown</li>
+    </ul>
+
+    <h5>Developer Tool Trick</h5>
+    <p>If dropdown options disappear while inspecting:</p>
+    <ol class="basic-help-list">
+      <li>Open Developer Tools <code>F12</code>.</li>
+      <li>Go to <strong>Event Listeners</strong>.</li>
+      <li>Find <code>blur</code> or <code>focusout</code>.</li>
+      <li>Remove/disable the blur event.</li>
+      <li>Now dropdown stays visible.</li>
+      <li>Then inspect element and get XPath easily.</li>
+    </ol>
+
+    <p>The other process follows the Bootstrap dropdown process.</p>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>4. Auto-suggest Dropdown</h4>
+    <p>An <strong>Auto Suggest Dropdown</strong> is a dropdown that shows suggestions automatically while typing in a textbox.</p>
+    <p>Suggestions appear dynamically based on entered text.</p>
+    <p>These dropdowns are commonly used in:</p>
+    <ul class="basic-help-list">
+      <li>Google Search</li>
+      <li>Amazon Search</li>
+      <li>Flight booking websites</li>
+      <li>Location search</li>
+    </ul>
+
+    <h5>Example</h5>
+    <p>When typing:</p>
+    <pre class="code-block"><code>Ind</code></pre>
+
+    <p>Suggestions appear automatically:</p>
+    <pre class="code-block"><code>India
+Indonesia
+Indian food</code></pre>
+
+    <p>This is called an <strong>Auto Suggest Dropdown</strong>.</p>
+
+    <h5>Note</h5>
+    <p>Taking XPath plays an important role here.</p>
+    <p>Since when we click the dropdown, the option will disappear, it will be hard to take XPath.</p>
+    <ol class="basic-help-list">
+      <li>For those who cannot find the <code>blur</code> event, alternatively you can remove the one in <code>focusout</code>.</li>
+      <li>Remove the <code>blur</code> property.</li>
+    </ol>
   </div>
 </section>`,
     syntax: "",
@@ -791,42 +1495,203 @@ const initDropdownsTablesPage = () => {
   const browserSelect = document.getElementById("single-select");
   browserSelect?.addEventListener("change", () => {
     if (!browserSelect.value) {
-      setStatus("dropdown-status", "Select a browser to continue.", "warning");
+      return;
+    }
+  });
+
+  const bootstrapTrigger = document.getElementById("bootstrap-dropdown-trigger");
+  const bootstrapMenu = document.getElementById("bootstrap-dropdown-menu");
+  const setBootstrapOpen = (isOpen) => {
+    bootstrapMenu?.classList.toggle("is-open", isOpen);
+    bootstrapMenu?.setAttribute("aria-hidden", String(!isOpen));
+    bootstrapTrigger?.setAttribute("aria-expanded", String(isOpen));
+  };
+
+  const commitBootstrapDropdown = () => {
+    const values = Array.from(bootstrapMenu?.querySelectorAll("input:checked") || []).map((input) => input.value);
+    const label = values.length ? values.join(", ") : "None";
+    document.getElementById("bootstrap-dropdown-value").textContent = label;
+    if (bootstrapTrigger) {
+      bootstrapTrigger.textContent = values.length ? label : "Select places";
+    }
+    setBootstrapOpen(false);
+  };
+
+  bootstrapTrigger?.addEventListener("click", () => {
+    setBootstrapOpen(!bootstrapMenu?.classList.contains("is-open"));
+  });
+
+  document.getElementById("bootstrap-dropdown-enter")?.addEventListener("click", commitBootstrapDropdown);
+
+  bootstrapMenu?.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      commitBootstrapDropdown();
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!bootstrapMenu?.classList.contains("is-open")) {
       return;
     }
 
-    setStatus("dropdown-status", `Selected browser: ${browserSelect.value}`, "success");
+    if (!event.target.closest("#bootstrap-dropdown-menu, #bootstrap-dropdown-trigger")) {
+      setBootstrapOpen(false);
+    }
   });
 
-  document.getElementById("show-multi-values")?.addEventListener("click", () => {
-    const values = Array.from(document.getElementById("multi-select").selectedOptions).map((item) => item.value);
-    setStatus("dropdown-status", values.length ? `Multi-select values: ${values.join(", ")}` : "No multi-select option chosen.", "warning");
-  });
+  const hiddenDropdown = document.getElementById("hidden-dropdown-box");
+  const hiddenControl = document.getElementById("hidden-dropdown-control");
+  const hiddenDropdownValues = ["Finance", "HR", "Sales", "Support"];
+  let hiddenOptions = null;
 
-  const customTrigger = document.getElementById("custom-dropdown-trigger");
-  const customMenu = document.getElementById("custom-dropdown-menu");
-  customTrigger?.addEventListener("click", () => {
-    customMenu?.classList.toggle("hidden");
-  });
+  const removeHiddenOptions = () => {
+    hiddenOptions?.remove();
+    hiddenOptions = null;
+  };
 
-  customMenu?.querySelectorAll("button").forEach((button) => {
-    button.addEventListener("click", () => {
-      document.getElementById("custom-dropdown-value").textContent = button.dataset.value;
-      customMenu.classList.add("hidden");
-      setStatus("dropdown-status", `Custom dropdown selected: ${button.dataset.value}`, "success");
+  const createHiddenOptions = () => {
+    if (!hiddenDropdown || hiddenOptions) {
+      return hiddenOptions;
+    }
+
+    hiddenOptions = document.createElement("div");
+    hiddenOptions.className = "hidden-dropdown-options";
+    hiddenOptions.id = "hidden-dropdown-options";
+    hiddenOptions.setAttribute("role", "listbox");
+    hiddenOptions.setAttribute("aria-hidden", "false");
+
+    hiddenDropdownValues.forEach((value) => {
+      const option = document.createElement("button");
+      option.type = "button";
+      option.setAttribute("role", "option");
+      option.dataset.value = value;
+      option.textContent = value;
+      option.addEventListener("mousedown", (event) => {
+        event.preventDefault();
+      });
+      option.addEventListener("click", () => {
+        document.getElementById("hidden-dropdown-value").textContent = value;
+        setHiddenDropdownOpen(false);
+      });
+      hiddenOptions.appendChild(option);
     });
+
+    hiddenDropdown.appendChild(hiddenOptions);
+    return hiddenOptions;
+  };
+
+  const setHiddenDropdownOpen = (isOpen) => {
+    hiddenDropdown?.classList.toggle("is-open", isOpen);
+    hiddenControl?.setAttribute("aria-expanded", String(isOpen));
+    if (isOpen) {
+      createHiddenOptions()?.setAttribute("aria-hidden", "false");
+      return;
+    }
+
+    hiddenOptions?.setAttribute("aria-hidden", "true");
+    removeHiddenOptions();
+  };
+
+  hiddenControl?.addEventListener("click", () => {
+    setHiddenDropdownOpen(!hiddenDropdown?.classList.contains("is-open"));
+    hiddenControl.focus();
   });
 
-  const suggestions = ["India", "Indonesia", "Canada", "Australia", "Germany", "Japan"];
+  hiddenControl?.addEventListener("blur", () => {
+    setHiddenDropdownOpen(false);
+  });
+
+  const suggestions = [
+    "Agra",
+    "Ahmedabad",
+    "Amsterdam",
+    "Argentina",
+    "India",
+    "Indonesia",
+    "Indore",
+    "Indianapolis",
+    "Canada",
+    "Cambodia",
+    "Cameroon",
+    "Canberra",
+    "Cape Town",
+    "Australia",
+    "Austria",
+    "Auckland",
+    "Germany",
+    "Ghana",
+    "Greece",
+    "Japan",
+    "Jamaica",
+    "Jordan",
+    "China",
+    "Chile",
+    "Chennai",
+    "Chicago",
+    "Brazil",
+    "Belgium",
+    "Bengaluru",
+    "Bangkok",
+    "France",
+    "Finland",
+    "Florida",
+    "London",
+    "Los Angeles",
+    "Singapore",
+    "San Francisco",
+    "San Jose",
+    "South Africa",
+    "South Korea",
+    "United States",
+    "United Kingdom",
+    "United Arab Emirates",
+    "Sri Lanka",
+    "Switzerland",
+    "Sweden",
+    "Spain",
+    "Mexico",
+    "Malaysia",
+    "Nepal",
+    "Netherlands",
+    "New Delhi",
+    "New York",
+    "New Zealand",
+    "Norway",
+    "Paris",
+    "Portugal",
+    "Thailand",
+    "Tokyo",
+    "Vietnam"
+  ];
   const input = document.getElementById("autosuggest-input");
   const list = document.getElementById("autosuggest-list");
+
+  const closeAutosuggest = () => {
+    if (!list) {
+      return;
+    }
+
+    list.innerHTML = "";
+    list.classList.add("hidden");
+  };
+
+  const selectAutosuggestValue = (item) => {
+    if (!input) {
+      return;
+    }
+
+    input.value = item;
+    closeAutosuggest();
+    setStatus("autosuggest-status", `Auto-suggest selected: ${item}`, "success");
+  };
 
   input?.addEventListener("input", () => {
     const query = input.value.trim().toLowerCase();
     list.innerHTML = "";
 
     if (!query) {
-      list.classList.add("hidden");
+      closeAutosuggest();
       return;
     }
 
@@ -836,15 +1701,24 @@ const initDropdownsTablesPage = () => {
       option.type = "button";
       option.className = "button secondary";
       option.textContent = item;
-      option.addEventListener("click", () => {
-        input.value = item;
-        list.classList.add("hidden");
-        setStatus("autosuggest-status", `Auto-suggest selected: ${item}`, "success");
+      option.addEventListener("pointerdown", (event) => {
+        event.preventDefault();
+        selectAutosuggestValue(item);
       });
       list.appendChild(option);
     });
 
     list.classList.toggle("hidden", matches.length === 0);
+  });
+
+  input?.addEventListener("blur", () => {
+    closeAutosuggest();
+  });
+
+  input?.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeAutosuggest();
+    }
   });
 
   document.getElementById("static-table-search")?.addEventListener("input", (event) => {

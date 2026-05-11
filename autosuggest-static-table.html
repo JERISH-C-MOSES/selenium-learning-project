@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Auto-suggest and Static Table</title>
-    <link rel="stylesheet" href="shared.css?v=26" />
+    <title>Static Table Practice</title>
+    <link rel="stylesheet" href="shared.css?v=45" />
   </head>
   <body class="theme-autosuggest">
     <div class="container">
@@ -20,26 +20,16 @@
       <section class="page-header">
         <div>
           <p class="eyebrow">Lab 07</p>
-          <h1>Handling auto-suggest dropdown and static web table.</h1>
-          <p class="lead">Use this page for type-ahead suggestion selection, row search, and text assertions in a stable static table.</p>
+          <h1>Handling static web table.</h1>
+          <p class="lead">Use this page for row search, visible-row counts, and text assertions in a stable static table.</p>
         </div>
       </section>
 
-      <section class="two-column">
-        <article class="panel">
-          <h3>Auto-suggest</h3>
-          <label for="autosuggest-input">Country</label>
-          <input id="autosuggest-input" type="text" placeholder="Type ind or can" />
-          <div class="stack hidden" id="autosuggest-list" style="margin-top: 0.8rem;"></div>
-          <p class="status-message" id="autosuggest-status" aria-live="polite"></p>
-        </article>
-
-        <article class="panel">
-          <h3>Static Table Search</h3>
-          <label for="static-table-search">Search rows</label>
-          <input id="static-table-search" type="text" placeholder="Search by tester or module" />
-          <p class="helper">Visible rows: <span id="static-count">4</span></p>
-        </article>
+      <section class="panel">
+        <h3>Static Table Search</h3>
+        <label for="static-table-search">Search rows</label>
+        <input id="static-table-search" type="text" placeholder="Search by tester or module" />
+        <p class="helper">Visible rows: <span id="static-count">4</span></p>
       </section>
 
       <section class="table-card" style="margin-top: 1rem;">
@@ -63,6 +53,6 @@
         </div>
       </section>
     </div>
-    <script src="main.js?v=26"></script>
+    <script src="main.js?v=45"></script>
   </body>
 </html>

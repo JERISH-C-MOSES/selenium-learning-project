@@ -3,16 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Different Types of Drop-downs</title>
-    <link rel="stylesheet" href="shared.css?v=26" />
+    <title>Dropdown Box Practice</title>
+    <link rel="stylesheet" href="shared.css?v=45" />
   </head>
-  <body class="theme-dropdowns">
+  <body class="theme-dropdowns dropdown-lab">
     <div class="container">
       <header class="nav-shell">
         <div class="brand">Selenium Sprint Lab</div>
         <nav class="nav-links">
           <a href="dashboard.html">Dashboard</a>
-          <a href="autosuggest-static-table.html">Next: Auto-suggest</a>
+          <a href="autosuggest-static-table.html">Next: Static Table</a>
         </nav>
         <button class="button ghost" type="button" data-logout>Logout</button>
       </header>
@@ -20,54 +20,118 @@
       <section class="page-header">
         <div>
           <p class="eyebrow">Lab 06</p>
-          <h1>Handling different types of drop-downs.</h1>
-          <p class="lead">This lab covers native select, multi-select, and custom dropdown patterns that appear frequently in enterprise apps.</p>
+          <h1>Dropdown box practice.</h1>
+          <p class="lead">Practice select dropdown, Bootstrap dropdown, hidden dropdown, and auto-suggest dropdown.</p>
         </div>
       </section>
 
-      <section class="three-column">
-        <article class="panel">
-          <h3>Single Select</h3>
-          <label for="single-select">Browser</label>
-          <select id="single-select" name="browser">
-            <option value="" selected>Select browser</option>
-            <option value="chrome">Chrome</option>
-            <option value="firefox">Firefox</option>
-            <option value="edge">Edge</option>
-          </select>
-        </article>
-
-        <article class="panel">
-          <h3>Multi Select</h3>
-          <label for="multi-select">Environments</label>
-          <select id="multi-select" name="environments" multiple size="5">
-            <option value="dev">Dev</option>
-            <option value="qa">QA</option>
-            <option value="stage">Stage</option>
-            <option value="uat">UAT</option>
-            <option value="prod-mirror">Prod Mirror</option>
-          </select>
-          <button class="button secondary" id="show-multi-values" type="button">Read Values</button>
-        </article>
-
-        <article class="panel">
-          <h3>Custom Drop-down</h3>
-          <button class="button secondary" id="custom-dropdown-trigger" type="button">Open Custom Menu</button>
-          <div class="stack hidden" id="custom-dropdown-menu" style="margin-top: 0.8rem;">
-            <button class="button ghost" data-value="Smoke Suite" type="button">Smoke Suite</button>
-            <button class="button ghost" data-value="Regression Suite" type="button">Regression Suite</button>
-            <button class="button ghost" data-value="Sanity Suite" type="button">Sanity Suite</button>
-          </div>
-          <p class="helper">Selected value: <strong id="custom-dropdown-value">None</strong></p>
-        </article>
+      <section class="dropdown-outline panel">
+        <h2>Dropdown box</h2>
+        <ol>
+          <li>Select dropdown</li>
+          <li>Bootstrap dropdown</li>
+          <li>Hidden dropdown</li>
+          <li>Auto-suggest dropdown</li>
+        </ol>
       </section>
 
-      <section class="panel" style="margin-top: 1rem;">
-        <h3>Drop-down Result</h3>
-        <p class="status-message" id="dropdown-status" aria-live="polite"></p>
-        <p class="helper">This status area is useful for assertions after selecting single, multiple, and custom options.</p>
+      <section class="dropdown-practice-grid">
+        <article class="panel dropdown-card">
+          <div class="section-title-row">
+            <h3>1. Select Dropdown</h3>
+            <button class="button secondary help-button" type="button" data-help-topic="select-dropdown-help">Help</button>
+          </div>
+          <label for="single-select">Country:</label>
+          <select id="single-select" name="country">
+            <option value="United States" selected>United States</option>
+            <option value="Canada">Canada</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Germany">Germany</option>
+            <option value="France">France</option>
+            <option value="Australia">Australia</option>
+            <option value="Japan">Japan</option>
+            <option value="China">China</option>
+            <option value="Brazil">Brazil</option>
+            <option value="India">India</option>
+          </select>
+        </article>
+
+        <article class="panel dropdown-card">
+          <div class="section-title-row">
+            <h3>2. Bootstrap Dropdown</h3>
+            <button class="button secondary help-button" type="button" data-help-topic="bootstrap-dropdown-help">Help</button>
+          </div>
+          <button class="button secondary bootstrap-dropdown-trigger" id="bootstrap-dropdown-trigger" type="button" aria-expanded="false">Select places</button>
+          <div class="bootstrap-dropdown-menu" id="bootstrap-dropdown-menu" aria-hidden="true">
+            <p class="dropdown-group-title">Indian Places</p>
+            <label><input type="checkbox" value="Chennai" /> Chennai</label>
+            <label><input type="checkbox" value="Bengaluru" /> Bengaluru</label>
+            <label><input type="checkbox" value="Mumbai" /> Mumbai</label>
+            <label><input type="checkbox" value="Delhi" /> Delhi</label>
+            <p class="dropdown-group-title">World Places</p>
+            <label><input type="checkbox" value="London" /> London</label>
+            <label><input type="checkbox" value="New York" /> New York</label>
+            <label><input type="checkbox" value="Tokyo" /> Tokyo</label>
+            <label><input type="checkbox" value="Sydney" /> Sydney</label>
+            <button class="button primary bootstrap-dropdown-enter" id="bootstrap-dropdown-enter" type="button">Enter</button>
+          </div>
+          <p class="helper">Selected values: <strong id="bootstrap-dropdown-value">None</strong></p>
+        </article>
+
+        <article class="panel dropdown-card">
+          <div class="section-title-row">
+            <h3>3. Hidden Dropdown</h3>
+            <button class="button secondary help-button" type="button" data-help-topic="hidden-dropdown-help">Help</button>
+          </div>
+          <div class="hidden-dropdown-box" id="hidden-dropdown-box">
+            <button class="hidden-dropdown-control" id="hidden-dropdown-control" type="button" aria-expanded="false">
+              <span id="hidden-dropdown-value">-- Select --</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="panel dropdown-card">
+          <div class="section-title-row">
+            <h3>4. Auto-suggest Dropdown</h3>
+            <button class="button secondary help-button" type="button" data-help-topic="autosuggest-dropdown-help">Help</button>
+          </div>
+          <label for="autosuggest-input">Country or place</label>
+          <input id="autosuggest-input" type="text" placeholder="Try ind, new, san, lon, south" />
+          <div class="stack hidden" id="autosuggest-list" style="margin-top: 0.8rem;"></div>
+          <p class="status-message" id="autosuggest-status" aria-live="polite"></p>
+        </article>
       </section>
     </div>
-    <script src="main.js?v=26"></script>
+    <div class="modal-backdrop hidden" id="help-backdrop">
+      <div class="modal-card help-modal-card">
+        <div class="section-title-row">
+          <div>
+            <p class="eyebrow">Help Center</p>
+            <h3 id="help-title">Element Help</h3>
+          </div>
+          <button class="button ghost" id="close-help" type="button">Close</button>
+        </div>
+        <div class="help-tab-row">
+          <button class="tab-button active help-tab-button" data-help-tab="syntax" type="button">Syntax</button>
+          <button class="tab-button help-tab-button" data-help-tab="locator" type="button">Locator</button>
+          <button class="tab-button help-tab-button" data-help-tab="full-code" type="button">Full Selenium Code</button>
+        </div>
+        <div class="help-panel active" id="help-panel-syntax">
+          <div class="help-info-content hidden" id="help-info-content"></div>
+          <pre class="code-block"><code id="help-syntax"></code></pre>
+        </div>
+        <div class="help-panel" id="help-panel-locator">
+          <div class="help-tab-row">
+            <button class="tab-button active locator-tab-button" data-locator-tab="xpath" type="button">XPath</button>
+            <button class="tab-button locator-tab-button" data-locator-tab="css" type="button">CSS</button>
+          </div>
+          <pre class="code-block"><code id="help-locator"></code></pre>
+        </div>
+        <div class="help-panel" id="help-panel-full-code">
+          <pre class="code-block"><code id="help-full-code"></code></pre>
+        </div>
+      </div>
+    </div>
+    <script src="main.js?v=45"></script>
   </body>
 </html>
