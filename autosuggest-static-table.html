@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Static Table Practice</title>
-    <link rel="stylesheet" href="shared.css?v=45" />
+    <title>Static and Dynamic Table Practice</title>
+    <link rel="stylesheet" href="shared.css?v=54" />
   </head>
   <body class="theme-autosuggest">
     <div class="container">
@@ -12,7 +12,7 @@
         <div class="brand">Selenium Sprint Lab</div>
         <nav class="nav-links">
           <a href="dashboard.html">Dashboard</a>
-          <a href="pagination-table.html">Next: Pagination</a>
+          <a href="date-pickers.html">Next: Dates</a>
         </nav>
         <button class="button ghost" type="button" data-logout>Logout</button>
       </header>
@@ -20,39 +20,97 @@
       <section class="page-header">
         <div>
           <p class="eyebrow">Lab 07</p>
-          <h1>Handling static web table.</h1>
-          <p class="lead">Use this page for row search, visible-row counts, and text assertions in a stable static table.</p>
+          <h1>Handling static and dynamic web tables.</h1>
+          <p class="lead">Use this page for static row search, visible-row counts, paginated data, row selection, and page assertions.</p>
         </div>
       </section>
 
-      <section class="panel">
-        <h3>Static Table Search</h3>
-        <label for="static-table-search">Search rows</label>
-        <input id="static-table-search" type="text" placeholder="Search by tester or module" />
-        <p class="helper">Visible rows: <span id="static-count">4</span></p>
-      </section>
-
-      <section class="table-card" style="margin-top: 1rem;">
-        <h3>Static Web Table</h3>
+      <section class="table-card">
+        <div class="section-title-row">
+          <h3>Static Web Table</h3>
+          <button class="button secondary help-button" type="button" data-help-topic="static-table-help">Help</button>
+        </div>
         <div class="table-wrap">
           <table id="static-table">
             <thead>
               <tr>
+                <th>S.No</th>
                 <th>Tester</th>
                 <th>Module</th>
+                <th>Priority</th>
+                <th>Execution Time (sec)</th>
                 <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>Priya</td><td>Checkout</td><td>Ready</td></tr>
-              <tr><td>Rahul</td><td>Login</td><td>Blocked</td></tr>
-              <tr><td>Asha</td><td>Reports</td><td>Ready</td></tr>
-              <tr><td>Karan</td><td>Admin</td><td>In Review</td></tr>
+              <tr><td>1</td><td>Priya</td><td>Checkout</td><td>1</td><td>42</td><td>Ready</td></tr>
+              <tr><td>2</td><td>Rahul</td><td>Login</td><td>2</td><td>35</td><td>Blocked</td></tr>
+              <tr><td>3</td><td>Asha</td><td>Reports</td><td>3</td><td>58</td><td>Ready</td></tr>
+              <tr><td>4</td><td>Karan</td><td>Admin</td><td>2</td><td>64</td><td>In Review</td></tr>
+              <tr><td>5</td><td>Meera</td><td>Payments</td><td>1</td><td>49</td><td>Ready</td></tr>
+              <tr><td>6</td><td>Arun</td><td>Dashboard</td><td>3</td><td>27</td><td>Ready</td></tr>
+              <tr><td>7</td><td>Farhan</td><td>Static Table</td><td>2</td><td>31</td><td>In Review</td></tr>
+              <tr><td>8</td><td>Neha</td><td>Pagination</td><td>1</td><td>76</td><td>Blocked</td></tr>
+              <tr><td>9</td><td>Ishita</td><td>Search</td><td>3</td><td>22</td><td>Ready</td></tr>
+              <tr><td>10</td><td>Harish</td><td>Alerts</td><td>2</td><td>40</td><td>Ready</td></tr>
+              <tr><td>11</td><td>Pooja</td><td>Frames</td><td>1</td><td>68</td><td>In Review</td></tr>
+              <tr><td>12</td><td>Rohan</td><td>Upload</td><td>3</td><td>55</td><td>Blocked</td></tr>
             </tbody>
           </table>
         </div>
       </section>
+
+      <section class="table-card" style="margin-top: 1rem;">
+        <h3>Dynamic Pagination Table</h3>
+        <p>Current page: <strong id="current-page-label">1</strong></p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>ID</th>
+                <th>Scenario</th>
+                <th>Priority</th>
+                <th>Execution Time (sec)</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="pagination-body"></tbody>
+          </table>
+        </div>
+        <div class="pagination" id="pagination-controls"></div>
+      </section>
     </div>
-    <script src="main.js?v=45"></script>
+    <div class="modal-backdrop hidden" id="help-backdrop">
+      <div class="modal-card help-modal-card">
+        <div class="section-title-row">
+          <div>
+            <p class="eyebrow">Help Center</p>
+            <h3 id="help-title">Element Help</h3>
+          </div>
+          <button class="button ghost" id="close-help" type="button">Close</button>
+        </div>
+        <div class="help-tab-row">
+          <button class="tab-button active help-tab-button" data-help-tab="syntax" type="button">Syntax</button>
+          <button class="tab-button help-tab-button" data-help-tab="locator" type="button">Locator</button>
+          <button class="tab-button help-tab-button" data-help-tab="full-code" type="button">Full Selenium Code</button>
+        </div>
+        <div class="help-panel active" id="help-panel-syntax">
+          <div class="help-info-content hidden" id="help-info-content"></div>
+          <pre class="code-block"><code id="help-syntax"></code></pre>
+        </div>
+        <div class="help-panel" id="help-panel-locator">
+          <div class="help-tab-row">
+            <button class="tab-button active locator-tab-button" data-locator-tab="xpath" type="button">XPath</button>
+            <button class="tab-button locator-tab-button" data-locator-tab="css" type="button">CSS</button>
+          </div>
+          <pre class="code-block"><code id="help-locator"></code></pre>
+        </div>
+        <div class="help-panel" id="help-panel-full-code">
+          <pre class="code-block"><code id="help-full-code"></code></pre>
+        </div>
+      </div>
+    </div>
+    <script src="main.js?v=54"></script>
   </body>
 </html>

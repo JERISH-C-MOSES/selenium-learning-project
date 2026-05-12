@@ -8,7 +8,6 @@ const protectedPages = [
   "frames-iframes.html",
   "dropdowns-tables.html",
   "autosuggest-static-table.html",
-  "pagination-table.html",
   "date-pickers.html",
   "mouse-actions.html",
   "keyboard-slider-tabs-windows.html",
@@ -27,8 +26,7 @@ const pageRegistry = [
   { file: "alerts.html", label: "Alerts" },
   { file: "frames-iframes.html", label: "Frames and Nested iFrames" },
   { file: "dropdowns-tables.html", label: "Different Types of Drop-downs" },
-  { file: "autosuggest-static-table.html", label: "Static Table" },
-  { file: "pagination-table.html", label: "Dynamic Pagination Table" },
+  { file: "autosuggest-static-table.html", label: "Static and Dynamic Tables" },
   { file: "date-pickers.html", label: "Date Pickers" },
   { file: "mouse-actions.html", label: "Mouse Actions" },
   { file: "keyboard-slider-tabs-windows.html", label: "Keyboard, Sliders, Tabs, Windows" },
@@ -37,7 +35,232 @@ const pageRegistry = [
   { file: "data-driven-testing.html", label: "Data Driven Testing" }
 ];
 
+const shuffleArray = (items) => {
+  const shuffled = [...items];
+
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+  }
+
+  return shuffled;
+};
+
 const helpContent = {
+  "static-table-help": {
+    title: "Static Web Table",
+    infoHtml: `<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>1. Static Web Table</h4>
+    <p>A <strong>static table</strong> has fixed rows and columns.</p>
+    <p>The data does not change dynamically.</p>
+    <p><strong>Note:</strong> every row is considered as a web element.</p>
+
+    <h5>HTML Structure of Static Table</h5>
+    <pre class="code-block"><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Name&lt;/th&gt;
+        &lt;th&gt;Age&lt;/th&gt;
+    &lt;/tr&gt;
+
+    &lt;tr&gt;
+        &lt;td&gt;John&lt;/td&gt;
+        &lt;td&gt;25&lt;/td&gt;
+    &lt;/tr&gt;
+
+    &lt;tr&gt;
+        &lt;td&gt;David&lt;/td&gt;
+        &lt;td&gt;30&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+
+    <h5>Important Tags</h5>
+    <table>
+      <thead><tr><th>Tag</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><code>&lt;table&gt;</code></td><td>Complete table</td></tr>
+        <tr><td><code>&lt;tr&gt;</code></td><td>Table row</td></tr>
+        <tr><td><code>&lt;th&gt;</code></td><td>Header column</td></tr>
+        <tr><td><code>&lt;td&gt;</code></td><td>Data cell</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>1. Get All Rows</h4>
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>List&lt;WebElement&gt; rows =
+driver.findElements(By.xpath("//table/tbody/tr"));</code></pre>
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>findElements()</code> returns multiple elements.</li>
+      <li><code>tr</code> selects all rows.</li>
+    </ul>
+
+    <h4>2. Get Number of Columns</h4>
+    <pre class="code-block"><code>List&lt;WebElement&gt; cols =
+driver.findElements(By.xpath("//table/tbody/tr[1]/td"));
+
+System.out.println(cols.size());</code></pre>
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>tr[1]</code> first row.</li>
+      <li><code>td</code> all columns in first row.</li>
+    </ul>
+
+    <h4>3. Read Specific Cell Value</h4>
+    <p>Example: get value from 2nd row and 1st column.</p>
+    <pre class="code-block"><code>String value = driver.findElement(
+By.xpath("//table/tbody/tr[2]/td[1]"))
+.getText();
+
+System.out.println(value);</code></pre>
+    <p><strong>Output:</strong> David</p>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Passing Data Dynamically in XPath</h4>
+    <p>This is very important.</p>
+    <pre class="code-block"><code>String value = driver.findElement(
+By.xpath("//table/tbody/tr["+r+"]/td["+c+"]"))
+.getText();</code></pre>
+    <h5>Explanation</h5>
+    <ol class="basic-help-list">
+      <li>Dynamic XPath is created using variables inside XPath.</li>
+      <li><code>r</code> represents row number dynamically.</li>
+      <li><code>c</code> represents column number dynamically.</li>
+      <li><code>"+r+"</code> inserts row value into XPath.</li>
+      <li><code>"+c+"</code> inserts column value into XPath.</li>
+      <li>Final XPath changes automatically during loop execution.</li>
+      <li>Example generated XPath: <code>//table/tbody/tr[2]/td[1]</code>.</li>
+      <li>This helps avoid hardcoded XPath values.</li>
+      <li>Mostly used in dynamic web table handling.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Syntax to Get All the Data from Table</h4>
+    <pre class="code-block"><code>for(int r=2; r&lt;=rows; r++)
+{
+    for(int c=1; c&lt;=cols; c++)
+    {
+        String value = driver.findElement(
+        By.xpath("//table[@name='BookTable']//tr["+r+"]/td["+c+"]"))
+        .getText();
+
+        System.out.print(value + "\\t");
+    }
+
+    System.out.println();
+}</code></pre>
+    <ol class="basic-help-list">
+      <li><code>for(int r=2; r&lt;=rows; r++)</code> iterates through all table rows starting from row 2.</li>
+      <li><code>{</code> opening brace of outer loop.</li>
+      <li><code>for(int c=1; c&lt;=cols; c++)</code> iterates through all columns of each row.</li>
+      <li><code>{</code> opening brace of inner loop.</li>
+      <li><code>String value</code> fetches text dynamically from current table cell using XPath.</li>
+      <li><code>System.out.print(value + "\\t");</code> prints cell value with tab spacing.</li>
+      <li><code>}</code> closing brace of inner loop.</li>
+      <li><code>System.out.println();</code> moves cursor to next line after one row completes.</li>
+      <li><code>}</code> closing brace of outer loop.</li>
+    </ol>
+    <p><strong>Note:</strong> this gives data from table only. It will not get header data because headings are in <code>th</code> tag.</p>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Syntax to Get Table Data Along with Heading</h4>
+    <pre class="code-block"><code>System.out.println("BookName" + "\\t" + "Author" + "\\t" + "Subject" + "\\t" + "Price");
+
+for(int r=2; r&lt;=rows; r++)
+{
+    for(int c=1; c&lt;=cols; c++)
+    {
+        String value = driver.findElement(
+        By.xpath("//table[@name='BookTable']//tr["+r+"]/td["+c+"]"))
+        .getText();
+
+        System.out.print(value + "\\t");
+    }
+
+    System.out.println();
+}</code></pre>
+    <ol class="basic-help-list">
+      <li><code>System.out.println("BookName"...)</code> prints table headings with tab spacing.</li>
+      <li><code>for(int r=2; r&lt;=rows; r++)</code> iterates through all rows starting after header row.</li>
+      <li><code>for(int c=1; c&lt;=cols; c++)</code> iterates through all columns of current row.</li>
+      <li><code>String value</code> fetches cell value dynamically using XPath.</li>
+      <li><code>System.out.print(value + "\\t");</code> prints each cell value with tab spacing.</li>
+      <li><code>System.out.println();</code> moves output to next line after one row is printed.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Get Data Based on Condition</h4>
+    <pre class="code-block"><code>for(int r=2; r&lt;=rows; r++)
+{
+    String authorName = driver.findElement(
+    By.xpath("//table[@name='BookTable']//tr["+r+"]/td[2]"))
+    .getText();
+
+    if(authorName.equals("Mukesh"))
+    {
+        String bookName = driver.findElement(
+        By.xpath("//table[@name='BookTable']//tr["+r+"]/td[1]"))
+        .getText();
+
+        System.out.println(bookName + "\\t" + authorName);
+    }
+}</code></pre>
+    <ol class="basic-help-list">
+      <li><code>for(int r=2; r&lt;=rows; r++)</code> iterates through all table rows excluding header row.</li>
+      <li><code>String authorName</code> fetches author name from 2nd column dynamically.</li>
+      <li><code>if(authorName.equals("Mukesh"))</code> checks whether author name is Mukesh.</li>
+      <li><code>String bookName</code> fetches book name from 1st column.</li>
+      <li><code>System.out.println(bookName + "\\t" + authorName);</code> prints book name and author name.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>To Do Operation Based on Condition</h4>
+    <pre class="code-block"><code>int total = 0;
+
+for(int r=2; r&lt;=rows; r++)
+{
+    String price = driver.findElement(
+    By.xpath("//table[@name='BookTable']//tr["+r+"]/td[4]"))
+    .getText();
+
+    total = total + Integer.parseInt(price);
+}
+
+System.out.println("Total Price of the books: " + total);</code></pre>
+    <ol class="basic-help-list">
+      <li><code>int total = 0;</code> initializes total variable to store sum of prices.</li>
+      <li><code>for(int r=2; r&lt;=rows; r++)</code> iterates through all rows excluding header row.</li>
+      <li><code>String price</code> fetches price from 4th column dynamically.</li>
+      <li><code>td[4]</code> represents 4th column which contains book price.</li>
+      <li><code>Integer.parseInt(price)</code> converts String value into integer.</li>
+      <li><code>total = total + Integer.parseInt(price);</code> adds price into total.</li>
+      <li><code>System.out.println(...)</code> prints total price of all books.</li>
+    </ol>
+  </div>
+</section>`,
+    syntax: "",
+    locator: { xpath: "", css: "" },
+    fullCode: ""
+  },
   "checkbox-states": {
     title: "Checkbox and Radio Button",
     infoHtml: `<section class="basic-help-section">
@@ -1721,56 +1944,66 @@ const initDropdownsTablesPage = () => {
     }
   });
 
-  document.getElementById("static-table-search")?.addEventListener("input", (event) => {
-    const query = event.target.value.trim().toLowerCase();
-    let count = 0;
+  const staticTableBody = document.querySelector("#static-table tbody");
 
-    document.querySelectorAll("#static-table tbody tr").forEach((row) => {
-      const matches = row.textContent.toLowerCase().includes(query);
-      row.classList.toggle("hidden", !matches);
-      if (matches) {
-        count += 1;
-      }
+  if (staticTableBody) {
+    shuffleArray(Array.from(staticTableBody.rows)).forEach((row, index) => {
+      row.cells[0].textContent = String(index + 1);
+      staticTableBody.appendChild(row);
     });
+  }
 
-    document.getElementById("static-count").textContent = String(count);
-  });
 };
 
 const initPaginationPage = () => {
   const data = [
-    ["TC001", "Login Valid Credentials", "Passed"],
-    ["TC002", "Login Invalid Password", "Passed"],
-    ["TC003", "Create Account", "Blocked"],
-    ["TC004", "Delete User", "Passed"],
-    ["TC005", "Role Dropdown", "Failed"],
-    ["TC006", "Alert Confirm", "Passed"],
-    ["TC007", "Nested iFrame Text", "Passed"],
-    ["TC008", "Upload Resume", "Blocked"],
-    ["TC009", "Shadow DOM Value", "Passed"],
-    ["TC010", "Date Picker Range", "Failed"],
-    ["TC011", "Pagination Page 2", "Passed"],
-    ["TC012", "SVG Chart Click", "Passed"]
+    [1, "TC001", "Login Valid Credentials", 1, 28, "Passed"],
+    [2, "TC002", "Login Invalid Password", 2, 34, "Passed"],
+    [3, "TC003", "Create Account", 1, 52, "Blocked"],
+    [4, "TC004", "Delete User", 3, 41, "Passed"],
+    [5, "TC005", "Role Dropdown", 2, 37, "Failed"],
+    [6, "TC006", "Alert Confirm", 1, 25, "Passed"],
+    [7, "TC007", "Nested iFrame Text", 2, 46, "Passed"],
+    [8, "TC008", "Upload Resume", 3, 63, "Blocked"],
+    [9, "TC009", "Shadow DOM Value", 2, 39, "Passed"],
+    [10, "TC010", "Date Picker Range", 1, 71, "Failed"],
+    [11, "TC011", "Pagination Page 2", 3, 44, "Passed"],
+    [12, "TC012", "SVG Chart Click", 2, 32, "Passed"],
+    [13, "TC013", "Date Picker Month", 1, 56, "Passed"],
+    [14, "TC014", "Mouse Hover Menu", 3, 29, "Passed"],
+    [15, "TC015", "Drag And Drop Card", 2, 67, "Blocked"],
+    [16, "TC016", "Keyboard Shortcut", 1, 36, "Passed"],
+    [17, "TC017", "New Window Title", 3, 48, "Failed"],
+    [18, "TC018", "File Upload Validation", 2, 54, "Passed"],
+    [19, "TC019", "Broken Link Check", 1, 73, "Blocked"],
+    [20, "TC020", "Shadow Input Value", 3, 43, "Passed"]
   ];
 
   const rowsPerPage = 4;
+  const randomizedData = shuffleArray(data);
   let page = 1;
 
   const render = () => {
     const tbody = document.getElementById("pagination-body");
     const pager = document.getElementById("pagination-controls");
+    const currentPageLabel = document.getElementById("current-page-label");
+
+    if (!tbody || !pager || !currentPageLabel) {
+      return;
+    }
+
     const start = (page - 1) * rowsPerPage;
-    const items = data.slice(start, start + rowsPerPage);
+    const items = randomizedData.slice(start, start + rowsPerPage);
 
     tbody.innerHTML = items
       .map(
-        (item) =>
-          `<tr><td>${item[0]}</td><td>${item[1]}</td><td>${item[2]}</td><td><button class="button secondary row-select" type="button">Inspect</button></td></tr>`
+        (item, index) =>
+          `<tr><td>${start + index + 1}</td><td>${item[1]}</td><td>${item[2]}</td><td>${item[3]}</td><td>${item[4]}</td><td>${item[5]}</td></tr>`
       )
       .join("");
 
     pager.innerHTML = "";
-    Array.from({ length: Math.ceil(data.length / rowsPerPage) }, (_, index) => index + 1).forEach((number) => {
+    Array.from({ length: Math.ceil(randomizedData.length / rowsPerPage) }, (_, index) => index + 1).forEach((number) => {
       const button = document.createElement("button");
       button.type = "button";
       button.className = `button secondary ${number === page ? "active" : ""}`;
@@ -1782,13 +2015,7 @@ const initPaginationPage = () => {
       pager.appendChild(button);
     });
 
-    document.querySelectorAll(".row-select").forEach((button, index) => {
-      button.addEventListener("click", () => {
-        setStatus("pagination-status", `Selected row ${(page - 1) * rowsPerPage + index + 1}.`, "success");
-      });
-    });
-
-    document.getElementById("current-page-label").textContent = String(page);
+    currentPageLabel.textContent = String(page);
   };
 
   render();
