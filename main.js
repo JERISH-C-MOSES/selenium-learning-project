@@ -11,15 +11,20 @@ const protectedPages = [
   "date-pickers.html",
   "mouse-actions.html",
   "keyboard-slider-tabs-windows.html",
+  "webdriver-methods.html",
+  "waiting-methods.html",
   "js-scroll-upload.html",
   "upload-files.html",
   "advanced-topics.html",
   "browser-capabilities.html",
-  "data-driven-testing.html"
+  "data-driven-testing.html",
+  "base-class.html"
 ];
 
 const pageRegistry = [
   { file: "dashboard.html", label: "Dashboard" },
+  { file: "webdriver-methods.html", label: "WebDriver Methods" },
+  { file: "waiting-methods.html", label: "Waiting Methods" },
   { file: "js-scroll-upload.html", label: "JavascriptExecutor and Scrolling" },
   { file: "upload-files.html", label: "Upload Files" },
   { file: "checkbox-alerts.html", label: "Check Boxes and Radio Buttons" },
@@ -32,7 +37,8 @@ const pageRegistry = [
   { file: "keyboard-slider-tabs-windows.html", label: "Keyboard, Sliders, Tabs, Windows" },
   { file: "browser-capabilities.html", label: "Screenshots, Headless, SSL, Ad Block, Extensions" },
   { file: "advanced-topics.html", label: "Broken Links, SVG, Shadow DOM" },
-  { file: "data-driven-testing.html", label: "Data Driven Testing" }
+  { file: "data-driven-testing.html", label: "Data Driven Testing" },
+  { file: "base-class.html", label: "BaseClass Setup" }
 ];
 
 const shuffleArray = (items) => {
@@ -47,6 +53,200 @@ const shuffleArray = (items) => {
 };
 
 const helpContent = {
+  "baseclass-browser-launch-help": {
+    title: "Browser Launch",
+    infoHtml: `<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>What is <code>Assert</code> in JUnit?</h4>
+    <p><code>Assert</code> is used to validate conditions in test cases.</p>
+    <p>It tells JUnit:</p>
+    <ul class="basic-help-list">
+      <li>PASS the test</li>
+      <li>or FAIL the test</li>
+    </ul>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4><code>Assert.fail()</code> Syntax</h4>
+    <pre class="code-block"><code>Assert.fail();</code></pre>
+    <p>or</p>
+    <pre class="code-block"><code>Assert.fail("message");</code></pre>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>What Happens Internally?</h4>
+    <p>Suppose this line fails:</p>
+    <pre class="code-block"><code>js.executeScript("arguments[0].click();", element);</code></pre>
+    <p>Maybe because:</p>
+    <ul class="basic-help-list">
+      <li>element is null</li>
+      <li>stale element</li>
+      <li>browser issue</li>
+      <li>JS error</li>
+    </ul>
+    <p>Then Java jumps to:</p>
+    <pre class="code-block"><code>catch (Exception e)</code></pre>
+    <p>Now inside catch:</p>
+    <pre class="code-block"><code>Assert.fail("ERROR : OCCUR DURING JS CLICK");</code></pre>
+    <p>JUnit throws an internal error called:</p>
+    <pre class="code-block"><code>AssertionError</code></pre>
+    <p>which marks the test as <strong>FAILED</strong>.</p>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>VERY IMPORTANT:</h4>
+    <h4>What Happens If You DON'T Put <code>Assert.fail()</code>?</h4>
+    <p>This is the key concept.</p>
+
+    <h5>Case Without Assert</h5>
+    <pre class="code-block"><code>catch (Exception e) {
+
+}</code></pre>
+    <p>OR</p>
+    <pre class="code-block"><code>catch (Exception e) {
+    System.out.println("Error");
+}</code></pre>
+
+    <h5>What Happens?</h5>
+    <p>The exception gets caught and swallowed.</p>
+    <p>Meaning:</p>
+    <ul class="basic-help-list">
+      <li>error occurred</li>
+      <li>but JUnit thinks everything is fine</li>
+    </ul>
+    <p>So:</p>
+    <p><strong>TEST WILL PASS</strong></p>
+    <p>even though click failed.</p>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Example</h4>
+    <h5>Without Assert</h5>
+    <pre class="code-block"><code>@Test
+public void testLogin() {
+
+    try {
+        int x = 10 / 0;
+    } catch (Exception e) {
+
+    }
+}</code></pre>
+    <h5>Result</h5>
+    <pre class="code-block"><code>PASSED</code></pre>
+    <p>Why?</p>
+    <p>Because:</p>
+    <ul class="basic-help-list">
+      <li>exception was handled</li>
+      <li>no failure reported to JUnit</li>
+    </ul>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>With Assert.fail()</h4>
+    <pre class="code-block"><code>@Test
+public void testLogin() {
+
+    try {
+        int x = 10 / 0;
+    } catch (Exception e) {
+        Assert.fail("Calculation failed");
+    }
+}</code></pre>
+    <h5>Result</h5>
+    <pre class="code-block"><code>FAILED</code></pre>
+    <p>because:</p>
+    <ul class="basic-help-list">
+      <li>failure explicitly reported to JUnit</li>
+    </ul>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Why This Matters in Automation</h4>
+    <p>Imagine:</p>
+    <pre class="code-block"><code>login button click failed</code></pre>
+    <p>but you didn't use:</p>
+    <pre class="code-block"><code>Assert.fail()</code></pre>
+    <p>Then:</p>
+    <ul class="basic-help-list">
+      <li>next steps may continue</li>
+      <li>reports show PASS</li>
+      <li>false positive test results</li>
+    </ul>
+    <p>Very dangerous in frameworks.</p>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Difference Summary</h4>
+    <table>
+      <thead>
+        <tr><th>Scenario</th><th>Result</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Exception occurs + no assert</td><td>Test PASSES</td></tr>
+        <tr><td>Exception occurs + Assert.fail()</td><td>Test FAILS</td></tr>
+        <tr><td>Exception occurs + throw e</td><td>Test FAILS</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>`,
+    syntax: "",
+    locator: { xpath: "", css: "" },
+    fullCode: ""
+  },
+  "baseclass-close-browser-help": {
+    title: "Close Browser",
+    infoHtml: `<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Close Browser Explanation</h4>
+    <ul class="basic-help-list">
+      <li><code>public</code> -> method can be accessed from anywhere.</li>
+      <li><code>static</code> -> method belongs to class, so object creation is not required.</li>
+      <li><code>void</code> -> method does not return any value.</li>
+      <li><code>closeBrowser()</code> -> method name used to close current browser window/tab.</li>
+      <li><code>try</code> block contains code that may generate exception.</li>
+      <li><code>driver.close()</code> closes only the current browser window.</li>
+      <li><code>catch(Exception e)</code> handles errors and <code>Assert.fail()</code> marks the JUnit test as FAILED if closing fails.</li>
+    </ul>
+  </div>
+</section>`,
+    syntax: "",
+    locator: { xpath: "", css: "" },
+    fullCode: ""
+  },
+  "baseclass-quit-browser-help": {
+    title: "Quit Browser",
+    infoHtml: `<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Quit Browser Explanation</h4>
+    <ul class="basic-help-list">
+      <li><code>public</code> -> method accessible from anywhere.</li>
+      <li><code>static</code> -> method belongs to class, no object needed.</li>
+      <li><code>void</code> -> method does not return any value.</li>
+      <li><code>quitBrowser()</code> -> method name used to close entire browser session.</li>
+      <li><code>try</code> block contains risky code that may throw exception.</li>
+      <li><code>driver.quit()</code> closes all browser windows and ends WebDriver session.</li>
+      <li><code>catch(Exception e)</code> handles errors and <code>Assert.fail()</code> marks JUnit test as FAILED with error message.</li>
+    </ul>
+  </div>
+</section>`,
+    syntax: "",
+    locator: { xpath: "", css: "" },
+    fullCode: ""
+  },
   "date-button-format-help": {
     title: "Date Picker With Button Format",
     infoHtml: `<section class="basic-help-section">
@@ -2668,6 +2868,19 @@ const initDataDrivenPage = () => {
   });
 };
 
+const initBaseClassPage = () => {
+  document.querySelectorAll(".baseclass-toggle").forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const targetId = toggle.getAttribute("aria-controls");
+      const target = targetId ? document.getElementById(targetId) : null;
+      const isOpen = toggle.getAttribute("aria-expanded") === "true";
+
+      toggle.setAttribute("aria-expanded", String(!isOpen));
+      target?.classList.toggle("hidden", isOpen);
+    });
+  });
+};
+
 class DemoShadowCard extends HTMLElement {
   connectedCallback() {
     const root = this.attachShadow({ mode: "open" });
@@ -2742,6 +2955,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initKeyboardPage();
   initJsPage();
   initDataDrivenPage();
+  initBaseClassPage();
   initAdvancedPage();
   highlightCodeBlocks();
 });

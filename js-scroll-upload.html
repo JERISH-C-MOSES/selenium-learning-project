@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavascriptExecutor and Scrolling Practice</title>
-    <link rel="stylesheet" href="shared.css?v=77" />
+    <link rel="stylesheet" href="shared.css?v=91" />
   </head>
   <body class="theme-js-upload">
     <div class="container">
@@ -19,7 +19,7 @@
 
       <section class="page-header">
         <div>
-          <p class="eyebrow">Lab 01</p>
+          <p class="eyebrow">Lab 03</p>
           <h1>JavascriptExecutor and scrolling pages.</h1>
           <p class="lead">This page is useful for JavaScriptExecutor click practice, scrolling by pixels, scrolling to page positions, and scrolling specific elements into view.</p>
         </div>
@@ -296,7 +296,7 @@ System.out.println(js.executeScript("return window.pageYOffset"));</code></pre>
               <text x="330" y="282" text-anchor="middle">JavascriptExecutor</text>
 
               <polygon class="diagram-interface" points="795,250 965,250 945,302 775,302" />
-              <text x="870" y="282" text-anchor="middle">TakeScreenshot</text>
+              <text x="870" y="282" text-anchor="middle">TakesScreenshot</text>
 
               <rect class="diagram-class" x="35" y="390" width="180" height="52" />
               <text x="125" y="422" text-anchor="middle">InternetExplorerDriver</text>
@@ -335,13 +335,71 @@ System.out.println(js.executeScript("return window.pageYOffset"));</code></pre>
           </section>
 
           <section>
-            <h4>Where JavascriptExecutor Fits</h4>
-            <p>
-              JavascriptExecutor is connected with browser driver classes through RemoteWebDriver.
-              WebDriver is the main browser automation contract, and driver classes such as
-              ChromeDriver, EdgeDriver, FirefoxDriver, SafariDriver, OperaDriver, and
-              InternetExplorerDriver work through that driver hierarchy.
-            </p>
+            <h4>Main Flow of Selenium WebDriver</h4>
+
+            <h5>1. SearchContext (Top Interface)</h5>
+            <p><code>SearchContext</code> is the <strong>parent/root interface</strong> in Selenium.</p>
+            <p>It contains basic element searching methods.</p>
+            <h5>Methods:</h5>
+            <pre class="code-block"><code>findElement()
+findElements()</code></pre>
+
+            <h5>2. WebDriver Interface</h5>
+            <p><code>WebDriver</code> extends <code>SearchContext</code>.</p>
+            <p>That means:</p>
+            <ul>
+              <li>WebDriver gets all methods of SearchContext</li>
+              <li>plus browser control methods</li>
+            </ul>
+            <h5>Common Methods:</h5>
+            <pre class="code-block"><code>get()
+close()
+quit()
+navigate()
+manage()</code></pre>
+            <h5>Relationship:</h5>
+            <pre class="code-block"><code>SearchContext -> WebDriver</code></pre>
+            <p>Meaning:</p>
+            <pre class="code-block"><code>WebDriver extends SearchContext</code></pre>
+
+            <h5>3. RemoteWebDriver Class</h5>
+            <p><code>RemoteWebDriver</code> is the main implementation class.</p>
+            <p>It:</p>
+            <ul>
+              <li>implements <code>WebDriver</code></li>
+              <li>implements <code>JavascriptExecutor</code></li>
+              <li>implements <code>TakesScreenshot</code></li>
+            </ul>
+            <p>This is why RemoteWebDriver becomes powerful.</p>
+
+            <h4>Interfaces Connected to RemoteWebDriver</h4>
+            <h5>A) JavascriptExecutor Interface</h5>
+            <p>Used to run JavaScript inside browser.</p>
+            <h5>Example:</h5>
+            <pre class="code-block"><code>JavascriptExecutor js = (JavascriptExecutor) driver;
+
+js.executeScript("window.scrollBy(0,500)");</code></pre>
+
+            <h5>B) TakesScreenshot Interface</h5>
+            <p>Used to capture screenshots.</p>
+            <h5>Example:</h5>
+            <pre class="code-block"><code>TakesScreenshot ts = (TakesScreenshot) driver;</code></pre>
+
+            <h4>Browser Driver Classes</h4>
+            <p>These are actual browser-specific drivers.</p>
+            <p>All extend <code>RemoteWebDriver</code>.</p>
+
+            <h5>1. FirefoxDriver</h5>
+            <p>Used for Firefox browser.</p>
+            <pre class="code-block"><code>WebDriver driver = new FirefoxDriver();</code></pre>
+
+            <h5>2. InternetExplorerDriver</h5>
+            <p>Used for Internet Explorer.</p>
+            <pre class="code-block"><code>WebDriver driver = new InternetExplorerDriver();</code></pre>
+
+            <h5>3. OperaDriver</h5>
+            <p>Used for Opera browser.</p>
+            <pre class="code-block"><code>WebDriver driver = new OperaDriver();</code></pre>
           </section>
 
           <section>
@@ -511,7 +569,7 @@ js.executeScript("arguments[0].setAttribute('value','Jerish')", webelement);</co
       </div>
     </div>
 
-    <script src="main.js?v=77"></script>
+    <script src="main.js?v=91"></script>
     <script>
       window.openJsExecutorHelp = function () {
         var modal = document.getElementById("js-executor-help-backdrop");

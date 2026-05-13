@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BaseClass Setup</title>
+    <link rel="stylesheet" href="shared.css?v=91" />
+  </head>
+  <body class="theme-base-class">
+    <div class="container">
+      <header class="nav-shell">
+        <div class="brand">Selenium Sprint Lab</div>
+        <nav class="nav-links">
+          <a href="dashboard.html">Dashboard</a>
+          <a href="data-driven-testing.html">Data Driven</a>
+        </nav>
+        <button class="button ghost" type="button" data-logout>Logout</button>
+      </header>
+
+      <section class="page-header">
+        <div>
+          <p class="eyebrow">Lab 14</p>
+          <h1>Create a Selenium BaseClass.</h1>
+          <p class="lead">Build one reusable parent class for browser launch, wait setup, URL loading, and driver cleanup.</p>
+        </div>
+      </section>
+
+      <section class="baseclass-grid">
+        <article class="panel baseclass-panel">
+          <span class="chip">Purpose</span>
+          <h3>Why We Create BaseClass</h3>
+          <p>
+            A BaseClass keeps common Selenium setup in one place. Test classes can extend it and reuse the same
+            driver, wait, browser launch, and close logic.
+          </p>
+          <ul class="check-list">
+            <li>Avoid writing browser setup in every test class.</li>
+            <li>Keep driver initialization consistent.</li>
+            <li>Make teardown safe and repeatable.</li>
+            <li>Help framework files reuse the same starting point.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="panel baseclass-accordion">
+        <div class="baseclass-accordion-header">
+          <button class="baseclass-toggle" id="browser-launch-toggle" type="button" aria-expanded="false" aria-controls="browser-launch-code">
+            1. Browser Launch
+          </button>
+          <button class="button secondary help-button" type="button" data-help-topic="baseclass-browser-launch-help">Help</button>
+        </div>
+        <div class="baseclass-code-block hidden" id="browser-launch-code">
+          <pre class="code-block"><code>protected static WebDriver driver;
+
+// 1. Browser Launch
+public static WebDriver launchBrowser(String browserName) {
+
+    try {
+
+        if (browserName.equalsIgnoreCase("chrome")) {
+
+            driver = new ChromeDriver();
+
+        } else if (browserName.equalsIgnoreCase("edge")) {
+
+            driver = new EdgeDriver();
+
+        } else if (browserName.equalsIgnoreCase("firefox")) {
+
+            driver = new FirefoxDriver();
+
+        } else if (browserName.equalsIgnoreCase("safari")) {
+
+            driver = new SafariDriver();
+
+        } else {
+
+            Assert.fail("Invalid Browser Name : " + browserName);
+        }
+
+        driver.manage().window().maximize();
+
+    } catch (Exception e) {
+
+        Assert.fail("Browser Launch Failed : " + e.getMessage());
+    }
+
+    return driver;
+}</code></pre>
+        </div>
+      </section>
+
+      <section class="panel baseclass-accordion">
+        <div class="baseclass-accordion-header">
+          <button class="baseclass-toggle" id="close-browser-toggle" type="button" aria-expanded="false" aria-controls="close-browser-code">
+            2. Close
+          </button>
+          <button class="button secondary help-button" type="button" data-help-topic="baseclass-close-browser-help">Help</button>
+        </div>
+        <div class="baseclass-code-block hidden" id="close-browser-code">
+          <pre class="code-block"><code>// 2. Close
+public static void closeBrowser() {
+
+    try {
+
+        driver.close();
+
+    } catch (Exception e) {
+
+        Assert.fail("Error occurred during close : " + e.getMessage());
+    }
+}</code></pre>
+        </div>
+      </section>
+
+      <section class="panel baseclass-accordion">
+        <div class="baseclass-accordion-header">
+          <button class="baseclass-toggle" id="quit-browser-toggle" type="button" aria-expanded="false" aria-controls="quit-browser-code">
+            3. Quit
+          </button>
+          <button class="button secondary help-button" type="button" data-help-topic="baseclass-quit-browser-help">Help</button>
+        </div>
+        <div class="baseclass-code-block hidden" id="quit-browser-code">
+          <pre class="code-block"><code>// 3. Quit
+public static void quitBrowser() {
+
+    try {
+
+        driver.quit();
+
+    } catch (Exception e) {
+
+        Assert.fail("Error occurred during quit : " + e.getMessage());
+    }
+}</code></pre>
+        </div>
+      </section>
+    </div>
+
+    <div class="modal-backdrop hidden" id="help-backdrop">
+      <div class="modal-card help-modal-card">
+        <div class="section-title-row">
+          <div>
+            <p class="eyebrow">Help Center</p>
+            <h3 id="help-title">Element Help</h3>
+          </div>
+          <button class="button ghost" id="close-help" type="button">Close</button>
+        </div>
+        <div class="help-tab-row">
+          <button class="tab-button active help-tab-button" data-help-tab="syntax" type="button">Syntax</button>
+          <button class="tab-button help-tab-button" data-help-tab="locator" type="button">Locator</button>
+          <button class="tab-button help-tab-button" data-help-tab="full-code" type="button">Full Selenium Code</button>
+        </div>
+        <div class="help-panel active" id="help-panel-syntax">
+          <div class="help-info-content hidden" id="help-info-content"></div>
+          <pre class="code-block"><code id="help-syntax"></code></pre>
+        </div>
+        <div class="help-panel" id="help-panel-locator">
+          <div class="help-tab-row">
+            <button class="tab-button active locator-tab-button" data-locator-tab="xpath" type="button">XPath</button>
+            <button class="tab-button locator-tab-button" data-locator-tab="css" type="button">CSS</button>
+          </div>
+          <pre class="code-block"><code id="help-locator"></code></pre>
+        </div>
+        <div class="help-panel" id="help-panel-full-code">
+          <pre class="code-block"><code id="help-full-code"></code></pre>
+        </div>
+      </div>
+    </div>
+    <script src="main.js?v=91"></script>
+  </body>
+</html>
