@@ -47,6 +47,212 @@ const shuffleArray = (items) => {
 };
 
 const helpContent = {
+  "date-button-format-help": {
+    title: "Date Picker With Button Format",
+    infoHtml: `<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Date Pickers in Selenium</h4>
+    <p>A <strong>Date Picker</strong> is a calendar UI element used to select dates.</p>
+    <p>Examples:</p>
+    <ul class="basic-help-list">
+      <li>DOB selection</li>
+      <li>Hotel booking</li>
+      <li>Flight booking</li>
+      <li>Appointment scheduling</li>
+    </ul>
+
+    <h5>1. Normal Input Date Picker</h5>
+    <p>If the date field allows typing directly:</p>
+    <h5>HTML Example</h5>
+    <pre class="code-block"><code>&lt;input type="date"&gt;</code></pre>
+
+    <h5>Selenium Syntax</h5>
+    <pre class="code-block"><code>driver.findElement(By.id("date"))
+.sendKeys("15-05-2026");</code></pre>
+
+    <h5>Explanation</h5>
+    <ol class="basic-help-list">
+      <li><code>findElement()</code> locates the date field.</li>
+      <li><code>By.id("date")</code> identifies the element using id locator.</li>
+      <li><code>sendKeys()</code> enters date directly into textbox.</li>
+      <li><code>"15-05-2026"</code> is the date value passed.</li>
+      <li>Mostly used when input field is editable.</li>
+      <li>Easy to automate compared to calendar UI.</li>
+      <li>No need to handle calendar popup.</li>
+      <li>Date format depends on application requirement.</li>
+      <li>Common formats: <code>dd-MM-yyyy</code> or <code>MM/dd/yyyy</code>.</li>
+    </ol>
+    <p><strong>Note:</strong> all the data we send to the input box must be in string format, even if the values are numbers.</p>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Important Navigation Note</h4>
+    <p>While automating, we can either click the forward button to select a future date or click the backward button to select a past date. We cannot do both at the same time.</p>
+    <p>This is because in real-time scenarios, we either move to the past or move to the future. Only demo applications allow navigation to both past and future dates simultaneously.</p>
+
+    <h5>Model 1</h5>
+    <p>If the dates in the date picker are in <strong>button format</strong>, use a dynamic XPath value and directly click the button.</p>
+
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>WebElement input = driver.findElement(By.xpath("xpath"));
+input.click();
+
+String expectedMonthYear = "monthYear";
+String expectedDate = "date";
+
+while(true)
+{
+    String actualMonthYear = driver.findElement(
+        By.xpath("xpath"))
+        .getText();
+
+    if(actualMonthYear.equals(expectedMonthYear))
+    {
+        break;
+    }
+
+    driver.findElement(
+        By.xpath("xpath"))
+        .click();
+}
+
+driver.findElement(
+    By.xpath("//button[text()='" + expectedDate + "']"))
+    .click();</code></pre>
+
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>findElement()</code> is used to locate elements using XPath.</li>
+      <li><code>input.click()</code> opens the date picker calendar.</li>
+      <li><code>expectedMonthYear</code> stores required month and year.</li>
+      <li><code>expectedDate</code> stores the required date dynamically.</li>
+      <li><code>while(true)</code> keeps looping until correct month appears.</li>
+      <li><code>getText()</code> gets current calendar heading text.</li>
+      <li><code>equals()</code> compares current month with expected month.</li>
+      <li><code>break</code> stops loop once correct month/year is found.</li>
+      <li>Final XPath clicks the required date button dynamically.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Example</h4>
+    <pre class="code-block"><code>WebElement input = driver.findElement(By.xpath("//*[@id='simple-date-input']"));
+input.click();
+
+String year = "June 2027";
+String date = "23";
+
+while (true)
+{
+    String yearElement = driver.findElement(By.xpath("//*[@id='calendar-title']")).getText();
+
+    if (yearElement.equals(year))
+    {
+        break;
+    }
+
+    driver.findElement(By.xpath("//*[@id='calendar-next']")).click();
+}
+
+driver.findElement(
+    By.xpath("//button[text()='" + date + "']"))
+    .click();</code></pre>
+  </div>
+</section>`,
+    syntax: "",
+    locator: { xpath: "", css: "" },
+    fullCode: ""
+  },
+  "date-table-format-help": {
+    title: "Date Picker With Table Format",
+    infoHtml: `<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Model 2:</h4>
+    <p>If the dates in the date picker are given in table format, we have to capture all the date elements and store them in a list of <code>WebElements</code>.</p>
+
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>while (true)
+{
+    String actualMonthYear = driver.findElement(
+        By.xpath("xpath"))
+        .getText();
+
+    if(actualMonthYear.equals(expectedMonthYear))
+    {
+        break;
+    }
+
+    driver.findElement(
+        By.xpath("xpath"))
+        .click();
+}
+
+List&lt;WebElement&gt; allDates = driver.findElements(
+    By.xpath("xpath"));
+
+for(WebElement element : allDates)
+{
+    if(element.getText().equals(expectedDate))
+    {
+        element.click();
+        break;
+    }
+}</code></pre>
+
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>while(true)</code> keeps looping until required month/year appears.</li>
+      <li><code>getText()</code> gets current calendar heading text.</li>
+      <li><code>equals()</code> compares actual and expected month/year.</li>
+      <li><code>break</code> stops loop once correct month is found.</li>
+      <li><code>findElements()</code> stores all date buttons in a list.</li>
+      <li><code>for-each loop</code> iterates through each date element.</li>
+      <li><code>getText()</code> reads date text from each button.</li>
+      <li>If date matches expected date, Selenium clicks it.</li>
+      <li>Final <code>break</code> stops loop after selecting the date.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Example</h4>
+    <pre class="code-block"><code>String year = "June 2027";
+String date = "23";
+
+while (true)
+{
+    String yearElement = driver.findElement(By.xpath("//strong[@id='table-calendar-title']")).getText();
+
+    if (yearElement.equals(year))
+    {
+        break;
+    }
+
+    driver.findElement(By.xpath("//*[@id='table-calendar-next']")).click();
+}
+
+List&lt;WebElement&gt; dates = driver.findElements(
+    By.xpath("//tbody[@id='table-calendar-body']/tr/td/button"));
+
+for (WebElement dt : dates)
+{
+    if(dt.getText().equals(date))
+    {
+        dt.click();
+        break;
+    }
+}</code></pre>
+  </div>
+</section>`,
+    syntax: "",
+    locator: { xpath: "", css: "" },
+    fullCode: ""
+  },
   "static-table-help": {
     title: "Static Web Table",
     infoHtml: `<section class="basic-help-section">
@@ -2022,13 +2228,262 @@ const initPaginationPage = () => {
 };
 
 const initDatePage = () => {
-  document.getElementById("date-submit")?.addEventListener("click", () => {
-    const single = document.getElementById("single-date").value;
-    const week = document.getElementById("week-picker").value;
-    const month = document.getElementById("month-picker").value;
-    const start = document.getElementById("range-start").value;
-    const end = document.getElementById("range-end").value;
-    setStatus("date-status", `Captured values -> date: ${single || "-"}, week: ${week || "-"}, month: ${month || "-"}, range: ${start || "-"} to ${end || "-"}`, "success");
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+
+  const formatDate = (year, month, day) => {
+    const monthValue = String(month + 1).padStart(2, "0");
+    const dayValue = String(day).padStart(2, "0");
+    return `${dayValue}/${monthValue}/${year}`;
+  };
+
+  const setupTableDatePicker = ({
+    inputId,
+    calendarId,
+    titleId,
+    bodyId,
+    previousId,
+    nextId,
+    resultId,
+    clearId,
+    tableMode = true,
+    triggerId = null
+  }) => {
+    const dateInput = document.getElementById(inputId);
+    const calendar = document.getElementById(calendarId);
+    const calendarTitle = document.getElementById(titleId);
+    const calendarMonthLabel = document.getElementById(`${calendarId}-month`);
+    const calendarYearSelect = document.getElementById(`${calendarId}-year`);
+    const calendarBody = document.getElementById(bodyId);
+    const previousButton = document.getElementById(previousId);
+    const nextButton = document.getElementById(nextId);
+    const enteredDateValue = document.getElementById(resultId);
+    const clearButton = document.getElementById(clearId);
+    const triggerButton = triggerId ? document.getElementById(triggerId) : null;
+    const today = new Date();
+    const todayDay = today.getDate();
+    const todayMonth = today.getMonth();
+    const todayYear = today.getFullYear();
+    let visibleMonth = todayMonth;
+    let visibleYear = todayYear;
+
+    if (!dateInput || !calendar || (!calendarTitle && (!calendarMonthLabel || !calendarYearSelect)) || !calendarBody) {
+      return;
+    }
+
+    if (calendarYearSelect) {
+      const startYear = todayYear - 80;
+      const endYear = todayYear + 20;
+      calendarYearSelect.innerHTML = "";
+
+      for (let year = startYear; year <= endYear; year += 1) {
+        const option = document.createElement("option");
+        option.value = String(year);
+        option.textContent = String(year);
+        calendarYearSelect.appendChild(option);
+      }
+    }
+
+    const renderCalendar = () => {
+      const firstDay = new Date(visibleYear, visibleMonth, 1).getDay();
+      const daysInMonth = new Date(visibleYear, visibleMonth + 1, 0).getDate();
+      let currentDay = 1;
+
+      if (calendarTitle) {
+        calendarTitle.textContent = `${monthNames[visibleMonth]} ${visibleYear}`;
+      }
+
+      if (calendarMonthLabel && calendarYearSelect) {
+        calendarMonthLabel.textContent = monthNames[visibleMonth];
+        calendarYearSelect.value = String(visibleYear);
+      }
+
+      calendarBody.innerHTML = "";
+
+      if (!tableMode) {
+        Array.from({ length: firstDay }).forEach(() => {
+          const blank = document.createElement("span");
+          blank.className = "calendar-empty";
+          calendarBody.appendChild(blank);
+        });
+
+        Array.from({ length: daysInMonth }, (_, index) => index + 1).forEach((day) => {
+          const dayButton = document.createElement("button");
+          dayButton.type = "button";
+          dayButton.className = "calendar-day";
+          dayButton.textContent = String(day);
+
+          if (visibleYear === todayYear && visibleMonth === todayMonth && day === todayDay) {
+            dayButton.classList.add("highlighted");
+          }
+
+          dayButton.addEventListener("click", () => {
+            dateInput.value = formatDate(visibleYear, visibleMonth, day);
+            if (enteredDateValue) {
+              enteredDateValue.textContent = dateInput.value;
+            }
+            calendar.classList.add("hidden");
+          });
+
+          calendarBody.appendChild(dayButton);
+        });
+        return;
+      }
+
+      for (let rowIndex = 0; rowIndex < 6; rowIndex += 1) {
+        const row = document.createElement("tr");
+
+        for (let colIndex = 0; colIndex < 7; colIndex += 1) {
+          const cell = document.createElement("td");
+
+          if ((rowIndex === 0 && colIndex < firstDay) || currentDay > daysInMonth) {
+            cell.className = "calendar-empty";
+          } else {
+            cell.className = "calendar-cell";
+            const dayButton = document.createElement("button");
+            dayButton.type = "button";
+            dayButton.className = "calendar-day";
+            dayButton.textContent = String(currentDay);
+
+            if (visibleYear === todayYear && visibleMonth === todayMonth && currentDay === todayDay) {
+              dayButton.classList.add("highlighted");
+            }
+
+            const selectedDay = currentDay;
+            const selectDate = () => {
+              dateInput.value = formatDate(visibleYear, visibleMonth, selectedDay);
+              if (enteredDateValue) {
+                enteredDateValue.textContent = dateInput.value;
+              }
+              calendar.classList.add("hidden");
+            };
+
+            dayButton.addEventListener("click", selectDate);
+            cell.appendChild(dayButton);
+
+            currentDay += 1;
+          }
+
+          row.appendChild(cell);
+        }
+
+        calendarBody.appendChild(row);
+      }
+    };
+
+    const changeMonth = (step) => {
+      visibleMonth += step;
+
+      if (visibleMonth < 0) {
+        visibleMonth = 11;
+        visibleYear -= 1;
+      }
+
+      if (visibleMonth > 11) {
+        visibleMonth = 0;
+        visibleYear += 1;
+      }
+
+      renderCalendar();
+    };
+
+    dateInput.addEventListener("focus", () => {
+      calendar.classList.remove("hidden");
+      renderCalendar();
+    });
+
+    dateInput.addEventListener("click", () => {
+      calendar.classList.remove("hidden");
+      renderCalendar();
+    });
+
+    triggerButton?.addEventListener("click", () => {
+      calendar.classList.toggle("hidden");
+      renderCalendar();
+      dateInput.focus();
+    });
+
+    dateInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        if (enteredDateValue) {
+          enteredDateValue.textContent = dateInput.value.trim() || "-";
+        }
+        calendar.classList.add("hidden");
+        dateInput.blur();
+      }
+    });
+
+    previousButton?.addEventListener("click", () => changeMonth(-1));
+    nextButton?.addEventListener("click", () => changeMonth(1));
+    calendarYearSelect?.addEventListener("change", () => {
+      visibleYear = Number(calendarYearSelect.value);
+      renderCalendar();
+    });
+
+    clearButton?.addEventListener("click", () => {
+      dateInput.value = "";
+      if (enteredDateValue) {
+        enteredDateValue.textContent = "-";
+      }
+      calendar.classList.add("hidden");
+    });
+
+    document.addEventListener("pointerdown", (event) => {
+      if (!calendar.contains(event.target) && event.target !== dateInput) {
+        if (!triggerButton || event.target !== triggerButton) {
+          calendar.classList.add("hidden");
+        }
+      }
+    });
+  };
+
+  setupTableDatePicker({
+    inputId: "simple-date-input",
+    calendarId: "simple-calendar",
+    titleId: "calendar-title",
+    bodyId: "calendar-body",
+    previousId: "calendar-prev",
+    nextId: "calendar-next",
+    resultId: "entered-date-value",
+    clearId: "clear-simple-date",
+    tableMode: false
+  });
+
+  setupTableDatePicker({
+    inputId: "table-date-input",
+    calendarId: "table-calendar",
+    titleId: "table-calendar-title",
+    bodyId: "table-calendar-body",
+    previousId: "table-calendar-prev",
+    nextId: "table-calendar-next",
+    resultId: "entered-table-date-value",
+    clearId: "clear-table-date"
+  });
+
+  setupTableDatePicker({
+    inputId: "dob-date-input",
+    calendarId: "dob-calendar",
+    titleId: "dob-calendar-title",
+    bodyId: "dob-calendar-body",
+    previousId: "dob-calendar-prev",
+    nextId: "dob-calendar-next",
+    resultId: "entered-dob-date-value",
+    clearId: "clear-dob-date",
+    tableMode: false,
+    triggerId: "dob-calendar-button"
   });
 };
 

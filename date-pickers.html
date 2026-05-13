@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Date Pickers</title>
-    <link rel="stylesheet" href="shared.css?v=54" />
+    <link rel="stylesheet" href="shared.css?v=77" />
   </head>
   <body class="theme-dates">
     <div class="container">
@@ -19,43 +19,152 @@
 
       <section class="page-header">
         <div>
-          <p class="eyebrow">Lab 09</p>
+          <p class="eyebrow">Lab 08</p>
           <h1>Handling date pickers.</h1>
-          <p class="lead">This page includes common browser-native picker types that appear frequently in enterprise forms.</p>
+          <p class="lead">Practice date picker patterns one by one with Selenium-friendly controls.</p>
         </div>
       </section>
 
-      <section class="two-column">
-        <article class="panel stack">
-          <label for="single-date">Single date</label>
-          <input id="single-date" type="date" />
-
-          <label for="week-picker">Week picker</label>
-          <input id="week-picker" type="week" />
-
-          <label for="month-picker">Month picker</label>
-          <input id="month-picker" type="month" />
-        </article>
-
-        <article class="panel stack">
-          <label for="date-time-picker">Date and time</label>
-          <input id="date-time-picker" type="datetime-local" />
-
-          <label for="range-start">Range start</label>
-          <input id="range-start" type="date" />
-
-          <label for="range-end">Range end</label>
-          <input id="range-end" type="date" />
-        </article>
+      <section class="panel date-practice-panel">
+        <div class="section-title-row">
+          <h3>1. Simple Date Picker With Date as Button Format</h3>
+          <button class="button secondary help-button" type="button" data-help-topic="date-button-format-help">Help</button>
+        </div>
+        <div class="date-inline-field">
+          <label for="simple-date-input">Date:</label>
+          <div class="simple-datepicker" id="simple-datepicker">
+            <input id="simple-date-input" type="text" inputmode="numeric" pattern="[0-9/]*" autocomplete="off" />
+            <div class="calendar-popup hidden" id="simple-calendar" aria-label="April 2024 calendar">
+              <div class="calendar-header">
+                <button class="calendar-nav" id="calendar-prev" type="button" aria-label="Previous month">&lt;</button>
+                <strong id="calendar-title">April 2024</strong>
+                <button class="calendar-nav" id="calendar-next" type="button" aria-label="Next month">&gt;</button>
+              </div>
+              <div class="calendar-weekdays" aria-hidden="true">
+                <span>Su</span>
+                <span>Mo</span>
+                <span>Tu</span>
+                <span>We</span>
+                <span>Th</span>
+                <span>Fr</span>
+                <span>Sa</span>
+              </div>
+              <div class="calendar-grid" id="calendar-body"></div>
+            </div>
+          </div>
+        </div>
+        <div class="date-result-row">
+          <p>Entered date: <strong id="entered-date-value">-</strong></p>
+          <button class="button secondary" id="clear-simple-date" type="button">Clear</button>
+        </div>
       </section>
 
-      <section class="panel" style="margin-top: 1rem;">
-        <div class="button-row">
-          <button class="button primary" id="date-submit" type="button">Capture Date Values</button>
+      <section class="panel date-practice-panel">
+        <div class="section-title-row">
+          <h3>2. Simple Date Picker With Date as Table Format</h3>
+          <button class="button secondary help-button" type="button" data-help-topic="date-table-format-help">Help</button>
         </div>
-        <p class="status-message" id="date-status" aria-live="polite"></p>
+        <div class="date-inline-field">
+          <label for="table-date-input">Date:</label>
+          <div class="simple-datepicker" id="table-datepicker">
+            <input id="table-date-input" type="text" inputmode="numeric" pattern="[0-9/]*" autocomplete="off" />
+            <div class="calendar-popup hidden" id="table-calendar" aria-label="Table calendar">
+              <div class="calendar-header">
+                <button class="calendar-nav" id="table-calendar-prev" type="button" aria-label="Previous month">&lt;</button>
+                <strong id="table-calendar-title">April 2024</strong>
+                <button class="calendar-nav" id="table-calendar-next" type="button" aria-label="Next month">&gt;</button>
+              </div>
+              <table class="ui-datepicker-calendar" id="table-calendar-table">
+                <thead>
+                  <tr>
+                    <th>Su</th>
+                    <th>Mo</th>
+                    <th>Tu</th>
+                    <th>We</th>
+                    <th>Th</th>
+                    <th>Fr</th>
+                    <th>Sa</th>
+                  </tr>
+                </thead>
+                <tbody id="table-calendar-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="date-result-row">
+          <p>Entered date: <strong id="entered-table-date-value">-</strong></p>
+          <button class="button secondary" id="clear-table-date" type="button">Clear</button>
+        </div>
+      </section>
+
+      <section class="panel date-practice-panel">
+        <h3>3. Date Picker With Calendar Icon</h3>
+        <div class="date-inline-field dob-date-field">
+          <div class="simple-datepicker dob-datepicker" id="dob-datepicker">
+            <div class="dob-input-row">
+              <input id="dob-date-input" type="text" inputmode="numeric" pattern="[0-9/]*" placeholder="mm/dd/yyyy" autocomplete="off" />
+              <button class="calendar-icon-button" id="dob-calendar-button" type="button" aria-label="Open calendar">
+                <span class="calendar-glyph" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="calendar-popup hidden" id="dob-calendar" aria-label="DOB calendar">
+              <div class="calendar-header">
+                <button class="calendar-nav" id="dob-calendar-prev" type="button" aria-label="Previous month">&lt;</button>
+                <div class="dob-calendar-title">
+                  <span id="dob-calendar-month">April</span>
+                  <select id="dob-calendar-year" aria-label="Select DOB year"></select>
+                </div>
+                <button class="calendar-nav" id="dob-calendar-next" type="button" aria-label="Next month">&gt;</button>
+              </div>
+              <div class="calendar-weekdays" aria-hidden="true">
+                <span>Su</span>
+                <span>Mo</span>
+                <span>Tu</span>
+                <span>We</span>
+                <span>Th</span>
+                <span>Fr</span>
+                <span>Sa</span>
+              </div>
+              <div class="calendar-grid" id="dob-calendar-body"></div>
+            </div>
+          </div>
+        </div>
+        <div class="date-result-row">
+          <p>Entered date: <strong id="entered-dob-date-value">-</strong></p>
+          <button class="button secondary" id="clear-dob-date" type="button">Clear</button>
+        </div>
       </section>
     </div>
-    <script src="main.js?v=54"></script>
+    <div class="modal-backdrop hidden" id="help-backdrop">
+      <div class="modal-card help-modal-card">
+        <div class="section-title-row">
+          <div>
+            <p class="eyebrow">Help Center</p>
+            <h3 id="help-title">Element Help</h3>
+          </div>
+          <button class="button ghost" id="close-help" type="button">Close</button>
+        </div>
+        <div class="help-tab-row">
+          <button class="tab-button active help-tab-button" data-help-tab="syntax" type="button">Syntax</button>
+          <button class="tab-button help-tab-button" data-help-tab="locator" type="button">Locator</button>
+          <button class="tab-button help-tab-button" data-help-tab="full-code" type="button">Full Selenium Code</button>
+        </div>
+        <div class="help-panel active" id="help-panel-syntax">
+          <div class="help-info-content hidden" id="help-info-content"></div>
+          <pre class="code-block"><code id="help-syntax"></code></pre>
+        </div>
+        <div class="help-panel" id="help-panel-locator">
+          <div class="help-tab-row">
+            <button class="tab-button active locator-tab-button" data-locator-tab="xpath" type="button">XPath</button>
+            <button class="tab-button locator-tab-button" data-locator-tab="css" type="button">CSS</button>
+          </div>
+          <pre class="code-block"><code id="help-locator"></code></pre>
+        </div>
+        <div class="help-panel" id="help-panel-full-code">
+          <pre class="code-block"><code id="help-full-code"></code></pre>
+        </div>
+      </div>
+    </div>
+    <script src="main.js?v=77"></script>
   </body>
 </html>
