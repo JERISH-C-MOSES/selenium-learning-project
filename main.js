@@ -3,6 +3,16 @@ const DEMO_PASSWORD = "Jerish@123";
 
 const protectedPages = [
   "dashboard.html",
+  "java.html",
+  "selenium.html",
+  "testng.html",
+  "cucumber.html",
+  "sql.html",
+  "git.html",
+  "webdriver-methods.html",
+  "waiting-methods.html",
+  "js-scroll-upload.html",
+  "upload-files.html",
   "checkbox-alerts.html",
   "alerts.html",
   "frames-iframes.html",
@@ -11,18 +21,15 @@ const protectedPages = [
   "date-pickers.html",
   "mouse-actions.html",
   "keyboard-slider-tabs-windows.html",
-  "webdriver-methods.html",
-  "waiting-methods.html",
-  "js-scroll-upload.html",
-  "upload-files.html",
-  "advanced-topics.html",
   "browser-capabilities.html",
+  "advanced-topics.html",
   "data-driven-testing.html",
   "base-class.html"
 ];
 
 const pageRegistry = [
   { file: "dashboard.html", label: "Dashboard" },
+  { file: "selenium.html", label: "Selenium Labs" },
   { file: "webdriver-methods.html", label: "WebDriver Methods" },
   { file: "waiting-methods.html", label: "Waiting Methods" },
   { file: "js-scroll-upload.html", label: "JavascriptExecutor and Scrolling" },

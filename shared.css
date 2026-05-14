@@ -701,6 +701,7 @@ legend {
 
 .login-intro .stats-grid {
   width: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .stats-grid,
@@ -818,6 +819,281 @@ legend {
 .theory-panel p,
 .theory-panel .basic-help-list {
   margin: 0;
+}
+
+.git-lab-page .theory-panel p code,
+.git-lab-page .theory-panel li code,
+.git-lab-page .theory-panel h4 code {
+  display: inline-block;
+  border: 1px solid color-mix(in srgb, var(--accent) 42%, var(--line));
+  border-radius: 8px;
+  padding: 0.12rem 0.4rem;
+  background: color-mix(in srgb, var(--accent) 16%, white);
+  color: var(--accent-dark);
+  font-weight: 900;
+  box-shadow: 0 6px 14px rgba(35, 50, 48, 0.07);
+}
+
+.git-lab-page .theory-panel p code:first-letter,
+.git-lab-page .theory-panel li code:first-letter,
+.git-lab-page .theory-panel h4 code:first-letter {
+  text-transform: none;
+}
+
+.git-visual,
+.git-browser-shot {
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--line));
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--surface) 88%, white);
+  box-shadow: 0 18px 46px rgba(35, 50, 48, 0.08);
+}
+
+.git-flow-diagram {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) auto minmax(120px, 1fr) auto minmax(120px, 1fr) auto minmax(120px, 1fr);
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.git-flow-card,
+.git-stack-node,
+.git-local-repo {
+  border: 1px solid color-mix(in srgb, var(--accent-dark) 22%, var(--line));
+  border-radius: 14px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.72);
+  text-align: center;
+}
+
+.git-flow-card strong,
+.git-flow-card span {
+  display: block;
+}
+
+.git-flow-card span {
+  margin-top: 0.3rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.git-flow-card.remote,
+.git-stack-node.remote {
+  background: color-mix(in srgb, var(--accent) 15%, white);
+}
+
+.git-flow-arrow {
+  position: relative;
+  min-width: 84px;
+  color: var(--accent-dark);
+  font-weight: 800;
+  text-align: center;
+}
+
+.git-flow-arrow::after {
+  content: "";
+  display: block;
+  height: 2px;
+  margin-top: 0.35rem;
+  background: var(--accent);
+}
+
+.git-stack-diagram {
+  display: grid;
+  justify-items: center;
+  gap: 0.45rem;
+  padding: 1.1rem;
+}
+
+.git-stack-node {
+  width: min(100%, 360px);
+}
+
+.git-stack-line {
+  color: var(--accent-dark);
+  font-weight: 800;
+  text-align: center;
+}
+
+.git-stack-line::after {
+  content: "v";
+  display: block;
+  line-height: 1;
+  margin-top: 0.2rem;
+}
+
+.git-pr-diagram {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.git-remote-box {
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.git-branches,
+.git-local-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+}
+
+.git-branches span {
+  border: 1px solid color-mix(in srgb, var(--accent-dark) 28%, var(--line));
+  border-radius: 999px;
+  padding: 0.55rem 0.75rem;
+  text-align: center;
+  font-weight: 800;
+}
+
+.git-local-row {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.git-local-repo {
+  min-height: 96px;
+  display: grid;
+  place-items: center;
+}
+
+.git-local-repo.alt {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+}
+
+.git-browser-shot {
+  overflow: hidden;
+}
+
+.git-browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-bottom: 1px solid var(--line);
+  padding: 0.65rem 0.85rem;
+  background: color-mix(in srgb, var(--surface) 74%, white);
+}
+
+.git-browser-bar span {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.git-browser-bar span:nth-child(2) {
+  background: var(--accent-2);
+}
+
+.git-browser-bar span:nth-child(3) {
+  background: var(--accent-dark);
+}
+
+.git-browser-bar strong {
+  margin-left: 0.35rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.git-browser-body {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 1rem;
+  padding: 1.25rem;
+}
+
+.git-logo-mark {
+  width: 96px;
+  height: 96px;
+  border-radius: 24px;
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  color: white;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.git-download-line,
+.git-file-row {
+  margin-top: 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.7rem 0.85rem;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--accent-dark);
+  font-weight: 800;
+}
+
+.git-terminal-shot {
+  background: #101718;
+  color: #d9fff1;
+}
+
+.repo-body {
+  grid-template-columns: 1fr 260px;
+}
+
+.git-file-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--text);
+}
+
+.git-file-row span {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.repo-body aside {
+  border-left: 1px solid var(--line);
+  padding-left: 1rem;
+}
+
+.git-original-image {
+  display: block;
+  width: 100%;
+  max-width: 980px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 18px 46px rgba(35, 50, 48, 0.08);
+}
+
+.git-small-original,
+.git-terminal-original {
+  width: auto;
+  max-width: 100%;
+}
+
+.git-big-note {
+  max-width: 900px;
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.4rem, 8vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.git-image-slot {
+  display: grid;
+  min-height: 180px;
+  place-items: center;
+  border: 2px dashed color-mix(in srgb, var(--accent) 34%, var(--line));
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.62);
+  color: var(--muted);
+  font-weight: 800;
+  text-align: center;
+  padding: 1rem;
 }
 
 .baseclass-code-panel .section-title {
@@ -2527,6 +2803,32 @@ thead th {
   .syntax-breakdown-grid,
   .scroll-help-grid {
     grid-template-columns: 1fr;
+  }
+
+  .git-flow-diagram,
+  .git-branches,
+  .git-local-row,
+  .git-browser-body,
+  .repo-body {
+    grid-template-columns: 1fr;
+  }
+
+  .git-flow-arrow {
+    min-width: 0;
+  }
+
+  .git-flow-arrow::after {
+    content: "v";
+    height: auto;
+    margin-top: 0.2rem;
+    background: transparent;
+  }
+
+  .repo-body aside {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding-left: 0;
+    padding-top: 1rem;
   }
 }
 

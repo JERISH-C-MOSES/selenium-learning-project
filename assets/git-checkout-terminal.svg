@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 152" role="img"><rect width="980" height="152" fill="#070707"/><text x="16" y="30" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#e8f6ff">C:\Users\hello\OneDrive\Documents\New project\selenium-practice-website&gt;git checkout Testing-branch</text>
+<text x="16" y="53" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#e8f6ff">M       index.html</text>
+<text x="16" y="76" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#e8f6ff">M       shared.css</text>
+<text x="16" y="99" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#e8f6ff">branch 'Testing-branch' set up to track 'origin/Testing-branch'.</text>
+<text x="16" y="122" font-family="Consolas, 'Courier New', monospace" font-size="18" fill="#e8f6ff">Switched to a new branch 'Testing-branch'</text></svg>

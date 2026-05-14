@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WebDriver Methods</title>
-    <link rel="stylesheet" href="shared.css?v=91" />
+    <link rel="stylesheet" href="shared.css?v=103" />
   </head>
   <body class="theme-js-upload">
     <div class="container">
       <header class="nav-shell">
         <div class="brand">Selenium Sprint Lab</div>
         <nav class="nav-links">
-          <a href="dashboard.html">Dashboard</a>
+          <a href="selenium.html">Selenium Labs</a>
           <a href="waiting-methods.html">Next: Waiting Methods</a>
         </nav>
         <button class="button ghost" type="button" data-logout>Logout</button>
@@ -369,7 +369,73 @@ driver.navigate().to(url);</code></pre>
           </section>
         </div>
       </section>
+
+      <section class="panel baseclass-accordion">
+        <div class="baseclass-accordion-header">
+          <button class="baseclass-toggle" id="window-handling-toggle" type="button" aria-expanded="false" aria-controls="window-handling-content">
+            5. Handling Browser Windows in Selenium
+          </button>
+        </div>
+        <div class="baseclass-code-block hidden" id="window-handling-content">
+          <section class="theory-panel">
+            <h3>Handling Browser Windows in Selenium</h3>
+            <h4>Definition</h4>
+            <p>Window handling is used when Selenium needs to work with multiple browser windows or tabs.</p>
+            <p>By default, Selenium controls only the <strong>current window</strong>.</p>
+            <p>To perform actions on another window/tab, we must switch the driver control using:</p>
+            <pre class="code-block"><code>driver.switchTo().window(windowID);</code></pre>
+          </section>
+
+          <section class="theory-panel">
+            <h3>Important Methods</h3>
+            <table>
+              <thead>
+                <tr><th>Method</th><th>Return Type</th><th>Purpose</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>getWindowHandle()</code></td><td><code>String</code></td><td>Returns current window ID</td></tr>
+                <tr><td><code>getWindowHandles()</code></td><td><code>Set&lt;String&gt;</code></td><td>Returns all opened window IDs</td></tr>
+                <tr><td><code>switchTo().window()</code></td><td>WebDriver</td><td>Switches control to selected window</td></tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="theory-panel">
+            <h3>Syntax</h3>
+            <h4>1. Get single/current window ID</h4>
+            <pre class="code-block"><code>String parentID = driver.getWindowHandle();</code></pre>
+
+            <h4>2. Get all window IDs</h4>
+            <pre class="code-block"><code>Set&lt;String&gt; windowIDs = driver.getWindowHandles();</code></pre>
+
+            <h4>3. Switch to another window</h4>
+            <pre class="code-block"><code>driver.switchTo().window(childID);</code></pre>
+          </section>
+
+          <section class="theory-panel">
+            <h3>Example</h3>
+            <pre class="code-block"><code>//Click on link
+driver.findElement(By.xpath("xpath")).click();
+
+//Capture all window IDs
+Set&lt;String&gt; windowIDs = driver.getWindowHandles();
+
+//Convert Set into List
+List&lt;String&gt; windowList = new ArrayList&lt;&gt;(windowIDs);
+
+//Capture parent and child window IDs
+String parentID = windowList.get(0);
+String childID = windowList.get(1);
+
+//Switch to child window
+driver.switchTo().window(childID);
+
+//Switch back to parent window
+driver.switchTo().window(parentID);</code></pre>
+          </section>
+        </div>
+      </section>
     </div>
-    <script src="main.js?v=91"></script>
+    <script src="main.js?v=103"></script>
   </body>
 </html>
