@@ -1677,6 +1677,12 @@ legend {
   fill: #0b5ed7;
 }
 
+.inheritance-method-title {
+  font-size: 17px;
+  font-weight: 800;
+  fill: #0b5ed7;
+}
+
 .inheritance-caption {
   font-size: 20px;
   fill: #111;
@@ -1696,7 +1702,7 @@ legend {
 }
 
 .inheritance-small {
-  font-size: 17px;
+  font-size: 16px;
   fill: #111;
 }
 
@@ -1715,6 +1721,45 @@ legend {
   font-size: 28px;
   font-weight: 800;
   fill: #111;
+}
+
+.java-inheritance-page .code-block {
+  overflow-x: hidden;
+  white-space: pre-wrap;
+}
+
+.java-inheritance-page .code-block code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.java-inheritance-page .inheritance-diagram-shell {
+  max-width: 100%;
+}
+
+.java-inheritance-page .inheritance-diamond-chart .inheritance-title {
+  font-size: 31px;
+}
+
+.java-inheritance-page .inheritance-diamond-chart .inheritance-blue-text {
+  font-size: 30px;
+}
+
+.java-inheritance-page .inheritance-diamond-chart .inheritance-type-title {
+  font-size: 24px;
+}
+
+.java-inheritance-page .inheritance-diamond-chart .inheritance-caption {
+  font-size: 17px;
+}
+
+.inheritance-diamond-note {
+  font-size: 18px;
+  fill: #111;
+}
+
+.java-inheritance-page .inheritance-diamond-chart .inheritance-rule {
+  font-size: 24px;
 }
 
 .inheritance-types-board {

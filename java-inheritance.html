@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Java Inheritance Lab</title>
-    <link rel="stylesheet" href="shared.css?v=109" />
+    <link rel="stylesheet" href="shared.css?v=110" />
   </head>
-  <body class="theme-dashboard">
+  <body class="theme-dashboard java-inheritance-page">
     <div class="container">
       <header class="nav-shell">
         <div class="brand">Automation Practice Hub</div>
@@ -77,12 +77,12 @@
             <text x="380" y="531" text-anchor="middle" class="inheritance-blue-text">Child Class / Subclass</text>
             <rect x="170" y="548" width="420" height="240" fill="#fff" stroke="#111" stroke-width="3" />
             <rect x="170" y="548" width="420" height="64" fill="url(#inheritance-blue)" stroke="#111" stroke-width="3" />
-            <line x1="170" y1="682" x2="590" y2="682" stroke="#111" stroke-width="3" />
-            <text x="380" y="592" text-anchor="middle" class="inheritance-class-name">Dog <tspan class="inheritance-blue-text">extends</tspan> Animal</text>
-            <text x="218" y="655" class="inheritance-member italic-blue">inherits:</text>
-            <text x="320" y="655" class="inheritance-member">name, age,</text>
-            <text x="315" y="695" class="inheritance-member">eat(), sleep()</text>
-            <text x="220" y="750" class="inheritance-member">+  bark()</text>
+            <line x1="170" y1="715" x2="590" y2="715" stroke="#111" stroke-width="3" />
+            <text x="380" y="592" text-anchor="middle" class="inheritance-class-name">Dog <tspan fill="#0b5ed7">extends</tspan> Animal</text>
+            <text x="205" y="654" class="inheritance-member italic-blue">inherits:</text>
+            <text x="340" y="654" class="inheritance-member">name, age,</text>
+            <text x="325" y="700" class="inheritance-member">eat(), sleep()</text>
+            <text x="220" y="775" class="inheritance-member">+  bark()</text>
           </svg>
         </div>
       </section>
@@ -221,44 +221,44 @@ class Cat extends Animal {
       <section class="panel theory-panel">
         <h3>Why Multiple Inheritance with Classes Is Not Allowed in Java</h3>
         <div class="inheritance-diagram-shell">
-          <svg class="inheritance-diamond-chart" viewBox="0 0 1040 815" role="img" aria-label="Diamond problem diagram explaining why multiple inheritance with classes is not allowed in Java">
+          <svg class="inheritance-diamond-chart" viewBox="0 0 1040 880" role="img" aria-label="Diamond problem diagram explaining why multiple inheritance with classes is not allowed in Java">
             <defs>
               <marker id="diamond-arrow" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="10" markerHeight="10" orient="auto">
                 <path d="M0,0 L12,6 L0,12 Z" fill="#111" />
               </marker>
             </defs>
             <text x="520" y="42" text-anchor="middle" class="inheritance-title">Why Multiple Inheritance with Classes is Not Allowed in Java</text>
-            <rect x="370" y="78" width="300" height="92" rx="10" class="inheritance-object-box" />
+            <rect x="370" y="78" width="300" height="112" rx="10" class="inheritance-object-box" />
             <text x="520" y="115" text-anchor="middle" class="inheritance-blue-text">Object</text>
-            <text x="520" y="145" text-anchor="middle" class="inheritance-caption">Every class in Java</text>
-            <text x="520" y="171" text-anchor="middle" class="inheritance-caption">extends Object by default</text>
+            <text x="520" y="149" text-anchor="middle" class="inheritance-caption">Every class in Java</text>
+            <text x="520" y="176" text-anchor="middle" class="inheritance-caption">extends Object by default</text>
 
-            <rect x="70" y="120" width="168" height="144" rx="8" class="inheritance-dotted-box" />
-            <text x="154" y="150" text-anchor="middle" class="inheritance-label">Methods from Object</text>
-            <text x="92" y="184" class="inheritance-small">- toString()</text>
-            <text x="92" y="211" class="inheritance-small">- equals()</text>
-            <text x="92" y="238" class="inheritance-small">- hashCode()</text>
-            <text x="92" y="265" class="inheritance-small">- getClass()</text>
+            <rect x="45" y="120" width="230" height="184" rx="8" class="inheritance-dotted-box" />
+            <text x="160" y="150" text-anchor="middle" class="inheritance-method-title">Methods from Object</text>
+            <text x="88" y="186" class="inheritance-small">- toString()</text>
+            <text x="88" y="216" class="inheritance-small">- equals()</text>
+            <text x="88" y="246" class="inheritance-small">- hashCode()</text>
+            <text x="88" y="276" class="inheritance-small">- getClass()</text>
 
-            <rect x="802" y="120" width="168" height="144" rx="8" class="inheritance-dotted-box" />
-            <text x="886" y="150" text-anchor="middle" class="inheritance-label">Methods from Object</text>
-            <text x="824" y="184" class="inheritance-small">- toString()</text>
-            <text x="824" y="211" class="inheritance-small">- equals()</text>
-            <text x="824" y="238" class="inheritance-small">- hashCode()</text>
-            <text x="824" y="265" class="inheritance-small">- getClass()</text>
+            <rect x="765" y="120" width="230" height="184" rx="8" class="inheritance-dotted-box" />
+            <text x="880" y="150" text-anchor="middle" class="inheritance-method-title">Methods from Object</text>
+            <text x="808" y="186" class="inheritance-small">- toString()</text>
+            <text x="808" y="216" class="inheritance-small">- equals()</text>
+            <text x="808" y="246" class="inheritance-small">- hashCode()</text>
+            <text x="808" y="276" class="inheritance-small">- getClass()</text>
 
-            <path d="M370 170 L265 290" stroke="#111" stroke-width="4" fill="none" marker-end="url(#diamond-arrow)" />
-            <path d="M670 170 L775 290" stroke="#111" stroke-width="4" fill="none" marker-end="url(#diamond-arrow)" />
-            <path d="M238 230 C270 240 286 260 298 289" stroke="#1d4ed8" stroke-width="3" fill="none" stroke-dasharray="8 7" marker-end="url(#diamond-arrow)" />
-            <path d="M802 230 C770 240 754 260 742 289" stroke="#1d4ed8" stroke-width="3" fill="none" stroke-dasharray="8 7" marker-end="url(#diamond-arrow)" />
+            <path d="M370 190 L292 290" stroke="#111" stroke-width="4" fill="none" marker-end="url(#diamond-arrow)" />
+            <path d="M670 190 L748 290" stroke="#111" stroke-width="4" fill="none" marker-end="url(#diamond-arrow)" />
+            <path d="M275 246 C310 254 332 268 350 290" stroke="#1d4ed8" stroke-width="3" fill="none" stroke-dasharray="8 7" marker-end="url(#diamond-arrow)" />
+            <path d="M765 246 C730 254 708 268 690 290" stroke="#1d4ed8" stroke-width="3" fill="none" stroke-dasharray="8 7" marker-end="url(#diamond-arrow)" />
 
             <rect x="176" y="290" width="210" height="116" rx="10" class="inheritance-white-box" />
             <text x="281" y="340" text-anchor="middle" class="inheritance-blue-text">Father</text>
-            <text x="281" y="377" text-anchor="middle" class="inheritance-caption">inherits Object methods</text>
+            <text x="281" y="377" text-anchor="middle" class="inheritance-diamond-note">inherits Object methods</text>
 
             <rect x="654" y="290" width="210" height="116" rx="10" class="inheritance-white-box" />
             <text x="759" y="340" text-anchor="middle" class="inheritance-blue-text">Mother</text>
-            <text x="759" y="377" text-anchor="middle" class="inheritance-caption">inherits Object methods</text>
+            <text x="759" y="377" text-anchor="middle" class="inheritance-diamond-note">inherits Object methods</text>
 
             <text x="520" y="350" text-anchor="middle" fill="#d92323" class="inheritance-type-title">Not allowed in Java</text>
             <rect x="418" y="372" width="205" height="65" rx="10" fill="#fff" stroke="#d92323" stroke-width="3" stroke-dasharray="8 6" />
@@ -270,15 +270,16 @@ class Cat extends Animal {
             <rect x="415" y="505" width="210" height="82" rx="10" class="inheritance-white-box" />
             <text x="520" y="557" text-anchor="middle" class="inheritance-blue-text">Child</text>
 
-            <rect x="70" y="620" width="900" height="82" rx="10" fill="#f4fbff" stroke="#1d4ed8" stroke-width="3" />
-            <text x="142" y="654" text-anchor="middle" class="inheritance-bulb">!</text>
-            <text x="200" y="652" class="inheritance-caption">Even if <tspan class="inheritance-blue-text">Father</tspan> and <tspan class="inheritance-blue-text">Mother</tspan> do not define the same method, both already inherit</text>
-            <text x="200" y="682" class="inheritance-caption">methods from <tspan class="inheritance-blue-text">Object</tspan>. If <tspan class="inheritance-blue-text">Child</tspan> extends both, it gets Object methods through two paths, causing ambiguity.</text>
+            <rect x="70" y="620" width="900" height="120" rx="10" fill="#f4fbff" stroke="#1d4ed8" stroke-width="3" />
+            <text x="142" y="682" text-anchor="middle" class="inheritance-bulb">!</text>
+            <text x="200" y="658" class="inheritance-caption">Even if <tspan fill="#0b5ed7" font-weight="800">Father</tspan> and <tspan fill="#0b5ed7" font-weight="800">Mother</tspan> do not define the same method,</text>
+            <text x="200" y="688" class="inheritance-caption">both already inherit methods from <tspan fill="#0b5ed7" font-weight="800">Object</tspan>. If <tspan fill="#0b5ed7" font-weight="800">Child</tspan> extends both,</text>
+            <text x="200" y="718" class="inheritance-caption">it gets Object methods through two paths, causing ambiguity.</text>
 
-            <rect x="70" y="718" width="900" height="82" rx="10" fill="#fff9dc" stroke="#f2a900" stroke-width="3" />
-            <text x="146" y="770" text-anchor="middle" class="inheritance-shield">✓</text>
-            <text x="210" y="756" class="inheritance-rule"><tspan class="inheritance-blue-text">Java rule:</tspan> A class can extend only one class,</text>
-            <text x="376" y="786" class="inheritance-rule">but can implement multiple interfaces.</text>
+            <rect x="70" y="765" width="900" height="82" rx="10" fill="#fff9dc" stroke="#f2a900" stroke-width="3" />
+            <text x="146" y="817" text-anchor="middle" class="inheritance-shield">✓</text>
+            <text x="210" y="803" class="inheritance-rule"><tspan fill="#0b5ed7" font-weight="800">Java rule:</tspan> A class can extend only one class,</text>
+            <text x="376" y="833" class="inheritance-rule">but can implement multiple interfaces.</text>
           </svg>
         </div>
       </section>

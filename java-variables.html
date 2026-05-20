@@ -34,13 +34,67 @@
       </section>
 
       <section class="panel theory-panel">
-        <h3>Variable</h3>
-        <p>A variable is a named memory location used to store a value.</p>
+        <h3>Variables and Data Types</h3>
+        <h4>Variable</h4>
+        <p>A variable is a named memory location used to store data.</p>
+        <h4>Data type</h4>
+        <p>A data type defines the type of data a variable can store.</p>
         <pre class="code-block"><code>int a = 10;</code></pre>
         <ul class="basic-help-list">
           <li><code>int</code> is the data type.</li>
           <li><code>a</code> is the variable name.</li>
           <li><code>10</code> is the value stored in the variable.</li>
+        </ul>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Types of Data Types</h3>
+        <p>Data types in Java are divided into two types.</p>
+        <ol class="basic-help-list">
+          <li>Primitive data types</li>
+          <li>Non-primitive data types</li>
+        </ol>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Primitive</th>
+                <th>Non-primitive</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Stores simple direct values.</td>
+                <td>Stores references of an object or collection of data.</td>
+              </tr>
+              <tr>
+                <td>
+                  <ol class="basic-help-list">
+                    <li><code>int</code></li>
+                    <li><code>char</code></li>
+                    <li><code>boolean</code></li>
+                    <li><code>double</code></li>
+                    <li><code>float</code></li>
+                    <li><code>byte</code></li>
+                    <li><code>short</code></li>
+                    <li><code>long</code></li>
+                  </ol>
+                </td>
+                <td>
+                  <ol class="basic-help-list">
+                    <li>String</li>
+                    <li>Arrays</li>
+                    <li>Classes</li>
+                    <li>Interfaces</li>
+                  </ol>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="basic-help-list">
+          <li><code>String</code> can call different methods because it is a class.</li>
+          <li>A reference of an object means the address of an object is stored in memory instead of storing the actual value directly.</li>
         </ul>
       </section>
 
@@ -54,6 +108,216 @@
           <li>Variable names are case-sensitive, so <code>myVar</code> and <code>myvar</code> are different.</li>
           <li>Reserved Java keywords like <code>int</code>, <code>class</code>, and <code>boolean</code> cannot be used as variable names.</li>
         </ol>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Primitive and Non-primitive Notes</h3>
+        <ul class="basic-help-list">
+          <li>Primitive data types store actual values directly.</li>
+          <li>Non-primitive data types store references to objects.</li>
+          <li>Primitive data types cannot store <code>null</code> because they store actual values directly.</li>
+          <li><code>String</code> is non-primitive because it is a class in Java, and a String object stores references, not direct values.</li>
+        </ul>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Reference Variable</h3>
+        <p>A reference variable stores the address or reference of an object instead of storing the actual object data.</p>
+        <pre class="code-block"><code>Student s = new Student();</code></pre>
+        <ul class="basic-help-list">
+          <li><code>new Student()</code> creates the object.</li>
+          <li><code>s</code> is the reference variable.</li>
+        </ul>
+        <p>An object is the actual entity created in memory. A reference is the variable that stores the address of that object.</p>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>char, Unicode, and ASCII</h3>
+        <p><code>char</code> is 2 bytes in Java because Java uses the Unicode character system.</p>
+        <p>Unicode characters require 16 bits, which is 2 bytes of memory.</p>
+        <pre class="code-block"><code>char ch = 'A';
+
+// Unicode value of A = 65</code></pre>
+        <p>Unicode is a character encoding standard used in Java to represent characters from different languages and symbols.</p>
+        <p>ASCII is a character encoding system where each character is assigned a numeric value.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ASCII</th>
+                <th>Unicode</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Supports mainly English characters.</td>
+                <td>Supports characters from all languages.</td>
+              </tr>
+              <tr>
+                <td>Uses 7 or 8 bits.</td>
+                <td>Uses 16 bits or more.</td>
+              </tr>
+              <tr>
+                <td>Old standard.</td>
+                <td>New standard.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Note:</strong> Java mainly uses Unicode for character representation. ASCII values are included inside Unicode.</p>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Variable Declaration and Initialization</h3>
+        <p>Variable declaration means creating a variable without assigning a value.</p>
+        <pre class="code-block"><code>int a;</code></pre>
+        <p>Variable initialization means creating a variable and assigning a value.</p>
+        <pre class="code-block"><code>int a = 10;</code></pre>
+        <p>Variables are mutable by default, so their values can be changed.</p>
+        <pre class="code-block"><code>int a = 10;
+a = 20;
+
+System.out.println(a);</code></pre>
+        <pre class="code-block"><code>Output:
+20</code></pre>
+        <p>We can declare multiple variables in one line.</p>
+        <pre class="code-block"><code>int a = 10, b = 20, c = 30;</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Variable Scope and Lifetime</h3>
+        <p>Variable scope defines the area in a program where a variable can be accessed or used.</p>
+        <ol class="basic-help-list">
+          <li>Local variable</li>
+          <li>Instance variable</li>
+        </ol>
+        <p>Variable lifetime refers to how long a variable exists in memory during program execution.</p>
+        <ul class="basic-help-list">
+          <li>A local variable exists only while the method is executing.</li>
+          <li>An instance variable exists as long as the object exists.</li>
+        </ul>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Where Variables Are Stored in Memory</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Memory</th>
+                <th>Stores</th>
+                <th>Lifetime</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Stack memory</td>
+                <td>Local variables</td>
+                <td>Until method ends</td>
+                <td><code>int a = 10;</code></td>
+              </tr>
+              <tr>
+                <td>Heap memory</td>
+                <td>Objects and instance variables</td>
+                <td>Until object is destroyed</td>
+                <td><code>new Student()</code></td>
+              </tr>
+              <tr>
+                <td>Method area</td>
+                <td>Static variables and class data</td>
+                <td>Until program ends</td>
+                <td><code>static int count;</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Default Values</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Data Type</th>
+                <th>Default Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>byte</code></td><td><code>0</code></td></tr>
+              <tr><td><code>short</code></td><td><code>0</code></td></tr>
+              <tr><td><code>int</code></td><td><code>0</code></td></tr>
+              <tr><td><code>long</code></td><td><code>0L</code></td></tr>
+              <tr><td><code>float</code></td><td><code>0.0f</code></td></tr>
+              <tr><td><code>double</code></td><td><code>0.0d</code></td></tr>
+              <tr><td><code>char</code></td><td><code>'\u0000'</code></td></tr>
+              <tr><td><code>boolean</code></td><td><code>false</code></td></tr>
+              <tr><td>Objects, String, Arrays</td><td><code>null</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Default values apply only to instance variables and static variables.</p>
+        <p>Local variables do not get default values. A local variable must be initialized before use.</p>
+        <pre class="code-block"><code>void test() {
+    int a;
+    System.out.println(a); // compile-time error
+}</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Local Variable and Instance Variable</h3>
+        <p>A local variable is declared inside a method and can be used only within that method.</p>
+        <p>An instance variable is declared inside a class but outside methods and belongs to the object.</p>
+        <pre class="code-block"><code>class Student {
+    int age = 25; // instance variable
+
+    void display() {
+        int marks = 90; // local variable
+    }
+}</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Variable Shadowing</h3>
+        <p>Variable shadowing happens when a local variable or parameter has the same name as an instance variable, causing the local variable to hide the instance variable inside that scope.</p>
+        <pre class="code-block"><code>class Student {
+    int age = 25;
+
+    void display() {
+        int age = 30;
+        System.out.println(age);
+        System.out.println(this.age);
+    }
+}</code></pre>
+        <pre class="code-block"><code>Output:
+30
+25</code></pre>
+        <p>To access the instance variable, use <code>this.age</code>.</p>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Variable Hiding</h3>
+        <p>Variable hiding occurs when a subclass declares a variable with the same name as a variable in the parent class.</p>
+        <pre class="code-block"><code>class Parent {
+    int a = 10;
+}
+
+class Child extends Parent {
+    int a = 20;
+
+    void display() {
+        System.out.println(a);
+        System.out.println(super.a);
+    }
+}</code></pre>
+        <pre class="code-block"><code>Output:
+20
+10</code></pre>
+        <ul class="basic-help-list">
+          <li>Child variable <code>a</code> hides parent variable <code>a</code>.</li>
+          <li><code>super.a</code> accesses the parent variable.</li>
+        </ul>
       </section>
 
       <section class="panel theory-panel">
