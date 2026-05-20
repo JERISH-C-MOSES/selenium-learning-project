@@ -4,6 +4,11 @@ const DEMO_PASSWORD = "Jerish@123";
 const protectedPages = [
   "dashboard.html",
   "java.html",
+  "java-basic.html",
+  "java-variables.html",
+  "java-operators.html",
+  "java-conditional.html",
+  "java-loops.html",
   "selenium.html",
   "testng.html",
   "cucumber.html",
@@ -29,6 +34,12 @@ const protectedPages = [
 
 const pageRegistry = [
   { file: "dashboard.html", label: "Dashboard" },
+  { file: "java.html", label: "Java Labs" },
+  { file: "java-basic.html", label: "Java Basic" },
+  { file: "java-variables.html", label: "Java Variable and Data Type" },
+  { file: "java-operators.html", label: "Java Operators" },
+  { file: "java-conditional.html", label: "Java Conditional Statement" },
+  { file: "java-loops.html", label: "Java Loop and Jumping Statement" },
   { file: "selenium.html", label: "Selenium Labs" },
   { file: "webdriver-methods.html", label: "WebDriver Methods" },
   { file: "waiting-methods.html", label: "Waiting Methods" },

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Java Operators Lab</title>
+    <link rel="stylesheet" href="shared.css?v=108" />
+  </head>
+  <body class="theme-dashboard">
+    <div class="container">
+      <header class="nav-shell">
+        <div class="brand">Automation Practice Hub</div>
+        <nav class="nav-links">
+          <a href="dashboard.html">Main Labs</a>
+          <a href="java.html">Java</a>
+          <a href="selenium.html">Selenium</a>
+        </nav>
+        <button class="button ghost" type="button" data-logout>Logout</button>
+      </header>
+
+      <section class="subnav-toolbar">
+        <div class="subnav-pager">
+          <a class="button secondary" href="java-variables.html">Back: Variable and Data Type</a>
+          <a class="button primary" href="java-conditional.html">Next: Conditional Statement</a>
+        </div>
+      </section>
+
+      <section class="page-header">
+        <div>
+          <p class="eyebrow">Java Lab 03</p>
+          <h1>Java Operators.</h1>
+          <p class="lead">Typed notes for expressions and the main operator types used in Java programs.</p>
+        </div>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Expression</h3>
+        <p>An expression is a combination of variables, values, and operators that produces a result.</p>
+        <pre class="code-block"><code>int a = b + c;</code></pre>
+        <ul class="basic-help-list">
+          <li><code>b + c</code> is an expression.</li>
+          <li><code>+</code> is an operator.</li>
+          <li><code>b</code> and <code>c</code> are operands.</li>
+        </ul>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Types of Operators</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Operator Type</th>
+                <th>Operators</th>
+                <th>Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Arithmetic</td>
+                <td><code>+ - * / %</code></td>
+                <td>Used for mathematical calculations.</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Relational / Comparison</td>
+                <td><code>&gt; &lt; &gt;= &lt;= == !=</code></td>
+                <td>Used to compare values and return a boolean result.</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Logical</td>
+                <td><code>&amp;&amp; || !</code></td>
+                <td>Used to combine or reverse conditions.</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Increment / Decrement</td>
+                <td><code>++ --</code></td>
+                <td>Used to increase or decrease a value by one.</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Assignment</td>
+                <td><code>= += -= *= /= %=</code></td>
+                <td>Used to assign or update values.</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>Conditional / Ternary</td>
+                <td><code>condition ? value1 : value2</code></td>
+                <td>Used to choose one value from two results.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Arithmetic Operators</h3>
+        <p>Arithmetic operators are used for calculations.</p>
+        <pre class="code-block"><code>int a = 50;
+int b = 20;
+
+System.out.println(a + b); // 70
+System.out.println(a - b); // 30
+System.out.println(a * b); // 1000
+System.out.println(a / b); // 2
+System.out.println(a % b); // 10</code></pre>
+        <ul class="basic-help-list">
+          <li><code>+</code> adds values.</li>
+          <li><code>-</code> subtracts values.</li>
+          <li><code>*</code> multiplies values.</li>
+          <li><code>/</code> gives quotient value.</li>
+          <li><code>%</code> gives remainder value.</li>
+        </ul>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Relational / Comparison Operators</h3>
+        <p>Relational operators compare two values and return a boolean result: <code>true</code> or <code>false</code>.</p>
+        <pre class="code-block"><code>int a = 10;
+int b = 20;
+
+System.out.println(a &gt; b);  // false
+System.out.println(a &lt; b);  // true
+System.out.println(a == b); // false
+System.out.println(a != b); // true</code></pre>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Operator</th>
+                <th>Meaning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>&gt;</code></td>
+                <td>Greater than</td>
+              </tr>
+              <tr>
+                <td><code>&lt;</code></td>
+                <td>Less than</td>
+              </tr>
+              <tr>
+                <td><code>&gt;=</code></td>
+                <td>Greater than or equal to</td>
+              </tr>
+              <tr>
+                <td><code>&lt;=</code></td>
+                <td>Less than or equal to</td>
+              </tr>
+              <tr>
+                <td><code>==</code></td>
+                <td>Equal to</td>
+              </tr>
+              <tr>
+                <td><code>!=</code></td>
+                <td>Not equal to</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Logical Operators</h3>
+        <p>Logical operators work on boolean values and boolean expressions.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>x</th>
+                <th>y</th>
+                <th><code>x &amp;&amp; y</code></th>
+                <th><code>x || y</code></th>
+                <th><code>!x</code></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>true</td>
+                <td>true</td>
+                <td>true</td>
+                <td>true</td>
+                <td>false</td>
+              </tr>
+              <tr>
+                <td>true</td>
+                <td>false</td>
+                <td>false</td>
+                <td>true</td>
+                <td>false</td>
+              </tr>
+              <tr>
+                <td>false</td>
+                <td>true</td>
+                <td>false</td>
+                <td>true</td>
+                <td>true</td>
+              </tr>
+              <tr>
+                <td>false</td>
+                <td>false</td>
+                <td>false</td>
+                <td>false</td>
+                <td>true</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="basic-help-list">
+          <li><code>&amp;&amp;</code> returns true only when both conditions are true.</li>
+          <li><code>||</code> returns true when at least one condition is true.</li>
+          <li><code>!</code> reverses the boolean value.</li>
+        </ul>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Increment and Decrement Operators</h3>
+        <p>Increment and decrement operators increase or decrease a value by one.</p>
+        <pre class="code-block"><code>int a = 10;
+
+System.out.println(a++); // 10
+System.out.println(a);   // 11
+
+System.out.println(++a); // 12
+
+System.out.println(a--); // 12
+System.out.println(a);   // 11
+
+System.out.println(--a); // 10</code></pre>
+        <ul class="basic-help-list">
+          <li><code>a++</code> is post-increment: first prints the current value, then increases it.</li>
+          <li><code>++a</code> is pre-increment: first increases the value, then prints it.</li>
+          <li><code>a--</code> is post-decrement: first prints the current value, then decreases it.</li>
+          <li><code>--a</code> is pre-decrement: first decreases the value, then prints it.</li>
+        </ul>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Assignment Operators</h3>
+        <p>Assignment operators are used to assign or update values.</p>
+        <pre class="code-block"><code>int a = 10;
+
+a += 5; // same as a = a + 5
+a -= 5; // same as a = a - 5
+a *= 2; // same as a = a * 2
+a /= 2; // same as a = a / 2
+a %= 2; // same as a = a % 2</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Conditional / Ternary Operator</h3>
+        <p>The ternary operator is a short form of an <code>if else</code> statement.</p>
+        <pre class="code-block"><code>variable = condition ? result1 : result2;</code></pre>
+        <ul class="basic-help-list">
+          <li>If the condition is true, <code>result1</code> is given as output.</li>
+          <li>If the condition is false, <code>result2</code> is given as output.</li>
+        </ul>
+        <pre class="code-block"><code>int a = 200;
+int b = 100;
+
+int x = (a &gt; b) ? a : b;
+System.out.println(x); // 200</code></pre>
+      </section>
+    </div>
+    <script src="main.js?v=108"></script>
+  </body>
+</html>

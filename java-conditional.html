@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Java Conditional Statement Lab</title>
+    <link rel="stylesheet" href="shared.css?v=108" />
+  </head>
+  <body class="theme-dashboard">
+    <div class="container">
+      <header class="nav-shell">
+        <div class="brand">Automation Practice Hub</div>
+        <nav class="nav-links">
+          <a href="dashboard.html">Main Labs</a>
+          <a href="java.html">Java</a>
+          <a href="selenium.html">Selenium</a>
+        </nav>
+        <button class="button ghost" type="button" data-logout>Logout</button>
+      </header>
+
+      <section class="subnav-toolbar">
+        <div class="subnav-pager">
+          <a class="button secondary" href="java-operators.html">Back: Java Operators</a>
+          <a class="button primary" href="java-loops.html">Next: Loop and Jumping Statement</a>
+        </div>
+      </section>
+
+      <section class="page-header">
+        <div>
+          <p class="eyebrow">Java Lab 04</p>
+          <h1>Conditional Statement.</h1>
+          <p class="lead">Decision-making statements used to execute code only when a condition matches.</p>
+        </div>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>What Is a Conditional Statement?</h3>
+        <p>A conditional statement checks a condition and runs a block of code based on the result.</p>
+        <ul class="basic-help-list">
+          <li>If the condition is <code>true</code>, the statement inside that block will execute.</li>
+          <li>If the condition is <code>false</code>, Java will skip that block or move to another condition.</li>
+          <li>The condition usually returns a boolean value: <code>true</code> or <code>false</code>.</li>
+        </ul>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Types of Conditional Statements</h3>
+        <ol class="basic-help-list">
+          <li><code>if</code></li>
+          <li><code>if else</code></li>
+          <li><code>nested if else</code></li>
+          <li><code>else if ladder</code></li>
+          <li><code>switch case</code></li>
+        </ol>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>1. if Statement</h3>
+        <p>The <code>if</code> statement executes only when the condition is true.</p>
+        <pre class="code-block"><code>if (condition) {
+    statement;
+}</code></pre>
+        <pre class="code-block"><code>int age = 25;
+
+if (age &gt;= 18) {
+    System.out.println("Eligible for vote");
+}</code></pre>
+        <ul class="basic-help-list">
+          <li><code>age &gt;= 18</code> is the condition.</li>
+          <li>If the condition is true, <code>Eligible for vote</code> will be printed.</li>
+          <li>If the condition is false, nothing will be printed because there is no <code>else</code> block.</li>
+        </ul>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>2. if else Statement</h3>
+        <p>The <code>if else</code> statement gives two paths: one for true and one for false.</p>
+        <pre class="code-block"><code>if (condition) {
+    statement;
+} else {
+    statement;
+}</code></pre>
+        <pre class="code-block"><code>int age = 15;
+
+if (age &gt;= 18) {
+    System.out.println("Eligible for vote");
+} else {
+    System.out.println("Not eligible for vote");
+}</code></pre>
+        <ul class="basic-help-list">
+          <li>If <code>age &gt;= 18</code> is true, the first block executes.</li>
+          <li>If <code>age &gt;= 18</code> is false, the <code>else</code> block executes.</li>
+        </ul>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>3. Nested if else</h3>
+        <p>Nested <code>if else</code> means writing one <code>if else</code> statement inside another <code>if else</code> statement.</p>
+        <pre class="code-block"><code>if (condition1) {
+    statement;
+} else if (condition2) {
+    statement;
+} else if (condition3) {
+    statement;
+} else {
+    statement;
+}</code></pre>
+        <pre class="code-block"><code>int number = 0;
+
+if (number &gt; 0) {
+    System.out.println("Positive number");
+} else if (number &lt; 0) {
+    System.out.println("Negative number");
+} else {
+    System.out.println("Zero");
+}</code></pre>
+        <ul class="basic-help-list">
+          <li>First Java checks whether the number is positive.</li>
+          <li>If that is false, Java checks whether the number is negative.</li>
+          <li>If both conditions are false, the <code>else</code> block prints <code>Zero</code>.</li>
+        </ul>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>4. Else-if Ladder</h3>
+        <p>An else-if ladder checks multiple conditions one by one from top to bottom.</p>
+        <pre class="code-block"><code>int mark = 72;
+
+if (mark &gt;= 90) {
+    System.out.println("Grade A");
+} else if (mark &gt;= 75) {
+    System.out.println("Grade B");
+} else if (mark &gt;= 50) {
+    System.out.println("Grade C");
+} else {
+    System.out.println("Fail");
+}</code></pre>
+        <ul class="basic-help-list">
+          <li>Java checks the first condition.</li>
+          <li>If it is false, Java moves to the next condition.</li>
+          <li>When one condition becomes true, that block executes and the remaining conditions are skipped.</li>
+        </ul>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>5. Switch Case</h3>
+        <p><code>switch</code> is used when one variable can match different fixed values.</p>
+        <pre class="code-block"><code>switch (variable) {
+    case value1:
+        statement;
+        break;
+    case value2:
+        statement;
+        break;
+    case value3:
+        statement;
+        break;
+    default:
+        statement;
+}</code></pre>
+        <pre class="code-block"><code>int week = 1;
+
+switch (week) {
+    case 1:
+        System.out.println("Sunday");
+        break;
+    case 2:
+        System.out.println("Monday");
+        break;
+    case 3:
+        System.out.println("Tuesday");
+        break;
+    case 4:
+        System.out.println("Wednesday");
+        break;
+    case 5:
+        System.out.println("Thursday");
+        break;
+    case 6:
+        System.out.println("Friday");
+        break;
+    case 7:
+        System.out.println("Saturday");
+        break;
+    default:
+        System.out.println("Invalid week number");
+}</code></pre>
+        <ul class="basic-help-list">
+          <li><code>switch</code> checks the value of one variable.</li>
+          <li><code>case</code> is used for each possible value.</li>
+          <li><code>break</code> stops the switch after the matching case runs.</li>
+          <li><code>default</code> runs when no case value matches.</li>
+        </ul>
+      </section>
+    </div>
+    <script src="main.js?v=108"></script>
+  </body>
+</html>
