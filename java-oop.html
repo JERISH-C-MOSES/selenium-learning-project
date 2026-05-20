@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Java Object Oriented Programming Lab</title>
+    <link rel="stylesheet" href="shared.css?v=109" />
+  </head>
+  <body class="theme-dashboard">
+    <div class="container">
+      <header class="nav-shell">
+        <div class="brand">Automation Practice Hub</div>
+        <nav class="nav-links">
+          <a href="dashboard.html">Main Labs</a>
+          <a href="java.html">Java</a>
+          <a href="selenium.html">Selenium</a>
+        </nav>
+        <button class="button ghost" type="button" data-logout>Logout</button>
+      </header>
+
+      <section class="subnav-toolbar">
+        <div class="subnav-pager">
+          <a class="button secondary" href="java-string-methods.html">Back: String Methods</a>
+          <a class="button primary" href="java-polymorphism.html">Next: Polymorphism</a>
+        </div>
+      </section>
+
+      <section class="page-header">
+        <div>
+          <p class="eyebrow">Java Lab 08</p>
+          <h1>Object Oriented Programming.</h1>
+          <p class="lead">Typed notes for OOP concepts, classes, objects, methods, and constructors in Java.</p>
+        </div>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Object Oriented Programming</h3>
+        <p>Java supports object oriented programming concepts.</p>
+        <ol class="basic-help-list">
+          <li>Class</li>
+          <li>Object</li>
+          <li>Polymorphism</li>
+          <li>Encapsulation</li>
+          <li>Inheritance</li>
+          <li>Data Abstraction</li>
+        </ol>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Class</h3>
+        <p>A class is a user-defined data type that contains variables and methods. It is used to create objects.</p>
+        <p>An object is an instance of a class that contains data and methods.</p>
+        <pre class="code-block"><code>class ClassName {
+    // variables
+    // methods
+}</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Creating an Object</h3>
+        <p>Use the class name, object name, and <code>new</code> keyword to create an object.</p>
+        <pre class="code-block"><code>ClassName objectName = new ClassName();</code></pre>
+        <pre class="code-block"><code>Employee emp = new Employee();</code></pre>
+        <p>When we create multiple objects of the same class, all objects are different and occupy different memory spaces.</p>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Methods</h3>
+        <p>A method is a block of code that performs a specific task.</p>
+        <ul class="basic-help-list">
+          <li>If you do not want to repeat the same code again and again, write it once inside a method.</li>
+          <li>Then you can call the method whenever you want.</li>
+        </ul>
+        <pre class="code-block"><code>returnType methodName(parameters) {
+    // code
+}</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Types of Methods</h3>
+        <ol class="basic-help-list">
+          <li>No parameters and no return value.</li>
+          <li>No parameters and return value.</li>
+          <li>Takes parameters and no return value.</li>
+          <li>Takes parameters and return value.</li>
+        </ol>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>1. No Parameters and No Return Value</h3>
+        <pre class="code-block"><code>void methodName() {
+    // code
+}</code></pre>
+        <p>Since the method is returning the same value, we can store it in a variable when we call it only if it has a return type. A <code>void</code> method does not return any value.</p>
+        <pre class="code-block"><code>public class Greetings {
+    void m1() {
+        System.out.println("Hello");
+    }
+
+    public static void main(String[] args) {
+        Greetings gr = new Greetings();
+        gr.m1();
+    }
+}</code></pre>
+        <pre class="code-block"><code>Output:
+Hello</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>2. No Parameters and Return Value</h3>
+        <pre class="code-block"><code>returnType methodName() {
+    return value;
+}</code></pre>
+        <p>When the method returns a value, store the value in a variable when calling it.</p>
+        <pre class="code-block"><code>public class Greetings {
+    String m2() {
+        return "Hello how are you";
+    }
+
+    public static void main(String[] args) {
+        Greetings gr = new Greetings();
+        String s = gr.m2();
+        System.out.println(s);
+    }
+}</code></pre>
+        <pre class="code-block"><code>Output:
+Hello how are you</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>3. Takes Parameters and No Return Value</h3>
+        <pre class="code-block"><code>void methodName(dataType param1, dataType param2) {
+    // code
+}</code></pre>
+        <p>When a method takes parameters, we pass values while calling the method.</p>
+        <pre class="code-block"><code>void m3(String name, int age) {
+    System.out.println("Name is " + name + " Age is " + age);
+}</code></pre>
+        <pre class="code-block"><code>Greetings gr = new Greetings();
+gr.m3("Jerish", 29);</code></pre>
+        <pre class="code-block"><code>Output:
+Name is Jerish Age is 29</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>4. Takes Parameters and Return Value</h3>
+        <pre class="code-block"><code>returnType methodName(dataType param1, dataType param2) {
+    return value;
+}</code></pre>
+        <pre class="code-block"><code>String m4(String name, int age) {
+    return "Name is " + name + " Age is " + age;
+}</code></pre>
+        <pre class="code-block"><code>Greetings gr = new Greetings();
+String s1 = gr.m4("Jerish", 29);
+System.out.println(s1);</code></pre>
+        <pre class="code-block"><code>Output:
+Name is Jerish Age is 29</code></pre>
+        <p>Since the method returns a string, store the returned data in a string variable and print it.</p>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Student Method Example</h3>
+        <p>Methods can be used to store data into variables and print the object data.</p>
+        <pre class="code-block"><code>public class Student {
+    int sid;
+    String sname;
+    char grad;
+
+    void printStudentData() {
+        System.out.println(sid + " " + sname + " " + grad);
+    }
+
+    public static void main(String[] args) {
+        Student stu = new Student();
+        stu.sid = 101;
+        stu.sname = "John";
+        stu.grad = 'A';
+        stu.printStudentData();
+    }
+}</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Constructor</h3>
+        <p>A constructor in Java is a special method used to initialize objects. It is automatically called when an object is created.</p>
+        <h4>Constructor Rules</h4>
+        <ol class="basic-help-list">
+          <li>Constructor name should be the same as the class name.</li>
+          <li>Constructor does not specify a return value or return type.</li>
+          <li>Constructor can take parameters.</li>
+          <li>Constructor is automatically invoked at the time of object creation.</li>
+          <li>Constructor is used for initializing the values of variables.</li>
+        </ol>
+        <pre class="code-block"><code>class ClassName {
+    ClassName() {
+        // constructor
+    }
+}</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Types of Constructors</h3>
+        <ol class="basic-help-list">
+          <li>Default constructor</li>
+          <li>Parameterized constructor</li>
+        </ol>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Default Constructor</h3>
+        <p>Java creates a default constructor automatically when we do not create any constructor in the class.</p>
+        <ul class="basic-help-list">
+          <li>It is not shown on the screen.</li>
+          <li>Object creation must use the default constructor.</li>
+          <li>It does not have any value in it unless we write it manually.</li>
+        </ul>
+        <pre class="code-block"><code>class Student {
+    int x;
+    int y;
+
+    Student() {
+        x = 100;
+        y = 200;
+    }
+}</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Parameterized Constructor</h3>
+        <p>A parameterized constructor accepts arguments to initialize an object with specific values.</p>
+        <pre class="code-block"><code>class ClassName {
+    ClassName(dataType variable) {
+        // code
+    }
+}</code></pre>
+        <pre class="code-block"><code>class Student {
+    int id;
+    String name;
+
+    Student(int i, String n) {
+        id = i;
+        name = n;
+    }
+}</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Constructor Example</h3>
+        <p>In this example, both default constructor and parameterized constructor are used.</p>
+        <pre class="code-block"><code>public class Construct {
+    int a;
+    int b;
+
+    Construct() {
+        a = 100;
+        b = 200;
+    }
+
+    Construct(int x, int y) {
+        a = x;
+        b = y;
+    }
+
+    void print() {
+        System.out.println(a + b);
+    }
+
+    public static void main(String[] args) {
+        Construct s = new Construct();
+        s.print();
+
+        Construct s1 = new Construct(300, 500);
+        s1.print();
+    }
+}</code></pre>
+        <pre class="code-block"><code>Output:
+300
+800</code></pre>
+      </section>
+    </div>
+    <script src="main.js?v=109"></script>
+  </body>
+</html>

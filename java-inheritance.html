@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Java Inheritance Lab</title>
+    <link rel="stylesheet" href="shared.css?v=109" />
+  </head>
+  <body class="theme-dashboard">
+    <div class="container">
+      <header class="nav-shell">
+        <div class="brand">Automation Practice Hub</div>
+        <nav class="nav-links">
+          <a href="dashboard.html">Main Labs</a>
+          <a href="java.html">Java</a>
+          <a href="selenium.html">Selenium</a>
+        </nav>
+        <button class="button ghost" type="button" data-logout>Logout</button>
+      </header>
+
+      <section class="subnav-toolbar">
+        <div class="subnav-pager">
+          <a class="button secondary" href="java-encapsulation.html">Back: Encapsulation</a>
+          <a class="button primary" href="selenium.html">Next: Selenium</a>
+        </div>
+      </section>
+
+      <section class="page-header">
+        <div>
+          <p class="eyebrow">Java Lab 11</p>
+          <h1>Inheritance.</h1>
+          <p class="lead">Typed notes for inheritance, parent and child classes, inheritance types, multiple inheritance restrictions, and valid main method syntax.</p>
+        </div>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Inheritance</h3>
+        <p>Acquiring all the properties, variables, and behavior methods from one class to another class is called inheritance.</p>
+        <h4>Objective</h4>
+        <ol class="basic-help-list">
+          <li>Re-usability</li>
+          <li>Avoid duplication</li>
+        </ol>
+        <h4>How to Use Inheritance Concept?</h4>
+        <p>When we use the <code>extends</code> keyword, all the methods and variables from that class can be used in the current class.</p>
+        <p>Real-time example: Base Class.</p>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Parent and Child Class in Inheritance</h3>
+        <div class="inheritance-diagram-shell">
+          <svg class="inheritance-parent-child" viewBox="0 0 760 860" role="img" aria-label="Parent and child class inheritance diagram">
+            <defs>
+              <marker id="inheritance-arrow" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="11" markerHeight="11" orient="auto">
+                <path d="M0,0 L12,6 L0,12 Z" fill="#111" />
+              </marker>
+              <linearGradient id="inheritance-blue" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#dff0ff" />
+                <stop offset="1" stop-color="#f5fbff" />
+              </linearGradient>
+            </defs>
+            <text x="380" y="44" text-anchor="middle" class="inheritance-title">Parent and Child Class in Inheritance</text>
+            <text x="380" y="111" text-anchor="middle" class="inheritance-blue-text">Parent Class / Superclass</text>
+
+            <rect x="170" y="126" width="420" height="250" fill="#fff" stroke="#111" stroke-width="3" />
+            <rect x="170" y="126" width="420" height="64" fill="url(#inheritance-blue)" stroke="#111" stroke-width="3" />
+            <line x1="170" y1="282" x2="590" y2="282" stroke="#111" stroke-width="3" />
+            <text x="380" y="170" text-anchor="middle" class="inheritance-class-name">Animal</text>
+            <text x="220" y="235" class="inheritance-member">-  name</text>
+            <text x="220" y="270" class="inheritance-member">-  age</text>
+            <text x="220" y="322" class="inheritance-member">+  eat()</text>
+            <text x="220" y="357" class="inheritance-member">+  sleep()</text>
+
+            <line x1="380" y1="376" x2="380" y2="470" stroke="#111" stroke-width="4" marker-end="url(#inheritance-arrow)" />
+            <text x="446" y="440" class="inheritance-blue-text small">Inheritance</text>
+
+            <text x="380" y="531" text-anchor="middle" class="inheritance-blue-text">Child Class / Subclass</text>
+            <rect x="170" y="548" width="420" height="240" fill="#fff" stroke="#111" stroke-width="3" />
+            <rect x="170" y="548" width="420" height="64" fill="url(#inheritance-blue)" stroke="#111" stroke-width="3" />
+            <line x1="170" y1="682" x2="590" y2="682" stroke="#111" stroke-width="3" />
+            <text x="380" y="592" text-anchor="middle" class="inheritance-class-name">Dog <tspan class="inheritance-blue-text">extends</tspan> Animal</text>
+            <text x="218" y="655" class="inheritance-member italic-blue">inherits:</text>
+            <text x="320" y="655" class="inheritance-member">name, age,</text>
+            <text x="315" y="695" class="inheritance-member">eat(), sleep()</text>
+            <text x="220" y="750" class="inheritance-member">+  bark()</text>
+          </svg>
+        </div>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Types of Inheritance</h3>
+        <ol class="basic-help-list">
+          <li>Single</li>
+          <li>Multi level</li>
+          <li>Hierarchy</li>
+          <li>Multiple</li>
+        </ol>
+        <div class="inheritance-diagram-shell">
+          <div class="inheritance-types-board" aria-label="Types of inheritance in OOP flow chart">
+            <h4>Types of <span>Inheritance</span> in OOP</h4>
+            <div class="inheritance-types-grid">
+              <div class="inheritance-type-card">
+                <div class="inheritance-type-heading"><b>1.</b><strong>Single Inheritance</strong></div>
+                <p>One child class inherits from one parent class.</p>
+                <div class="inheritance-flow single-flow">
+                  <div class="inheritance-flow-row"><span class="inheritance-node parent">Animal</span><em>Parent Class</em></div>
+                  <div class="inheritance-down-arrow"></div>
+                  <div class="inheritance-flow-row"><span class="inheritance-node child">Dog</span><em>Child Class</em></div>
+                </div>
+              </div>
+              <div class="inheritance-type-card">
+                <div class="inheritance-type-heading"><b>2.</b><strong>Multilevel Inheritance</strong></div>
+                <p>A class inherits from another class, and that class is inherited by a third class.</p>
+                <div class="inheritance-flow multi-flow">
+                  <div class="inheritance-flow-row"><span class="inheritance-node parent">Animal</span><em>Parent Class</em></div>
+                  <div class="inheritance-down-arrow"></div>
+                  <div class="inheritance-flow-row"><span class="inheritance-node parent">Dog</span><em>Intermediate Class</em></div>
+                  <div class="inheritance-down-arrow"></div>
+                  <div class="inheritance-flow-row"><span class="inheritance-node child">Puppy</span><em>Child Class</em></div>
+                </div>
+              </div>
+              <div class="inheritance-type-card">
+                <div class="inheritance-type-heading"><b>3.</b><strong>Hierarchical Inheritance</strong></div>
+                <p>Multiple child classes inherit from one parent class.</p>
+                <div class="inheritance-flow hierarchy-flow">
+                  <div class="inheritance-flow-row"><span class="inheritance-node parent">Animal</span><em>Parent Class</em></div>
+                  <div class="inheritance-split-arrow"></div>
+                  <div class="inheritance-two-nodes">
+                    <div><span class="inheritance-node child">Dog</span><em>Child Class</em></div>
+                    <div><span class="inheritance-node child">Cat</span><em>Child Class</em></div>
+                  </div>
+                </div>
+              </div>
+              <div class="inheritance-type-card">
+                <div class="inheritance-type-heading"><b>4.</b><strong>Multiple Inheritance</strong></div>
+                <p>One child class inherits from more than one parent class.</p>
+                <div class="inheritance-flow multiple-flow">
+                  <div class="inheritance-two-nodes">
+                    <div><span class="inheritance-node parent">Father</span><em>Parent Class</em></div>
+                    <div><span class="inheritance-node parent">Mother</span><em>Parent Class</em></div>
+                  </div>
+                  <div class="inheritance-merge-arrow"></div>
+                  <div class="inheritance-flow-row"><span class="inheritance-node child">Child</span><em>Child Class</em></div>
+                </div>
+              </div>
+            </div>
+            <div class="inheritance-board-legend">
+              <span><i class="inheritance-parent-key"></i>= Parent / Superclass</span>
+              <span><i class="inheritance-child-key"></i>= Child / Subclass</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Single Inheritance Example</h3>
+        <pre class="code-block"><code>class Animal {
+    void eat() {
+        System.out.println("eating...");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("barking...");
+    }
+}</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Multilevel Inheritance Example</h3>
+        <pre class="code-block"><code>class Animal {
+    void eat() {
+        System.out.println("eating...");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("barking...");
+    }
+}
+
+class Puppy extends Dog {
+    void weep() {
+        System.out.println("weeping...");
+    }
+}</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Hierarchical Inheritance Example</h3>
+        <pre class="code-block"><code>class Animal {
+    void eat() {
+        System.out.println("eating...");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("barking...");
+    }
+}
+
+class Cat extends Animal {
+    void meow() {
+        System.out.println("meowing...");
+    }
+}</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Multiple Inheritance Note</h3>
+        <p>We cannot implement multiple inheritance using class concept. We can extend only one class at a time, not multiple classes.</p>
+        <p>Multiple inheritance can be achieved by interface concept.</p>
+        <h4>Why Multiple Inheritance Using Classes Is Not Allowed</h4>
+        <p>Java does not support multiple inheritance using classes because it can create ambiguity and the diamond problem.</p>
+        <p>Even if the parent classes do not have common methods, every class in Java extends the <code>Object</code> class by default. Both parent classes already contain inherited methods like <code>toString()</code>, <code>equals()</code>, and <code>hashCode()</code>. To avoid this complexity, Java allows a class to extend only one class, but it can implement multiple interfaces.</p>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Why Multiple Inheritance with Classes Is Not Allowed in Java</h3>
+        <div class="inheritance-diagram-shell">
+          <svg class="inheritance-diamond-chart" viewBox="0 0 1040 815" role="img" aria-label="Diamond problem diagram explaining why multiple inheritance with classes is not allowed in Java">
+            <defs>
+              <marker id="diamond-arrow" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="10" markerHeight="10" orient="auto">
+                <path d="M0,0 L12,6 L0,12 Z" fill="#111" />
+              </marker>
+            </defs>
+            <text x="520" y="42" text-anchor="middle" class="inheritance-title">Why Multiple Inheritance with Classes is Not Allowed in Java</text>
+            <rect x="370" y="78" width="300" height="92" rx="10" class="inheritance-object-box" />
+            <text x="520" y="115" text-anchor="middle" class="inheritance-blue-text">Object</text>
+            <text x="520" y="145" text-anchor="middle" class="inheritance-caption">Every class in Java</text>
+            <text x="520" y="171" text-anchor="middle" class="inheritance-caption">extends Object by default</text>
+
+            <rect x="70" y="120" width="168" height="144" rx="8" class="inheritance-dotted-box" />
+            <text x="154" y="150" text-anchor="middle" class="inheritance-label">Methods from Object</text>
+            <text x="92" y="184" class="inheritance-small">- toString()</text>
+            <text x="92" y="211" class="inheritance-small">- equals()</text>
+            <text x="92" y="238" class="inheritance-small">- hashCode()</text>
+            <text x="92" y="265" class="inheritance-small">- getClass()</text>
+
+            <rect x="802" y="120" width="168" height="144" rx="8" class="inheritance-dotted-box" />
+            <text x="886" y="150" text-anchor="middle" class="inheritance-label">Methods from Object</text>
+            <text x="824" y="184" class="inheritance-small">- toString()</text>
+            <text x="824" y="211" class="inheritance-small">- equals()</text>
+            <text x="824" y="238" class="inheritance-small">- hashCode()</text>
+            <text x="824" y="265" class="inheritance-small">- getClass()</text>
+
+            <path d="M370 170 L265 290" stroke="#111" stroke-width="4" fill="none" marker-end="url(#diamond-arrow)" />
+            <path d="M670 170 L775 290" stroke="#111" stroke-width="4" fill="none" marker-end="url(#diamond-arrow)" />
+            <path d="M238 230 C270 240 286 260 298 289" stroke="#1d4ed8" stroke-width="3" fill="none" stroke-dasharray="8 7" marker-end="url(#diamond-arrow)" />
+            <path d="M802 230 C770 240 754 260 742 289" stroke="#1d4ed8" stroke-width="3" fill="none" stroke-dasharray="8 7" marker-end="url(#diamond-arrow)" />
+
+            <rect x="176" y="290" width="210" height="116" rx="10" class="inheritance-white-box" />
+            <text x="281" y="340" text-anchor="middle" class="inheritance-blue-text">Father</text>
+            <text x="281" y="377" text-anchor="middle" class="inheritance-caption">inherits Object methods</text>
+
+            <rect x="654" y="290" width="210" height="116" rx="10" class="inheritance-white-box" />
+            <text x="759" y="340" text-anchor="middle" class="inheritance-blue-text">Mother</text>
+            <text x="759" y="377" text-anchor="middle" class="inheritance-caption">inherits Object methods</text>
+
+            <text x="520" y="350" text-anchor="middle" fill="#d92323" class="inheritance-type-title">Not allowed in Java</text>
+            <rect x="418" y="372" width="205" height="65" rx="10" fill="#fff" stroke="#d92323" stroke-width="3" stroke-dasharray="8 6" />
+            <text x="520" y="400" text-anchor="middle" fill="#d92323" class="inheritance-small strong">Diamond Problem /</text>
+            <text x="520" y="426" text-anchor="middle" fill="#d92323" class="inheritance-small strong">Ambiguity</text>
+
+            <path d="M281 406 L445 505" stroke="#111" stroke-width="4" fill="none" marker-end="url(#diamond-arrow)" />
+            <path d="M759 406 L595 505" stroke="#111" stroke-width="4" fill="none" marker-end="url(#diamond-arrow)" />
+            <rect x="415" y="505" width="210" height="82" rx="10" class="inheritance-white-box" />
+            <text x="520" y="557" text-anchor="middle" class="inheritance-blue-text">Child</text>
+
+            <rect x="70" y="620" width="900" height="82" rx="10" fill="#f4fbff" stroke="#1d4ed8" stroke-width="3" />
+            <text x="142" y="654" text-anchor="middle" class="inheritance-bulb">!</text>
+            <text x="200" y="652" class="inheritance-caption">Even if <tspan class="inheritance-blue-text">Father</tspan> and <tspan class="inheritance-blue-text">Mother</tspan> do not define the same method, both already inherit</text>
+            <text x="200" y="682" class="inheritance-caption">methods from <tspan class="inheritance-blue-text">Object</tspan>. If <tspan class="inheritance-blue-text">Child</tspan> extends both, it gets Object methods through two paths, causing ambiguity.</text>
+
+            <rect x="70" y="718" width="900" height="82" rx="10" fill="#fff9dc" stroke="#f2a900" stroke-width="3" />
+            <text x="146" y="770" text-anchor="middle" class="inheritance-shield">✓</text>
+            <text x="210" y="756" class="inheritance-rule"><tspan class="inheritance-blue-text">Java rule:</tspan> A class can extend only one class,</text>
+            <text x="376" y="786" class="inheritance-rule">but can implement multiple interfaces.</text>
+          </svg>
+        </div>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>main Method Syntax</h3>
+        <pre class="code-block"><code>public static void main(String args[]) {
+
+}</code></pre>
+        <ul class="basic-help-list">
+          <li><code>public</code>: access modifier</li>
+          <li><code>static</code>: directly called by JVM without object</li>
+          <li><code>void</code>: no returned value</li>
+          <li><code>String args[]</code>: String type array</li>
+        </ul>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Valid and Invalid main Method Examples</h3>
+        <pre class="code-block"><code>public static void main(String a[]) { }      // valid
+
+public static void main(String []a) { }      // valid
+
+void main(String args[]) public static { }   // invalid
+
+public static void main(int a[]) { }         // not valid
+
+static public void main(String args[]) { }   // valid
+
+static void public main(String args[]) { }   // invalid</code></pre>
+      </section>
+    </div>
+    <script src="main.js?v=109"></script>
+  </body>
+</html>
