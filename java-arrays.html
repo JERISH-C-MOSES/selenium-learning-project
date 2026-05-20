@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Java Arrays Lab</title>
+    <link rel="stylesheet" href="shared.css?v=109" />
+  </head>
+  <body class="theme-dashboard">
+    <div class="container">
+      <header class="nav-shell">
+        <div class="brand">Automation Practice Hub</div>
+        <nav class="nav-links">
+          <a href="dashboard.html">Main Labs</a>
+          <a href="java.html">Java</a>
+          <a href="selenium.html">Selenium</a>
+        </nav>
+        <button class="button ghost" type="button" data-logout>Logout</button>
+      </header>
+
+      <section class="subnav-toolbar">
+        <div class="subnav-pager">
+          <a class="button secondary" href="java-loops.html">Back: Loop and Jumping Statement</a>
+          <a class="button primary" href="selenium.html">Next: Selenium</a>
+        </div>
+      </section>
+
+      <section class="page-header">
+        <div>
+          <p class="eyebrow">Java Lab 06</p>
+          <h1>Arrays.</h1>
+          <p class="lead">Typed notes for storing multiple values, using indexes, reading values, and working with two-dimensional arrays.</p>
+        </div>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>What Is an Array?</h3>
+        <p>An array is a collection of elements of the same data type.</p>
+        <ul class="basic-help-list">
+          <li>An array can store multiple values inside a single variable.</li>
+          <li>All values in one array should be of the same data type.</li>
+          <li>Array index always starts from <code>0</code>.</li>
+        </ul>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Types of Arrays</h3>
+        <ol class="basic-help-list">
+          <li>Single-dimensional array: only rows.</li>
+          <li>Multi-dimensional array: rows and columns.</li>
+        </ol>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Single-Dimensional Array</h3>
+        <p>A single-dimensional array stores values in one row.</p>
+        <pre class="code-block"><code>int a[] = {100, 200, 300, 400, 500};</code></pre>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Index</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>a[0]</code></td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <td><code>a[1]</code></td>
+                <td>200</td>
+              </tr>
+              <tr>
+                <td><code>a[2]</code></td>
+                <td>300</td>
+              </tr>
+              <tr>
+                <td><code>a[3]</code></td>
+                <td>400</td>
+              </tr>
+              <tr>
+                <td><code>a[4]</code></td>
+                <td>500</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Finding Length of an Array</h3>
+        <p><code>length</code> gives the total number of values in an array.</p>
+        <pre class="code-block"><code>int a[] = {1, 2, 3, 4, 5};
+
+System.out.println(a.length);</code></pre>
+        <pre class="code-block"><code>Output:
+5</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Read Specific Value from Array</h3>
+        <p>To read one specific value, use the array name with its index.</p>
+        <pre class="code-block"><code>int a[] = {10, 20, 30, 40, 50};
+
+System.out.println(a[4]);</code></pre>
+        <pre class="code-block"><code>Output:
+50</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Read All Values Using Normal for Loop</h3>
+        <p>A normal <code>for</code> loop uses index values to read each array value.</p>
+        <pre class="code-block"><code>int a[] = {100, 200, 300, 400, 500};
+
+for (int i = 0; i &lt; a.length; i++) {
+    System.out.println(a[i]);
+}</code></pre>
+        <ul class="basic-help-list">
+          <li><code>i</code> starts from <code>0</code> because array index starts from <code>0</code>.</li>
+          <li><code>a.length</code> gives the total number of values.</li>
+          <li><code>a[i]</code> reads the current value from the array.</li>
+        </ul>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Read All Values Using Enhanced for Loop</h3>
+        <p>An enhanced <code>for</code> loop reads each value directly without using index.</p>
+        <pre class="code-block"><code>int a[] = {100, 200, 300, 400, 500};
+
+for (int x : a) {
+    System.out.println(x);
+}</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Two-Dimensional Array</h3>
+        <p>A two-dimensional array stores data in rows and columns.</p>
+        <pre class="code-block"><code>int a[][] = {
+    {100, 200},
+    {300, 400},
+    {500, 600}
+};</code></pre>
+        <ul class="basic-help-list">
+          <li><code>a[0][0]</code> means row <code>0</code>, column <code>0</code>.</li>
+          <li><code>a[0].length</code> gives column length.</li>
+          <li><code>a.length</code> gives row length.</li>
+        </ul>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Column 0</th>
+                <th>Column 1</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Row 0</th>
+                <td>100</td>
+                <td>200</td>
+              </tr>
+              <tr>
+                <th>Row 1</th>
+                <td>300</td>
+                <td>400</td>
+              </tr>
+              <tr>
+                <th>Row 2</th>
+                <td>500</td>
+                <td>600</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Find Row and Column Length</h3>
+        <pre class="code-block"><code>int a[][] = {
+    {100, 200},
+    {300, 400},
+    {500, 600}
+};
+
+System.out.println(a.length);    // row length
+System.out.println(a[0].length); // column length</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Read Specific Value from Two-Dimensional Array</h3>
+        <pre class="code-block"><code>int a[][] = {
+    {100, 200},
+    {300, 400},
+    {500, 600}
+};
+
+System.out.println(a[2][1]);</code></pre>
+        <pre class="code-block"><code>Output:
+600</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Read All Values from Two-Dimensional Array</h3>
+        <p>Use nested <code>for</code> loops to read rows and columns.</p>
+        <pre class="code-block"><code>int a[][] = {
+    {100, 200},
+    {300, 400},
+    {500, 600}
+};
+
+for (int r = 0; r &lt; a.length; r++) {
+    for (int c = 0; c &lt; a[r].length; c++) {
+        System.out.println(a[r][c]);
+    }
+}</code></pre>
+      </section>
+
+      <section class="panel theory-panel">
+        <h3>Read All Values Using Enhanced for Loop</h3>
+        <pre class="code-block"><code>int a[][] = {
+    {100, 200},
+    {300, 400},
+    {500, 600}
+};
+
+for (int row[] : a) {
+    for (int value : row) {
+        System.out.println(value);
+    }
+}</code></pre>
+      </section>
+    </div>
+    <script src="main.js?v=109"></script>
+  </body>
+</html>
