@@ -34,8 +34,7 @@ const protectedPages = [
   "keyboard-slider-tabs-windows.html",
   "browser-capabilities.html",
   "advanced-topics.html",
-  "data-driven-testing.html",
-  "base-class.html"
+  "data-driven-testing.html"
 ];
 
 const pageRegistry = [
@@ -67,8 +66,7 @@ const pageRegistry = [
   { file: "keyboard-slider-tabs-windows.html", label: "Keyboard, Sliders, Tabs, Windows" },
   { file: "browser-capabilities.html", label: "Screenshots, Headless, SSL, Ad Block, Extensions" },
   { file: "advanced-topics.html", label: "Broken Links, SVG, Shadow DOM" },
-  { file: "data-driven-testing.html", label: "Data Driven Testing" },
-  { file: "base-class.html", label: "BaseClass Setup" }
+  { file: "data-driven-testing.html", label: "Data Driven Testing" }
 ];
 
 const shuffleArray = (items) => {
@@ -2898,19 +2896,6 @@ const initDataDrivenPage = () => {
   });
 };
 
-const initBaseClassPage = () => {
-  document.querySelectorAll(".baseclass-toggle").forEach((toggle) => {
-    toggle.addEventListener("click", () => {
-      const targetId = toggle.getAttribute("aria-controls");
-      const target = targetId ? document.getElementById(targetId) : null;
-      const isOpen = toggle.getAttribute("aria-expanded") === "true";
-
-      toggle.setAttribute("aria-expanded", String(!isOpen));
-      target?.classList.toggle("hidden", isOpen);
-    });
-  });
-};
-
 class DemoShadowCard extends HTMLElement {
   connectedCallback() {
     const root = this.attachShadow({ mode: "open" });
@@ -2985,7 +2970,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initKeyboardPage();
   initJsPage();
   initDataDrivenPage();
-  initBaseClassPage();
   initAdvancedPage();
   highlightCodeBlocks();
 });
