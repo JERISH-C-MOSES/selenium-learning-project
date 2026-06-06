@@ -20,42 +20,267 @@
       <section class="page-header">
         <div>
           <p class="eyebrow">Lab 11</p>
-          <h1>Mouse actions with industry-style interaction targets.</h1>
-          <p class="lead">Use hover, double click, right click, and drag-and-drop here. These are common places where Selenium `Actions` chains get used.</p>
+          <h1>Mouse Actions.</h1>
+          <p class="lead">Practice mouse hover actions in Selenium by revealing a dropdown menu.</p>
         </div>
       </section>
 
-      <section class="three-column">
-        <article class="panel">
-          <h3>Hover Target</h3>
-          <div class="hover-box" id="hover-box">Move mouse here</div>
-          <p class="helper" id="hover-result">Hover not detected yet.</p>
-        </article>
-
-        <article class="panel">
-          <h3>Double Click</h3>
-          <div class="hover-box" id="double-click-box">Double click this box</div>
-        </article>
-
-        <article class="panel" style="position: relative;">
-          <h3>Right Click</h3>
-          <div class="hover-box" id="context-target">Right click this box</div>
-          <div class="context-menu hidden" id="custom-context-menu">
-            <button class="button ghost" type="button">Inspect Node</button>
-            <button class="button ghost" type="button">Open Log</button>
+      <section class="panel theory-panel">
+        <div class="section-title-row">
+          <h3>1. Mouse Hover Dropdown</h3>
+          <button
+            class="button secondary help-button"
+            id="mouse-actions-help-button"
+            type="button"
+            onclick="window.openMouseActionsHelp && window.openMouseActionsHelp()"
+          >
+            Help
+          </button>
+        </div>
+        <div class="mouse-hover-menu" id="mouse-hover-menu">
+          <div class="mouse-hover-tabs">
+            <button class="mouse-hover-tab active" id="courses-tab" type="button">Courses</button>
           </div>
-        </article>
+          <div class="mouse-hover-dropdown" id="courses-dropdown">
+            <button class="mouse-hover-option" id="java-course-option" type="button">Java Automation (12)</button>
+            <button class="mouse-hover-option" id="selenium-course-option" type="button">Selenium WebDriver (8)</button>
+            <button class="mouse-hover-link" id="all-courses-option" type="button">Show All Courses</button>
+          </div>
+          <p class="status-message" id="mouse-hover-status" aria-live="polite"></p>
+        </div>
       </section>
 
-      <section class="panel" style="margin-top: 1rem;">
-        <h3>Drag and Drop</h3>
-        <div class="drag-row">
-          <div class="drag-item" id="drag-source" draggable="true">Drag Source</div>
-          <div class="drop-zone" id="drop-target">Drop Target</div>
+      <section class="panel theory-panel">
+        <h3>2. Right Click Menu</h3>
+        <div class="right-click-practice" id="right-click-practice">
+          <button class="button primary" id="right-click-button" type="button">Right click me</button>
+          <div class="right-click-menu hidden" id="right-click-menu">
+            <button class="right-click-option" id="right-click-edit" type="button">Edit Profile</button>
+            <button class="right-click-option" id="right-click-copy" type="button">Copy Details</button>
+            <button class="right-click-option" id="right-click-delete" type="button">Delete Record</button>
+          </div>
+          <p class="status-message" id="right-click-status" aria-live="polite"></p>
         </div>
-        <p class="status-message" id="mouse-status" aria-live="polite"></p>
       </section>
+
+      <section class="panel theory-panel">
+        <h3>3. Double Click Validation</h3>
+        <div class="double-click-practice">
+          <button class="double-click-card" id="double-click-card" type="button">
+            Double click to approve
+          </button>
+          <div class="double-click-result" id="double-click-result" data-approved="false">
+            Approval pending
+          </div>
+          <button class="button secondary" id="double-click-reset" type="button">Reset</button>
+          <p class="status-message" id="double-click-status" aria-live="polite">Double click not performed yet.</p>
+        </div>
+      </section>
+
     </div>
+
+    <div class="modal-backdrop hidden" id="mouse-actions-help-backdrop">
+      <div class="modal-card js-help-modal-card">
+        <div class="section-title-row">
+          <div>
+            <p class="eyebrow">Help Center</p>
+            <h3>Mouse Actions Notes</h3>
+          </div>
+          <button class="button ghost" id="close-mouse-actions-help" type="button">Close</button>
+        </div>
+        <div class="js-help-content">
+          <section class="theory-panel">
+            <h4>Mouse Actions</h4>
+            <p>Mouse actions can be done using a predefined class called <code>Actions</code> in Selenium.</p>
+            <pre class="code-block"><code>Actions - predefined class provided in Selenium</code></pre>
+
+            <h4>Mouse Hover Action</h4>
+            <p>In Selenium, a mouse hover action means moving the mouse pointer over a web element without clicking it.</p>
+            <h4>Syntax</h4>
+            <pre class="code-block"><code>Actions act = new Actions(driver);
+
+act.moveToElement(element).build().perform();</code></pre>
+
+            <h4>Difference Between <code>build()</code> and <code>perform()</code></h4>
+            <pre class="code-block"><code>.build()</code></pre>
+            <ul class="basic-help-list">
+              <li>Builds the action.</li>
+              <li>Creates a complete action sequence.</li>
+            </ul>
+            <pre class="code-block"><code>.perform()</code></pre>
+            <ul class="basic-help-list">
+              <li>Executes the action.</li>
+            </ul>
+
+            <h4>Mouse Hover Example</h4>
+            <pre class="code-block"><code>import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class HoverAndClickExample {
+
+    public static void main(String[] args) {
+
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("https://www.amazon.in");
+        driver.manage().window().maximize();
+
+        // Locate main menu
+        WebElement accountMenu =
+                driver.findElement(By.id("nav-link-accountList"));
+
+        // Create Actions object
+        Actions act = new Actions(driver);
+
+        // Hover on Accounts and Lists
+        act.moveToElement(accountMenu)
+                .build()
+                .perform();
+
+        // Locate submenu after hover
+        WebElement orders =
+                driver.findElement(By.linkText("Your Orders"));
+
+        // Click submenu
+        act.click(orders)
+                .build()
+                .perform();
+    }
+}</code></pre>
+          </section>
+
+          <section class="theory-panel">
+            <h4>Right Click in Selenium Java</h4>
+            <p>Right click is also called:</p>
+            <pre class="code-block"><code>Context Click</code></pre>
+            <p>It is used to open the browser context menu or options on an element.</p>
+            <h4>Example</h4>
+            <ul class="basic-help-list">
+              <li>Right click on a button.</li>
+              <li>Right click on a link.</li>
+              <li>Right click on a file or folder option.</li>
+            </ul>
+
+            <h4>Definition</h4>
+            <p>Right click action is performed using:</p>
+            <pre class="code-block"><code>contextClick()</code></pre>
+            <p>It is a method from the Selenium <code>Actions</code> class.</p>
+
+            <h4>Syntax</h4>
+            <p>Right click on specific element:</p>
+            <pre class="code-block"><code>Actions act = new Actions(driver);
+
+act.contextClick(element)
+        .build()
+        .perform();</code></pre>
+
+            <h4>Right Click Example</h4>
+            <pre class="code-block"><code>import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class RightClickExample {
+
+    public static void main(String[] args) {
+
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("https://demo.guru99.com/test/simple_context_menu.html");
+        driver.manage().window().maximize();
+
+        // Locate button
+        WebElement button =
+                driver.findElement(By.xpath("//span[text()='right click me']"));
+
+        // Create Actions object
+        Actions act = new Actions(driver);
+
+        // Perform right click
+        act.contextClick(button)
+                .build()
+                .perform();
+    }
+}</code></pre>
+          </section>
+
+          <section class="theory-panel">
+            <h4>Drag and Drop in Selenium Java</h4>
+            <h4>Definition</h4>
+            <p>Drag and drop is performed using:</p>
+            <pre class="code-block"><code>dragAndDrop()</code></pre>
+            <p>It is a method from the Selenium <code>Actions</code> class.</p>
+
+            <h4>Syntax</h4>
+            <pre class="code-block"><code>Actions act = new Actions(driver);
+
+act.dragAndDrop(sourceElement, targetElement)
+        .build()
+        .perform();</code></pre>
+
+            <h4>Example</h4>
+            <pre class="code-block"><code>import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class DragAndDropExample {
+
+    public static void main(String[] args) {
+
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("https://demoqa.com/droppable");
+        driver.manage().window().maximize();
+
+        // Source element
+        WebElement source =
+                driver.findElement(By.id("draggable"));
+
+        // Target element
+        WebElement target =
+                driver.findElement(By.id("droppable"));
+
+        // Create Actions object
+        Actions act = new Actions(driver);
+
+        // Perform drag and drop
+        act.dragAndDrop(source, target)
+                .build()
+                .perform();
+    }
+}</code></pre>
+
+            <h4>Actions Vs Action</h4>
+            <pre class="code-block"><code>Actions -- class, used to perform mouse actions.
+Action  -- interface, used to store created actions.</code></pre>
+          </section>
+        </div>
+    </div>
+    <script>
+      window.openMouseActionsHelp = function () {
+        var modal = document.getElementById("mouse-actions-help-backdrop");
+        if (modal) {
+          modal.classList.remove("hidden");
+          document.body.classList.add("modal-open");
+        }
+      };
+
+      window.closeMouseActionsHelp = function () {
+        var modal = document.getElementById("mouse-actions-help-backdrop");
+        if (modal) {
+          modal.classList.add("hidden");
+          document.body.classList.remove("modal-open");
+        }
+      };
+
+      document.getElementById("close-mouse-actions-help")?.addEventListener("click", window.closeMouseActionsHelp);
+    </script>
     <script src="main.js?v=109"></script>
   </body>
 </html>

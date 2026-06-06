@@ -38,35 +38,35 @@ const protectedPages = [
 ];
 
 const pageRegistry = [
-  { file: "dashboard.html", label: "Dashboard" },
-  { file: "java.html", label: "Java Labs" },
-  { file: "java-basic.html", label: "Java Basic" },
-  { file: "java-variables.html", label: "Java Variable and Data Type" },
-  { file: "java-operators.html", label: "Java Operators" },
-  { file: "java-conditional.html", label: "Java Conditional Statement" },
-  { file: "java-loops.html", label: "Java Loop and Jumping Statement" },
-  { file: "java-arrays.html", label: "Java Arrays" },
-  { file: "java-string-methods.html", label: "Java String Methods" },
-  { file: "java-oop.html", label: "Java Object Oriented Programming" },
-  { file: "java-polymorphism.html", label: "Java Polymorphism" },
-  { file: "java-encapsulation.html", label: "Java Encapsulation" },
-  { file: "java-inheritance.html", label: "Java Inheritance" },
-  { file: "selenium.html", label: "Selenium Labs" },
-  { file: "webdriver-methods.html", label: "WebDriver Methods" },
-  { file: "waiting-methods.html", label: "Waiting Methods" },
-  { file: "js-scroll-upload.html", label: "JavascriptExecutor and Scrolling" },
-  { file: "upload-files.html", label: "Upload Files" },
-  { file: "checkbox-alerts.html", label: "Check Boxes and Radio Buttons" },
-  { file: "alerts.html", label: "Alerts" },
-  { file: "frames-iframes.html", label: "Frames and Nested iFrames" },
-  { file: "dropdowns-tables.html", label: "Different Types of Drop-downs" },
-  { file: "autosuggest-static-table.html", label: "Static and Dynamic Tables" },
-  { file: "date-pickers.html", label: "Date Pickers" },
-  { file: "mouse-actions.html", label: "Mouse Actions" },
-  { file: "keyboard-slider-tabs-windows.html", label: "Keyboard, Sliders, Tabs, Windows" },
-  { file: "browser-capabilities.html", label: "Screenshots, Headless, SSL, Ad Block, Extensions" },
-  { file: "advanced-topics.html", label: "Broken Links, SVG, Shadow DOM" },
-  { file: "data-driven-testing.html", label: "Data Driven Testing" }
+  { file: "dashboard.html", label: "Dashboard", keywords: ["main", "home", "hub"] },
+  { file: "java.html", label: "Java Labs", keywords: ["java"] },
+  { file: "java-basic.html", label: "Java Basic", keywords: ["syntax", "basic"] },
+  { file: "java-variables.html", label: "Java Variable and Data Type", keywords: ["variables", "data", "types"] },
+  { file: "java-operators.html", label: "Java Operators", keywords: ["operators"] },
+  { file: "java-conditional.html", label: "Java Conditional Statement", keywords: ["if", "else", "switch", "conditions"] },
+  { file: "java-loops.html", label: "Java Loop and Jumping Statement", keywords: ["loops", "jump", "break", "continue"] },
+  { file: "java-arrays.html", label: "Java Arrays", keywords: ["array", "arrays"] },
+  { file: "java-string-methods.html", label: "Java String Methods", keywords: ["string", "strings", "methods"] },
+  { file: "java-oop.html", label: "Java Object Oriented Programming", keywords: ["oop", "object", "objects"] },
+  { file: "java-polymorphism.html", label: "Java Polymorphism", keywords: ["polymorphism"] },
+  { file: "java-encapsulation.html", label: "Java Encapsulation", keywords: ["encapsulation"] },
+  { file: "java-inheritance.html", label: "Java Inheritance", keywords: ["inheritance"] },
+  { file: "selenium.html", label: "Selenium Labs", keywords: ["selenium"] },
+  { file: "webdriver-methods.html", label: "WebDriver Methods", keywords: ["webdriver", "driver", "methods"] },
+  { file: "waiting-methods.html", label: "Waiting Methods", keywords: ["wait", "waits", "waiting", "explicit", "implicit"] },
+  { file: "js-scroll-upload.html", label: "JavascriptExecutor and Scrolling", keywords: ["javascript", "javascriptexecutor", "js", "scroll", "scrolling"] },
+  { file: "upload-files.html", label: "Upload Files", keywords: ["upload", "file", "files"] },
+  { file: "checkbox-alerts.html", label: "Check Boxes and Radio Buttons", keywords: ["checkbox", "checkboxes", "radio", "radios"] },
+  { file: "alerts.html", label: "Alerts", keywords: ["alert", "alerts", "popup", "confirm", "prompt"] },
+  { file: "frames-iframes.html", label: "Frames and Nested iFrames", keywords: ["frame", "frames", "iframe", "iframes", "nested"] },
+  { file: "dropdowns-tables.html", label: "Different Types of Drop-downs", keywords: ["dropdown", "dropdowns", "select", "multi-select", "multiselect", "colors"] },
+  { file: "autosuggest-static-table.html", label: "Static and Dynamic Tables", keywords: ["table", "tables", "static", "dynamic", "autosuggest", "auto suggest"] },
+  { file: "date-pickers.html", label: "Date Pickers", keywords: ["date", "dates", "calendar", "picker"] },
+  { file: "mouse-actions.html", label: "Mouse Actions", keywords: ["mouse", "hover", "right click", "double click", "actions"] },
+  { file: "keyboard-slider-tabs-windows.html", label: "Keyboard, Sliders, Tabs, Windows", keywords: ["keyboard", "slider", "tabs", "windows", "new tab"] },
+  { file: "browser-capabilities.html", label: "Screenshots, Headless, SSL, Ad Block, Extensions", keywords: ["screenshot", "screenshots", "headless", "ssl", "adblock", "extensions"] },
+  { file: "advanced-topics.html", label: "Broken Links, SVG, Shadow DOM", keywords: ["broken", "links", "svg", "shadow", "dom", "advanced"] },
+  { file: "data-driven-testing.html", label: "Data Driven Testing", keywords: ["data", "driven", "excel", "testing"] }
 ];
 
 const shuffleArray = (items) => {
@@ -1079,6 +1079,108 @@ for(int i=0; i&lt;options.size(); i++)
     locator: { xpath: "", css: "" },
     fullCode: ""
   },
+  "multi-select-dropdown-help": {
+    title: "Multi-select Dropdown",
+    infoHtml: `<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Multi-select Dropdown</h4>
+    <p>A <strong>multi-select dropdown</strong> is a normal HTML <code>&lt;select&gt;</code> element with the <code>multiple</code> attribute.</p>
+    <p>Selenium handles it with the same <code>Select</code> class, but you can select more than one option.</p>
+
+    <h5>HTML</h5>
+    <pre class="code-block"><code>&lt;select id="color-multi-select" multiple&gt;
+    &lt;option value="red"&gt;Red&lt;/option&gt;
+    &lt;option value="blue"&gt;Blue&lt;/option&gt;
+    &lt;option value="green"&gt;Green&lt;/option&gt;
+    &lt;option value="yellow"&gt;Yellow&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>import org.openqa.selenium.support.ui.Select;
+
+WebElement colorDropdown = driver.findElement(By.id("color-multi-select"));
+
+Select select = new Select(colorDropdown);</code></pre>
+
+    <h5>Explanation</h5>
+    <ul class="basic-help-list">
+      <li><code>multiple</code> allows more than one option to be selected.</li>
+      <li><code>new Select(colorDropdown)</code> creates the Selenium Select object.</li>
+      <li><code>select.isMultiple()</code> checks whether the dropdown supports multiple selection.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="basic-help-section">
+  <div class="basic-help-box">
+    <h4>Select Multiple Options</h4>
+    <h5>Syntax</h5>
+    <pre class="code-block"><code>select.selectByVisibleText("Red");
+select.selectByVisibleText("Blue");
+select.selectByVisibleText("Yellow");</code></pre>
+
+    <h5>Using Value</h5>
+    <pre class="code-block"><code>select.selectByValue("red");
+select.selectByValue("blue");
+select.selectByValue("yellow");</code></pre>
+
+    <h5>Get Selected Options</h5>
+    <pre class="code-block"><code>List&lt;WebElement&gt; selectedOptions = select.getAllSelectedOptions();
+
+for(WebElement option : selectedOptions)
+{
+    System.out.println(option.getText());
+}</code></pre>
+
+    <h5>Deselect Options</h5>
+    <pre class="code-block"><code>select.deselectByVisibleText("Blue");
+select.deselectAll();</code></pre>
+  </div>
+</section>`,
+    syntax: `WebElement colorDropdown = driver.findElement(By.id("color-multi-select"));
+Select select = new Select(colorDropdown);
+
+select.selectByVisibleText("Red");
+select.selectByVisibleText("Blue");
+select.selectByVisibleText("Yellow");`,
+    locator: {
+      xpath: `//select[@id='color-multi-select']
+//select[@name='colors']`,
+      css: `#color-multi-select
+select[name="colors"]`
+    },
+    fullCode: `import java.time.Duration;
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class MultiSelectDropdownDemo {
+    public static void main(String[] args) {
+        WebDriver driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.get("YOUR_PAGE_URL");
+
+        WebElement colorDropdown = driver.findElement(By.id("color-multi-select"));
+        Select select = new Select(colorDropdown);
+
+        if(select.isMultiple()) {
+            select.selectByVisibleText("Red");
+            select.selectByVisibleText("Blue");
+            select.selectByVisibleText("Yellow");
+        }
+
+        List<WebElement> selectedOptions = select.getAllSelectedOptions();
+        for(WebElement option : selectedOptions) {
+            System.out.println(option.getText());
+        }
+
+        driver.quit();
+    }
+}`
+  },
   "bootstrap-dropdown-help": {
     title: "Bootstrap Dropdown",
     infoHtml: `<section class="basic-help-section">
@@ -1341,9 +1443,10 @@ for(WebElement op : options)
     <pre class="code-block"><code>Dropdown box
 ------------
 1) Select dropdown
-2) Bootstrap dropdown
-3) Hidden dropdown
-4) Auto-suggest dropdown</code></pre>
+2) Multi-select dropdown
+3) Bootstrap dropdown
+4) Hidden dropdown
+5) Auto-suggest dropdown</code></pre>
     <p>Every option inside a dropdown is a <strong>web element</strong>.</p>
   </div>
 </section>
@@ -1705,17 +1808,33 @@ const logout = () => {
 };
 
 const findPageMatch = (query) => {
-  const normalizedQuery = query.trim().toLowerCase();
+  const normalizedQuery = query.trim().toLowerCase().replace(/[-_]/g, " ");
 
   if (!normalizedQuery) {
     return null;
   }
 
-  return pageRegistry.find(
-    (page) =>
-      page.label.toLowerCase().includes(normalizedQuery) ||
-      page.file.toLowerCase().includes(normalizedQuery)
-  );
+  const queryTokens = normalizedQuery.split(/\s+/).filter(Boolean);
+  const normalizeText = (value) => value.toLowerCase().replace(/[-_]/g, " ");
+  const scorePage = (page) => {
+    const searchableText = normalizeText([page.label, page.file, ...(page.keywords || [])].join(" "));
+    const exactKeywordMatch = (page.keywords || []).some((keyword) => normalizeText(keyword) === normalizedQuery);
+
+    if (normalizeText(page.label) === normalizedQuery || normalizeText(page.file) === normalizedQuery || exactKeywordMatch) {
+      return 100;
+    }
+
+    if (searchableText.includes(normalizedQuery)) {
+      return 60;
+    }
+
+    return queryTokens.filter((token) => searchableText.includes(token)).length;
+  };
+
+  return pageRegistry
+    .map((page) => ({ page, score: scorePage(page) }))
+    .filter((item) => item.score > 0)
+    .sort((first, second) => second.score - first.score)[0]?.page || null;
 };
 
 const setStatus = (id, text, level = "") => {
@@ -1932,6 +2051,19 @@ const initSharedNavigation = () => {
     return;
   }
 
+  document.querySelectorAll(".nav-links a").forEach((link) => {
+    const href = link.getAttribute("href");
+
+    if (
+      href === currentPage ||
+      (href === "java.html" && currentIndex >= 1 && currentIndex <= 12) ||
+      (href === "selenium.html" && currentIndex >= 13)
+    ) {
+      link.classList.add("active");
+      link.setAttribute("aria-current", "page");
+    }
+  });
+
   const toolbar = document.createElement("section");
   toolbar.className = "subnav-toolbar panel";
 
@@ -1942,13 +2074,13 @@ const initSharedNavigation = () => {
     <div class="subnav-pager">
       ${
         previousPage
-          ? `<a class="button secondary" href="${previousPage.file}">Back: ${previousPage.label}</a>`
-          : `<span class="button secondary is-static" aria-disabled="true">Back</span>`
+          ? `<a class="button secondary pager-link" href="${previousPage.file}"><span>Previous</span><strong>${previousPage.label}</strong></a>`
+          : `<span class="button secondary pager-link is-static" aria-disabled="true"><span>Previous</span><strong>First page</strong></span>`
       }
       ${
         nextPage
-          ? `<a class="button primary" href="${nextPage.file}">Next: ${nextPage.label}</a>`
-          : `<span class="button primary is-static" aria-disabled="true">Next</span>`
+          ? `<a class="button secondary pager-link" href="${nextPage.file}"><span>Next</span><strong>${nextPage.label}</strong></a>`
+          : `<span class="button secondary pager-link is-static" aria-disabled="true"><span>Next</span><strong>Last page</strong></span>`
       }
     </div>
     <form class="search-form" id="page-search-form">
@@ -1956,7 +2088,7 @@ const initSharedNavigation = () => {
       <datalist id="page-search-options">
         ${pageRegistry.map((page) => `<option value="${page.label}"></option>`).join("")}
       </datalist>
-      <button class="button secondary" type="submit">Go</button>
+      <button class="button primary" type="submit">Search</button>
     </form>
   `;
 
@@ -2155,6 +2287,21 @@ const initDropdownsTablesPage = () => {
       return;
     }
   });
+
+  const multiSelect = document.getElementById("color-multi-select");
+  const multiSelectValue = document.getElementById("multi-select-value");
+
+  const updateMultiSelectValue = () => {
+    if (!multiSelect || !multiSelectValue) {
+      return;
+    }
+
+    const values = Array.from(multiSelect.selectedOptions).map((option) => option.textContent.trim());
+    multiSelectValue.textContent = values.length ? values.join(", ") : "None";
+  };
+
+  multiSelect?.addEventListener("change", updateMultiSelectValue);
+  updateMultiSelectValue();
 
   const bootstrapTrigger = document.getElementById("bootstrap-dropdown-trigger");
   const bootstrapMenu = document.getElementById("bootstrap-dropdown-menu");
@@ -2377,15 +2524,6 @@ const initDropdownsTablesPage = () => {
       closeAutosuggest();
     }
   });
-
-  const staticTableBody = document.querySelector("#static-table tbody");
-
-  if (staticTableBody) {
-    shuffleArray(Array.from(staticTableBody.rows)).forEach((row, index) => {
-      row.cells[0].textContent = String(index + 1);
-      staticTableBody.appendChild(row);
-    });
-  }
 
 };
 
@@ -2716,6 +2854,58 @@ const initDatePage = () => {
 };
 
 const initMousePage = () => {
+  document.querySelectorAll(".mouse-hover-option, .mouse-hover-link").forEach((option) => {
+    option.addEventListener("click", () => {
+      setStatus("mouse-hover-status", `${option.textContent.trim()} clicked successfully.`, "success");
+    });
+  });
+
+  const rightClickButton = document.getElementById("right-click-button");
+  const rightClickMenu = document.getElementById("right-click-menu");
+
+  rightClickButton?.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+    rightClickMenu?.classList.remove("hidden");
+    setStatus("right-click-status", "Right click menu opened.", "warning");
+  });
+
+  document.querySelectorAll(".right-click-option").forEach((option) => {
+    option.addEventListener("click", () => {
+      rightClickMenu?.classList.add("hidden");
+      setStatus("right-click-status", `${option.textContent.trim()} clicked successfully.`, "success");
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest("#right-click-practice")) {
+      rightClickMenu?.classList.add("hidden");
+    }
+  });
+
+  const doubleClickCard = document.getElementById("double-click-card");
+  const doubleClickResult = document.getElementById("double-click-result");
+  const doubleClickReset = document.getElementById("double-click-reset");
+
+  doubleClickCard?.addEventListener("dblclick", () => {
+    doubleClickCard.classList.add("is-approved");
+    doubleClickResult?.classList.add("is-approved");
+    doubleClickResult?.setAttribute("data-approved", "true");
+    if (doubleClickResult) {
+      doubleClickResult.textContent = "Approved by double click";
+    }
+    setStatus("double-click-status", "Double click performed successfully.", "success");
+  });
+
+  doubleClickReset?.addEventListener("click", () => {
+    doubleClickCard?.classList.remove("is-approved");
+    doubleClickResult?.classList.remove("is-approved");
+    doubleClickResult?.setAttribute("data-approved", "false");
+    if (doubleClickResult) {
+      doubleClickResult.textContent = "Approval pending";
+    }
+    setStatus("double-click-status", "Double click validation reset.", "warning");
+  });
+
   const hoverBox = document.getElementById("hover-box");
   hoverBox?.addEventListener("mouseenter", () => {
     document.getElementById("hover-result").textContent = "Hover detected.";
@@ -2896,42 +3086,170 @@ const initDataDrivenPage = () => {
   });
 };
 
+const initAccordions = () => {
+  document.querySelectorAll(".baseclass-toggle").forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const targetId = toggle.getAttribute("aria-controls");
+      const target = targetId ? document.getElementById(targetId) : null;
+      const isOpen = toggle.getAttribute("aria-expanded") === "true";
+
+      toggle.setAttribute("aria-expanded", String(!isOpen));
+      target?.classList.toggle("hidden", isOpen);
+    });
+  });
+};
+
 class DemoShadowCard extends HTMLElement {
   connectedCallback() {
+    if (this.shadowRoot) {
+      return;
+    }
+
     const root = this.attachShadow({ mode: "open" });
     root.innerHTML = `
       <style>
-        .card {
-          padding: 16px;
-          border-radius: 16px;
-          border: 1px solid rgba(28, 37, 38, 0.12);
-          background: #fffaf3;
-          font-family: Segoe UI, sans-serif;
-        }
         button {
-          margin-top: 12px;
+          width: 100%;
+          min-height: 52px;
           padding: 10px 16px;
-          border-radius: 999px;
+          border-radius: 8px;
           border: none;
-          background: #c9653d;
+          background: #0b63a7;
           color: white;
           cursor: pointer;
+          font: 800 0.95rem Segoe UI, sans-serif;
+          text-align: center;
+          box-shadow: 0 10px 20px rgba(11, 99, 167, 0.18);
         }
       </style>
-      <div class="card">
-        <div id="shadow-text">Shadow DOM content ready.</div>
-        <button id="shadow-button" type="button">Shadow Action</button>
-      </div>
+      <button id="shadow-element" type="button">Shadow Element</button>
     `;
 
-    root.getElementById("shadow-button").addEventListener("click", () => {
-      root.getElementById("shadow-text").textContent = "Shadow action clicked.";
+    root.getElementById("shadow-element").addEventListener("click", () => {
+      setStatus("advanced-status", "Shadow Element clicked.", "success");
     });
   }
 }
 
 if (!customElements.get("demo-shadow-card")) {
   customElements.define("demo-shadow-card", DemoShadowCard);
+}
+
+class NestedShadowInner extends HTMLElement {
+  connectedCallback() {
+    if (this.shadowRoot) {
+      return;
+    }
+
+    const root = this.attachShadow({ mode: "open" });
+    root.innerHTML = `
+      <style>
+        button {
+          width: 100%;
+          min-height: 52px;
+          padding: 10px 16px;
+          border-radius: 8px;
+          border: none;
+          background: #e51f55;
+          color: white;
+          cursor: pointer;
+          font: 800 0.95rem Segoe UI, sans-serif;
+          text-align: center;
+          box-shadow: 0 10px 20px rgba(229, 31, 85, 0.18);
+        }
+      </style>
+      <button id="nested-shadow-element" type="button">Nested Shadow Element</button>
+    `;
+
+    root.getElementById("nested-shadow-element").addEventListener("click", () => {
+      setStatus("advanced-status", "Nested Shadow Element clicked.", "success");
+    });
+  }
+}
+
+class DemoNestedShadowCard extends HTMLElement {
+  connectedCallback() {
+    if (this.shadowRoot) {
+      return;
+    }
+
+    const root = this.attachShadow({ mode: "open" });
+    root.innerHTML = `<nested-shadow-inner id="nested-shadow-host"></nested-shadow-inner>`;
+  }
+}
+
+class MultiShadowLevelTwo extends HTMLElement {
+  connectedCallback() {
+    if (this.shadowRoot) {
+      return;
+    }
+
+    const root = this.attachShadow({ mode: "open" });
+    root.innerHTML = `
+      <style>
+        button {
+          width: 100%;
+          min-height: 52px;
+          padding: 10px 16px;
+          border-radius: 8px;
+          border: none;
+          background: #10394f;
+          color: white;
+          cursor: pointer;
+          font: 800 0.95rem Segoe UI, sans-serif;
+          text-align: center;
+          box-shadow: 0 10px 20px rgba(16, 57, 79, 0.18);
+        }
+      </style>
+      <button id="multi-nested-shadow-element" type="button">Multi-nested Shadow Element</button>
+    `;
+
+    root.getElementById("multi-nested-shadow-element").addEventListener("click", () => {
+      setStatus("advanced-status", "Multi-nested Shadow Element clicked.", "success");
+    });
+  }
+}
+
+class MultiShadowLevelOne extends HTMLElement {
+  connectedCallback() {
+    if (this.shadowRoot) {
+      return;
+    }
+
+    const root = this.attachShadow({ mode: "open" });
+    root.innerHTML = `<multi-shadow-level-two id="multi-shadow-level-two"></multi-shadow-level-two>`;
+  }
+}
+
+class DemoMultiShadowCard extends HTMLElement {
+  connectedCallback() {
+    if (this.shadowRoot) {
+      return;
+    }
+
+    const root = this.attachShadow({ mode: "open" });
+    root.innerHTML = `<multi-shadow-level-one id="multi-shadow-level-one"></multi-shadow-level-one>`;
+  }
+}
+
+if (!customElements.get("nested-shadow-inner")) {
+  customElements.define("nested-shadow-inner", NestedShadowInner);
+}
+
+if (!customElements.get("demo-nested-shadow-card")) {
+  customElements.define("demo-nested-shadow-card", DemoNestedShadowCard);
+}
+
+if (!customElements.get("multi-shadow-level-two")) {
+  customElements.define("multi-shadow-level-two", MultiShadowLevelTwo);
+}
+
+if (!customElements.get("multi-shadow-level-one")) {
+  customElements.define("multi-shadow-level-one", MultiShadowLevelOne);
+}
+
+if (!customElements.get("demo-multi-shadow-card")) {
+  customElements.define("demo-multi-shadow-card", DemoMultiShadowCard);
 }
 
 const initAdvancedPage = () => {
@@ -2970,6 +3288,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initKeyboardPage();
   initJsPage();
   initDataDrivenPage();
+  initAccordions();
   initAdvancedPage();
   highlightCodeBlocks();
 });

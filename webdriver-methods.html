@@ -172,6 +172,85 @@
               <li>No duplicate browser window IDs are possible.</li>
             </ul>
           </section>
+
+          <section class="theory-panel">
+            <h3><code>getText()</code> Definition</h3>
+            <p><code>getText()</code> is used to get the visible text present inside a web element.</p>
+            <p>It returns the text that is displayed on the webpage to the user.</p>
+            <h4>If the webpage contains:</h4>
+            <pre class="code-block"><code>&lt;h1 id="title"&gt;Welcome&lt;/h1&gt;</code></pre>
+            <h4>Output:</h4>
+            <pre class="code-block"><code>Welcome</code></pre>
+          </section>
+
+          <section class="theory-panel">
+            <h3><code>getAttribute()</code> Definition</h3>
+            <p><code>getAttribute()</code> is used to get the value of an attribute from a web element.</p>
+            <p>Attributes are values inside HTML tags like:</p>
+            <ul class="basic-help-list">
+              <li><code>id</code></li>
+              <li><code>class</code></li>
+              <li><code>value</code></li>
+              <li><code>name</code></li>
+              <li><code>href</code></li>
+              <li><code>placeholder</code></li>
+            </ul>
+            <h4>If the webpage contains:</h4>
+            <pre class="code-block"><code>&lt;input id="email" type="text"&gt;</code></pre>
+            <h4>Output:</h4>
+            <pre class="code-block"><code>text</code></pre>
+          </section>
+
+          <section class="theory-panel">
+            <h3>Difference Between <code>getText()</code> and <code>getAttribute()</code></h3>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th><code>getText()</code></th>
+                    <th><code>getAttribute()</code></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Purpose</td>
+                    <td>Gets visible text</td>
+                    <td>Gets attribute value</td>
+                  </tr>
+                  <tr>
+                    <td>Works On</td>
+                    <td>Text between tags</td>
+                    <td>HTML attributes</td>
+                  </tr>
+                  <tr>
+                    <td>Returns</td>
+                    <td>Displayed text</td>
+                    <td>Attribute value</td>
+                  </tr>
+                  <tr>
+                    <td>Example</td>
+                    <td><code>&lt;button&gt;Login&lt;/button&gt;</code> returns Login</td>
+                    <td><code>&lt;input value="Admin"&gt;</code> returns Admin</td>
+                  </tr>
+                  <tr>
+                    <td>Mainly Used For</td>
+                    <td>Validation of displayed text</td>
+                    <td>Fetching hidden or data values</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="theory-panel">
+            <h3>Important Point</h3>
+            <p><code>getText()</code> does <strong>NOT</strong> work properly for input boxes because text inside input fields is stored in the <code>value</code> attribute.</p>
+            <p>For input fields use:</p>
+            <pre class="code-block"><code>getAttribute("value")</code></pre>
+            <p><strong>NOT:</strong></p>
+            <pre class="code-block"><code>getText()</code></pre>
+          </section>
         </div>
       </section>
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dropdown Box Practice</title>
-    <link rel="stylesheet" href="shared.css?v=109" />
+    <link rel="stylesheet" href="shared.css?v=111" />
   </head>
   <body class="theme-dropdowns dropdown-lab">
     <div class="container">
@@ -21,7 +21,7 @@
         <div>
           <p class="eyebrow">Lab 08</p>
           <h1>Dropdown box practice.</h1>
-          <p class="lead">Practice select dropdown, Bootstrap dropdown, hidden dropdown, and auto-suggest dropdown.</p>
+          <p class="lead">Practice select dropdown, multi-select dropdown, Bootstrap dropdown, hidden dropdown, and auto-suggest dropdown.</p>
         </div>
       </section>
 
@@ -29,6 +29,7 @@
         <h2>Dropdown box</h2>
         <ol>
           <li>Select dropdown</li>
+          <li>Multi-select dropdown</li>
           <li>Bootstrap dropdown</li>
           <li>Hidden dropdown</li>
           <li>Auto-suggest dropdown</li>
@@ -58,7 +59,26 @@
 
         <article class="panel dropdown-card">
           <div class="section-title-row">
-            <h3>2. Bootstrap Dropdown</h3>
+            <h3>2. Multi-select Dropdown</h3>
+            <button class="button secondary help-button" type="button" data-help-topic="multi-select-dropdown-help">Help</button>
+          </div>
+          <label for="color-multi-select">Colors:</label>
+          <select class="color-multi-select" id="color-multi-select" name="colors" multiple size="5">
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
+            <option value="yellow">Yellow</option>
+            <option value="white">White</option>
+            <option value="black">Black</option>
+            <option value="orange">Orange</option>
+            <option value="purple">Purple</option>
+          </select>
+          <p class="helper">Selected values: <strong id="multi-select-value">None</strong></p>
+        </article>
+
+        <article class="panel dropdown-card">
+          <div class="section-title-row">
+            <h3>3. Bootstrap Dropdown</h3>
             <button class="button secondary help-button" type="button" data-help-topic="bootstrap-dropdown-help">Help</button>
           </div>
           <button class="button secondary bootstrap-dropdown-trigger" id="bootstrap-dropdown-trigger" type="button" aria-expanded="false">Select places</button>
@@ -80,7 +100,7 @@
 
         <article class="panel dropdown-card">
           <div class="section-title-row">
-            <h3>3. Hidden Dropdown</h3>
+            <h3>4. Hidden Dropdown</h3>
             <button class="button secondary help-button" type="button" data-help-topic="hidden-dropdown-help">Help</button>
           </div>
           <div class="hidden-dropdown-box" id="hidden-dropdown-box">
@@ -92,7 +112,7 @@
 
         <article class="panel dropdown-card">
           <div class="section-title-row">
-            <h3>4. Auto-suggest Dropdown</h3>
+            <h3>5. Auto-suggest Dropdown</h3>
             <button class="button secondary help-button" type="button" data-help-topic="autosuggest-dropdown-help">Help</button>
           </div>
           <label for="autosuggest-input">Country or place</label>
@@ -132,6 +152,6 @@
         </div>
       </div>
     </div>
-    <script src="main.js?v=109"></script>
+    <script src="main.js?v=111"></script>
   </body>
 </html>
