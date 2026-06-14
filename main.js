@@ -3,25 +3,6 @@ const DEMO_PASSWORD = "Jerish@123";
 
 const protectedPages = [
   "dashboard.html",
-  "java.html",
-  "java-basic.html",
-  "java-variables.html",
-  "java-operators.html",
-  "java-conditional.html",
-  "java-loops.html",
-  "java-arrays.html",
-  "java-string-methods.html",
-  "java-oop.html",
-  "java-polymorphism.html",
-  "java-encapsulation.html",
-  "java-inheritance.html",
-  "selenium.html",
-  "testng.html",
-  "cucumber.html",
-  "sql.html",
-  "git.html",
-  "webdriver-methods.html",
-  "waiting-methods.html",
   "js-scroll-upload.html",
   "upload-files.html",
   "checkbox-alerts.html",
@@ -39,21 +20,6 @@ const protectedPages = [
 
 const pageRegistry = [
   { file: "dashboard.html", label: "Dashboard", keywords: ["main", "home", "hub"] },
-  { file: "java.html", label: "Java Labs", keywords: ["java"] },
-  { file: "java-basic.html", label: "Java Basic", keywords: ["syntax", "basic"] },
-  { file: "java-variables.html", label: "Java Variable and Data Type", keywords: ["variables", "data", "types"] },
-  { file: "java-operators.html", label: "Java Operators", keywords: ["operators"] },
-  { file: "java-conditional.html", label: "Java Conditional Statement", keywords: ["if", "else", "switch", "conditions"] },
-  { file: "java-loops.html", label: "Java Loop and Jumping Statement", keywords: ["loops", "jump", "break", "continue"] },
-  { file: "java-arrays.html", label: "Java Arrays", keywords: ["array", "arrays"] },
-  { file: "java-string-methods.html", label: "Java String Methods", keywords: ["string", "strings", "methods"] },
-  { file: "java-oop.html", label: "Java Object Oriented Programming", keywords: ["oop", "object", "objects"] },
-  { file: "java-polymorphism.html", label: "Java Polymorphism", keywords: ["polymorphism"] },
-  { file: "java-encapsulation.html", label: "Java Encapsulation", keywords: ["encapsulation"] },
-  { file: "java-inheritance.html", label: "Java Inheritance", keywords: ["inheritance"] },
-  { file: "selenium.html", label: "Selenium Labs", keywords: ["selenium"] },
-  { file: "webdriver-methods.html", label: "WebDriver Methods", keywords: ["webdriver", "driver", "methods"] },
-  { file: "waiting-methods.html", label: "Waiting Methods", keywords: ["wait", "waits", "waiting", "explicit", "implicit"] },
   { file: "js-scroll-upload.html", label: "JavascriptExecutor and Scrolling", keywords: ["javascript", "javascriptexecutor", "js", "scroll", "scrolling"] },
   { file: "upload-files.html", label: "Upload Files", keywords: ["upload", "file", "files"] },
   { file: "checkbox-alerts.html", label: "Check Boxes and Radio Buttons", keywords: ["checkbox", "checkboxes", "radio", "radios"] },
@@ -1807,32 +1773,48 @@ const logout = () => {
   window.location.href = "index.html";
 };
 
+const normalizeSearchText = (value) => value.toLowerCase().replace(/[-_]/g, " ");
+
+const getSearchTokens = (value) =>
+  normalizeSearchText(value)
+    .split(/\s+/)
+    .filter(Boolean);
+
+const scorePageMatch = (page, query) => {
+  const normalizedQuery = normalizeSearchText(query.trim());
+
+  if (!normalizedQuery) {
+    return 0;
+  }
+
+  const queryTokens = normalizedQuery.split(/\s+/).filter(Boolean);
+  const searchParts = [page.label, page.file, ...(page.keywords || [])];
+  const searchableText = normalizeSearchText(searchParts.join(" "));
+  const searchableTokens = searchParts.flatMap(getSearchTokens);
+  const exactKeywordMatch = (page.keywords || []).some((keyword) => normalizeSearchText(keyword) === normalizedQuery);
+
+  if (normalizeSearchText(page.label) === normalizedQuery || normalizeSearchText(page.file) === normalizedQuery || exactKeywordMatch) {
+    return 100;
+  }
+
+  if (searchableText.includes(normalizedQuery) && normalizedQuery !== "java") {
+    return 60;
+  }
+
+  return queryTokens.filter((queryToken) =>
+    queryToken !== "java" && searchableTokens.some((searchToken) => searchToken.startsWith(queryToken))
+  ).length;
+};
+
 const findPageMatch = (query) => {
-  const normalizedQuery = query.trim().toLowerCase().replace(/[-_]/g, " ");
+  const normalizedQuery = normalizeSearchText(query.trim());
 
   if (!normalizedQuery) {
     return null;
   }
 
-  const queryTokens = normalizedQuery.split(/\s+/).filter(Boolean);
-  const normalizeText = (value) => value.toLowerCase().replace(/[-_]/g, " ");
-  const scorePage = (page) => {
-    const searchableText = normalizeText([page.label, page.file, ...(page.keywords || [])].join(" "));
-    const exactKeywordMatch = (page.keywords || []).some((keyword) => normalizeText(keyword) === normalizedQuery);
-
-    if (normalizeText(page.label) === normalizedQuery || normalizeText(page.file) === normalizedQuery || exactKeywordMatch) {
-      return 100;
-    }
-
-    if (searchableText.includes(normalizedQuery)) {
-      return 60;
-    }
-
-    return queryTokens.filter((token) => searchableText.includes(token)).length;
-  };
-
   return pageRegistry
-    .map((page) => ({ page, score: scorePage(page) }))
+    .map((page) => ({ page, score: scorePageMatch(page, query) }))
     .filter((item) => item.score > 0)
     .sort((first, second) => second.score - first.score)[0]?.page || null;
 };
@@ -2054,11 +2036,7 @@ const initSharedNavigation = () => {
   document.querySelectorAll(".nav-links a").forEach((link) => {
     const href = link.getAttribute("href");
 
-    if (
-      href === currentPage ||
-      (href === "java.html" && currentIndex >= 1 && currentIndex <= 12) ||
-      (href === "selenium.html" && currentIndex >= 13)
-    ) {
+    if (href === currentPage) {
       link.classList.add("active");
       link.setAttribute("aria-current", "page");
     }
@@ -2114,10 +2092,18 @@ const initSharedNavigation = () => {
     const cards = Array.from(document.querySelectorAll(".topic-link"));
 
     searchInput?.addEventListener("input", () => {
-      const query = searchInput.value.trim().toLowerCase();
+      const query = searchInput.value.trim();
+      const scoredCards = cards.map((card) => {
+        const cardPage = pageRegistry.find((page) => page.file === card.getAttribute("href"));
+        return {
+          card,
+          score: cardPage ? scorePageMatch(cardPage, query) : 0
+        };
+      });
+      const bestScore = Math.max(...scoredCards.map((item) => item.score));
 
-      cards.forEach((card) => {
-        const matches = !query || card.textContent.toLowerCase().includes(query);
+      scoredCards.forEach(({ card, score }) => {
+        const matches = !query || (bestScore > 0 && score === bestScore);
         card.classList.toggle("hidden", !matches);
       });
     });

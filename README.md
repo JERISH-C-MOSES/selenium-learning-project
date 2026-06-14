@@ -1,6 +1,6 @@
-# Selenium Practice Portal
+# Automation Practice Hub
 
-This is the standalone frontend-only Selenium practice website.
+This is the standalone frontend-only automation practice website.
 
 It includes focused labs for alerts, checkboxes, frames, dropdowns, tables, pagination, date pickers, mouse actions, keyboard actions, uploads, browser capabilities, Shadow DOM, SVG, broken links, and data-driven testing.
 

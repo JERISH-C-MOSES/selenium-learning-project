@@ -1,7 +1,7 @@
 {
-  "name": "selenium-practice-portal",
+  "name": "automation-practice-hub",
   "version": "1.0.0",
-  "description": "Static Selenium practice portal for GitHub Pages",
+  "description": "Static automation practice hub for GitHub Pages",
   "scripts": {
     "check": "node --check main.js"
   }

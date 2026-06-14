@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Automation Practice Hub</title>
-    <link rel="stylesheet" href="shared.css?v=109" />
+    <link rel="stylesheet" href="shared.css?v=115" />
   </head>
   <body class="theme-dashboard">
     <div class="container">
@@ -12,72 +12,95 @@
         <div class="brand">Automation Practice Hub</div>
         <nav class="nav-links">
           <a href="dashboard.html">Main Labs</a>
-          <a href="selenium.html">Selenium</a>
         </nav>
         <div class="nav-actions">
           <button class="button ghost" type="button" data-logout>Logout</button>
         </div>
       </header>
 
-      <section class="dashboard-hero">
-        <article class="panel dashboard-hero-copy">
-          <h1>Choose a main lab.</h1>
-          <p class="lead">
-            Each main lab keeps one learning track separate, so theory, examples, and practice pages stay easier to follow.
-          </p>
-          <ul class="hero-points">
-            <li>Selenium contains the existing WebDriver, waits, JavaScript, frames, tables, and framework practice labs.</li>
-            <li>Java, TestNG, Cucumber, SQL, and Git are ready for content to be added step by step.</li>
-            <li>Start with the topic you want and build each section cleanly.</li>
-          </ul>
-          <div class="button-row">
-            <a class="button primary" href="selenium.html">Open Selenium Lab</a>
-            <a class="button secondary" href="java.html">Open Java Lab</a>
-          </div>
-        </article>
-      </section>
-
       <section class="topic-grid main-lab-grid">
-        <a class="topic-link" href="java.html">
-          <img class="topic-thumb" src="assets/java.svg" alt="Java lab preview" />
+        <a class="topic-link" href="js-scroll-upload.html">
+          <img class="topic-thumb" src="assets/scrolling.svg" alt="JavascriptExecutor and scrolling practice preview" />
           <span>01</span>
-          <h3>Java</h3>
-          <p>Core Java notes and examples for automation foundations.</p>
+          <h3>JavascriptExecutor and Scrolling</h3>
+          <p>JS-style click targets, scroll-by-pixel examples, page position checks, and element scrolling.</p>
         </a>
-        <a class="topic-link" href="selenium.html">
-          <img class="topic-thumb" src="assets/selenium-main.svg" alt="Selenium lab preview" />
+        <a class="topic-link" href="upload-files.html">
+          <img class="topic-thumb" src="assets/upload.svg" alt="Upload files practice preview" />
           <span>02</span>
-          <h3>Selenium</h3>
-          <p>All existing Selenium practice labs are grouped inside this section.</p>
+          <h3>Upload Files</h3>
+          <p>Practice selecting one or more local files through input[type="file"] and verifying names.</p>
         </a>
-        <a class="topic-link" href="testng.html">
-          <img class="topic-thumb" src="assets/testng.svg" alt="TestNG lab preview" />
+        <a class="topic-link" href="checkbox-alerts.html">
+          <img class="topic-thumb" src="assets/checkbox.svg" alt="Checkbox and radio button practice preview" />
           <span>03</span>
-          <h3>TestNG</h3>
-          <p>TestNG annotations, assertions, grouping, priority, and suite concepts.</p>
+          <h3>Check Boxes and Radio Buttons</h3>
+          <p>Checkbox states, radio-button groups, bulk selection, and clearing selected options.</p>
         </a>
-        <a class="topic-link" href="cucumber.html">
-          <img class="topic-thumb" src="assets/cucumber.svg" alt="Cucumber lab preview" />
+        <a class="topic-link" href="alerts.html">
+          <img class="topic-thumb" src="assets/alerts.svg" alt="Alerts practice preview" />
           <span>04</span>
-          <h3>Cucumber</h3>
-          <p>BDD feature files, scenarios, step definitions, and runner setup.</p>
+          <h3>Alerts</h3>
+          <p>Simple alerts, confirm alerts, prompt alerts, timed alerts, and explicit wait handling.</p>
         </a>
-        <a class="topic-link" href="sql.html">
-          <img class="topic-thumb" src="assets/sql.svg" alt="SQL lab preview" />
+        <a class="topic-link" href="frames-iframes.html">
+          <img class="topic-thumb" src="assets/frames.svg" alt="Frames practice preview" />
           <span>05</span>
-          <h3>SQL</h3>
-          <p>Database query practice for automation validation and test data checks.</p>
+          <h3>Frames and Nested iFrames</h3>
+          <p>Main iframe, nested iframe, inner form, and cross-page frame navigation targets.</p>
         </a>
-        <a class="topic-link" href="git.html">
-          <img class="topic-thumb" src="assets/git.svg" alt="Git lab preview" />
+        <a class="topic-link" href="dropdowns-tables.html">
+          <img class="topic-thumb" src="assets/dropdowns.svg" alt="Dropdown practice preview" />
           <span>06</span>
-          <h3>Git</h3>
-          <p>Version control commands, branching, commits, and GitHub workflow notes.</p>
+          <h3>Different Types of Drop-downs</h3>
+          <p>Select, Bootstrap, hidden, and auto-suggest dropdown patterns with stable practice targets.</p>
+        </a>
+        <a class="topic-link" href="autosuggest-static-table.html">
+          <img class="topic-thumb" src="assets/autosuggest.svg" alt="Static table practice preview" />
+          <span>07</span>
+          <h3>Static and Dynamic Tables</h3>
+          <p>Static table search, visible row counts, paginated data, row selection, and page assertions.</p>
+        </a>
+        <a class="topic-link" href="date-pickers.html">
+          <img class="topic-thumb" src="assets/dates.svg" alt="Date picker practice preview" />
+          <span>08</span>
+          <h3>Date Pickers</h3>
+          <p>Date, week, month, datetime-local, and range-style field practice.</p>
+        </a>
+        <a class="topic-link" href="mouse-actions.html">
+          <img class="topic-thumb" src="assets/mouse.svg" alt="Mouse actions practice preview" />
+          <span>09</span>
+          <h3>Mouse Actions</h3>
+          <p>Hover, double click, right click, drag and drop, and mouse state verification.</p>
+        </a>
+        <a class="topic-link" href="keyboard-slider-tabs-windows.html">
+          <img class="topic-thumb" src="assets/keyboard.svg" alt="Keyboard and window practice preview" />
+          <span>10</span>
+          <h3>Keyboard, Sliders, Tabs, Windows</h3>
+          <p>Key presses, slider movement, tabbed panels, and child-window handling.</p>
+        </a>
+        <a class="topic-link" href="browser-capabilities.html">
+          <img class="topic-thumb" src="assets/browser.svg" alt="Browser capability practice preview" />
+          <span>11</span>
+          <h3>Screenshots, Headless, SSL, Ad Block, Extensions</h3>
+          <p>Browser capability checkpoints and UI targets that help validate environment setup.</p>
+        </a>
+        <a class="topic-link" href="advanced-topics.html">
+          <img class="topic-thumb" src="assets/advanced.svg" alt="Advanced DOM practice preview" />
+          <span>12</span>
+          <h3>Broken Links, SVG, Shadow DOM</h3>
+          <p>Simulated broken links, clickable SVG nodes, and open shadow-root interaction.</p>
+        </a>
+        <a class="topic-link" href="data-driven-testing.html">
+          <img class="topic-thumb" src="assets/data-driven.svg" alt="Data driven testing preview" />
+          <span>13</span>
+          <h3>Data Driven Testing</h3>
+          <p>Run repeated test data sets against a simple and compound interest calculator and verify results.</p>
         </a>
       </section>
 
-      <p class="footer-note">Tip: Open Selenium to continue with the practice labs already created.</p>
+      <p class="footer-note">Tip: Work through these automation labs in order and keep each topic as a separate practice class.</p>
     </div>
-    <script src="main.js?v=109"></script>
+    <script src="main.js?v=115"></script>
   </body>
 </html>
